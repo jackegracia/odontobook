@@ -3,7 +3,7 @@ package edu.austral.lab1.odontobook.graphicInterface;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import edu.austral.lab1.odontobook.graphicInterface.*;
+import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;;
 public class MenuBar {
 private JMenuBar menuBar;
 

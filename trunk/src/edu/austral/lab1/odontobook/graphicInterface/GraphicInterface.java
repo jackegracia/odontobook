@@ -15,6 +15,7 @@ public class GraphicInterface {
 	private JSplitPane splitPanel2;
 	private JButton button1;
 	private JButton button2;
+	private calendario cal;
 
 
 
@@ -24,7 +25,7 @@ public class GraphicInterface {
 		new MenuBar(this);
 		makeJpanel();
 		makeButtons();
-		calendario cal=new calendario(panel3);
+		 cal=new calendario(panel3);
 	}
 
 
