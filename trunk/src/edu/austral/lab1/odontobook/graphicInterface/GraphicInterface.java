@@ -24,6 +24,7 @@ public class GraphicInterface {
 		new MenuBar(this);
 		makeJpanel();
 		makeButtons();
+		calendario cal=new calendario(panel3);
 	}
 
 
@@ -64,6 +65,12 @@ public class GraphicInterface {
 
 
 	}
+	public JPanel getPanel2() {
+		return panel2;
+	}
+
+
+
 	private void makeJtabbedPane() {
 		// TODO Auto-generated method stub
 
