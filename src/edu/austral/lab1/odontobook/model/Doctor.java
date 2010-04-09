@@ -11,8 +11,16 @@ public class Doctor {
 	private int telefono;
 	private String apellido;
 	private int dni;
-	private ArrayList<Paciente> pacientes;
+	private Agenda agenda;
 	
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+
 	public Doctor(String nombre, String apellido,String matricula,int edad, int telefono,
 			int dni, String direccion){
 		this.nombre = nombre;
@@ -79,12 +87,5 @@ public class Doctor {
 		this.dni = dni;
 	}
 
-	public ArrayList<Paciente> getPacientes() {
-		return pacientes;
-	}
-
-	public void setPacientes(ArrayList<Paciente> pacientes) {
-		this.pacientes = pacientes;
-	}
 	
 }

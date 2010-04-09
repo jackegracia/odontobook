@@ -5,10 +5,12 @@ public class Turno {
 	private Fecha fecha;
 	private Hora hora;
 	private boolean asistido;
+	private Paciente paciente;
 	
-	public Turno(Fecha fecha, Hora hora){
+	public Turno(Fecha fecha, Hora hora, Paciente paciente){
 		this.fecha = fecha;
 		this.hora = hora;
+		this.paciente = paciente;
 	}
 
 	public Fecha getFecha() {
