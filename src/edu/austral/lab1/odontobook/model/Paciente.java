@@ -98,6 +98,14 @@ public class Paciente {
 	public void setDni(int dni) {
 		this.dni = dni;
 	}
+
+	public ArrayList<Turno> getTurnos() {
+		return turnos;
+	}
+
+	public void setTurnos(ArrayList<Turno> turnos) {
+		this.turnos = turnos;
+	}
 	
 	
 }
