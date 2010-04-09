@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
@@ -91,7 +92,7 @@ public class HibernateUtil {
 
     public static void createSchema()
     {
-        Configuration c = new Configuration().configure("/hibernate.cfg.xml");
+        Configuration c = new AnnotationConfiguration().configure("/hibernate.cfg.xml");
 
         SchemaExport se = new SchemaExport(c);
         se.setOutputFile("resources_schema_export.sql");
@@ -210,7 +211,7 @@ public class HibernateUtil {
     static {
         try {
             // Create the SessionFactory
-            configuration = new Configuration().configure("/hibernate.cfg.xml");
+            configuration = new AnnotationConfiguration().configure("/hibernate.cfg.xml");
             sessionFactory = configuration.buildSessionFactory();
         }
         catch (Throwable ex) {

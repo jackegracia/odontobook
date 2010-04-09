@@ -6,10 +6,7 @@ import org.hibernate.HibernateException;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.InfrastructureException;
 
-/**
- * Date: 30/11/2005
- * Time: 21:30:28
- */
+
 public class BaseDao
 {
 
