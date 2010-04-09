@@ -1,6 +1,16 @@
 package edu.austral.lab1.odontobook.model;
 
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name="DOCTOR")
+
 
 public class Doctor {
 
@@ -78,7 +88,9 @@ public class Doctor {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
+	@Id
+	@GeneratedValue
+	@Column(name="DOCTOR_ID")
 	public int getDni() {
 		return dni;
 	}
