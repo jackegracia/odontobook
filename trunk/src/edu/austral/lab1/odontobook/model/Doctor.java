@@ -21,15 +21,15 @@ public class Doctor {
 	private int telefono;
 	private String apellido;
 	private int dni;
-	private Agenda agenda;
+	//private Agenda agenda;
 	
-	public Agenda getAgenda() {
+	/*public Agenda getAgenda() {
 		return agenda;
 	}
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
-	}
+	}*/
 
 	public Doctor(String nombre, String apellido,String matricula,int edad, int telefono,
 			int dni, String direccion){
