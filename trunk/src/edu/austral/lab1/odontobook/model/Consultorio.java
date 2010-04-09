@@ -24,6 +24,8 @@ public class Consultorio {
 		doctores.add(d);
 	}
 	
+	
+	//me devuelve la lista de pacientes cn el mismo nombre y apellido
 	public ArrayList<Paciente> encontrarPacientes(String nombre, String apellido){
 		ArrayList<Paciente> p = new ArrayList<Paciente>();
 		int size = pacientes.size();
@@ -36,5 +38,8 @@ public class Consultorio {
 		}
 		return p;
 	}
+	
+	
 
+	public void modificarPaciente(){}
 }
