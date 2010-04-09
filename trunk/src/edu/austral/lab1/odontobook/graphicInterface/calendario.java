@@ -1,7 +1,5 @@
 package edu.austral.lab1.odontobook.graphicInterface;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -67,8 +65,8 @@ public class calendario  {
 		dd = today;
 	}
 
-	String[] months = { "January", "February", "March", "April", "May", "June",
-			"July", "August", "September", "October", "November", "December" };
+	String[] months = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+			"Julio", "Augusto", "Septiembre", "Octubre", "Noviembre", "Deciembre" };
 
 	private JPanel panel2;
 
@@ -132,27 +130,30 @@ public class calendario  {
 
 		ActionListener dateSetter = new ActionListener() {
 			private JFrame frame=new JFrame("Turnos");
+			private TurnoGraphic turno;
+
 
 			public void actionPerformed(ActionEvent e) {
 
 				String num = e.getActionCommand();
 				if (!num.equals("")) {
 
-
-					if( frame.isActive()){
-						frame.dispose();
-					}
-
-
+					frame.dispose();
+					frame=new JFrame();
 					frame.setVisible(true);
-					frame.setSize(175, 500);
+					frame.setSize(175, 600);
 
+					turno=new TurnoGraphic(frame);
 					// set the current day highlighted
 					setDayActive(Integer.parseInt(num));
-					// When this becomes a Bean, you can
-					// fire some kind of DateChanged event here.
-					// Also, build a similar daySetter for day-of-week btns.
 				}
+
+				// set the current day highlighted
+
+				// When this becomes a Bean, you can
+				// fire some kind of DateChanged event here.
+				// Also, build a similar daySetter for day-of-week btns.
+
 			}
 		};
 
@@ -169,6 +170,7 @@ public class calendario  {
 	public final static int dom[] = { 31, 28, 31, 30, /* jan feb mar apr */
 		31, 30, 31, 31, /* may jun jul aug */
 		30, 31, 30, 31 /* sep oct nov dec */
+
 	};
 
 	/** Compute which days to put where, in the Cal panel */
@@ -193,29 +195,29 @@ public class calendario  {
 		for (int i = 0; i < leadGap; i++) {
 			labs[0][i].setText("");
 		}
-/*
- * 
- * 
- * 
- */
+		/*
+		 * 
+		 * 
+		 * 
+		 */
 		// Fill in numbers for the day of month.
 		for (int i = 1; i <= daysInMonth; i++) {
 			JButton b = labs[(leadGap + i - 1) / 7][(leadGap + i - 1) % 7];
 			b.setText(Integer.toString(i));
 			try{
-			if (daysInMonth==i){
-				 b = labs[((leadGap + i - 1) / 7)][((leadGap + i - 1) % 7)+1];
+				if (daysInMonth==i){
+					b = labs[((leadGap + i - 1) / 7)][((leadGap + i - 1) % 7)+1];
+					System.out.println(i);
+					b.setText("");
+				}
+			}catch(ArrayIndexOutOfBoundsException e){
+				b = labs[((leadGap + i - 1) / 7+1)][((leadGap + i - 1) % 7)];
 				System.out.println(i);
 				b.setText("");
 			}
-			}catch(ArrayIndexOutOfBoundsException e){
-				 b = labs[((leadGap + i - 1) / 7+1)][((leadGap + i - 1) % 7)];
-					System.out.println(i);
-					b.setText("");
-			}
 		}
 
-	
+
 		// 7 days/week * up to 6 rows
 		for (int i = leadGap +1+ daysInMonth; i < 6 * 7; i++) {
 			labs[(i) / 7][(i) % 7].setText("");
@@ -283,6 +285,4 @@ public class calendario  {
 		square.repaint();
 		activeDay = newDay;
 	}
-
-
 }
