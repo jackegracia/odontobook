@@ -1,6 +1,6 @@
 package edu.austral.lab1.odontobook.model;
 
-import java.util.ArrayList;
+
 
 public class Paciente {
 	private String nombre;
@@ -12,7 +12,7 @@ public class Paciente {
 	private String apellido;
 	private int telefono;
 	private int dni;
-	private ArrayList<Turno> turnos;
+
 	
 	public Paciente(String nombre,String apellido, int dni, int telefono,
 			String direccion,String obraSocial,int edad){
@@ -99,13 +99,7 @@ public class Paciente {
 		this.dni = dni;
 	}
 
-	public ArrayList<Turno> getTurnos() {
-		return turnos;
-	}
 
-	public void setTurnos(ArrayList<Turno> turnos) {
-		this.turnos = turnos;
-	}
 	
 	
 }
