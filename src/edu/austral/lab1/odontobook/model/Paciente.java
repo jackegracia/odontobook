@@ -1,7 +1,12 @@
 package edu.austral.lab1.odontobook.model;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.Table;
 
-
+@Entity
+@Table (appliesTo = "")
 public class Paciente {
 	private String nombre;
 	private String direccion;
@@ -34,7 +39,9 @@ public class Paciente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	
+	    
+	  
 	public String getDireccion() {
 		return direccion;
 	}
