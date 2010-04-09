@@ -202,10 +202,16 @@ public class calendario  {
 		for (int i = 1; i <= daysInMonth; i++) {
 			JButton b = labs[(leadGap + i - 1) / 7][(leadGap + i - 1) % 7];
 			b.setText(Integer.toString(i));
+			try{
 			if (daysInMonth==i){
 				 b = labs[((leadGap + i - 1) / 7)][((leadGap + i - 1) % 7)+1];
 				System.out.println(i);
 				b.setText("");
+			}
+			}catch(ArrayIndexOutOfBoundsException e){
+				 b = labs[((leadGap + i - 1) / 7+1)][((leadGap + i - 1) % 7)];
+					System.out.println(i);
+					b.setText("");
 			}
 		}
 
