@@ -1,12 +1,18 @@
 package edu.austral.lab1.odontobook.model;
 
-import org.hibernate.annotations.Columns;
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-@Table (appliesTo = "")
+@Table(name="PACIENTE")
+
+
+
 public class Paciente {
 	private String nombre;
 	private String direccion;
@@ -66,6 +72,9 @@ public class Paciente {
 		this.edad = edad;
 	}
 
+	
+
+    @OneToOne(cascade = CascadeType.ALL)
 	public Histograma getHistograma() {
 		return histograma;
 	}
@@ -73,7 +82,8 @@ public class Paciente {
 	public void setHistograma(Histograma histograma) {
 		this.histograma = histograma;
 	}
-
+	/*
+    @OneToOne(cascade = CascadeType.ALL)
 	public Odontograma getOdontograma() {
 		return odontograma;
 	}
@@ -81,7 +91,7 @@ public class Paciente {
 	public void setOdontograma(Odontograma odontograma) {
 		this.odontograma = odontograma;
 	}
-
+*/
 	public String getApellido() {
 		return apellido;
 	}
@@ -97,7 +107,9 @@ public class Paciente {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-
+	@Id
+	@GeneratedValue
+	@Column(name="DOCTOR_ID")
 	public int getDni() {
 		return dni;
 	}

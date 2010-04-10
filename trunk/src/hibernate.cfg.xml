@@ -14,6 +14,12 @@
         <property name="hbm2ddl.auto">create</property>
         
         <mapping class="edu.austral.lab1.odontobook.model.Doctor" />
-        
+        <mapping class="edu.austral.lab1.odontobook.model.Hora" />
+        <mapping class="edu.austral.lab1.odontobook.model.Fecha" />
+        <mapping class="edu.austral.lab1.odontobook.model.Turno" />
+        <mapping class="edu.austral.lab1.odontobook.model.Paciente" />
+        <mapping class="edu.austral.lab1.odontobook.model.Histograma" />
+          
+         
     </session-factory>
 </hibernate-configuration>
