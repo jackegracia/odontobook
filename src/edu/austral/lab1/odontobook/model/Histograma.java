@@ -1,5 +1,13 @@
 package edu.austral.lab1.odontobook.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="HISTOGRAMA")
 public class Histograma {
 private int dientes;
 private char[] cara;
@@ -10,7 +18,9 @@ public Histograma(int dientes,char[] cara,String tratamiento){
 	this.cara=cara;
 	this.tratamiento=tratamiento;
 }
-
+@Id
+@GeneratedValue
+@Column(name="DIENTES_ID")
 public int getDientes() {
 	return dientes;
 }

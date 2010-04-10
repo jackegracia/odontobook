@@ -2,7 +2,25 @@
 
 package edu.austral.lab1.odontobook.model;
 
-public class Turno {
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="TURNO")
+
+
+public class Turno implements Serializable{
 	
 	private Fecha fecha;
 	private Hora hora;
@@ -15,6 +33,10 @@ public class Turno {
 		this.paciente = paciente;
 	}
 
+	@Id
+	@GeneratedValue
+    @OneToOne(cascade = CascadeType.ALL)
+	
 	public Fecha getFecha() {
 		return fecha;
 	}
@@ -22,7 +44,7 @@ public class Turno {
 	public void setFecha(Fecha fecha) {
 		this.fecha = fecha;
 	}
-
+	@ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	public Hora getHora() {
 		return hora;
 	}
