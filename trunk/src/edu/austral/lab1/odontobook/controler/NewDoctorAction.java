@@ -2,12 +2,9 @@ package edu.austral.lab1.odontobook.controler;
 
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -98,7 +95,7 @@ public class NewDoctorAction extends AbstractAction {
 
 		cancelar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
+
 
 			}
 		});
@@ -117,6 +114,7 @@ public class NewDoctorAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Doctor doc = crearDialogo();
 		consultorio.agregarDoctor(doc);
 		
