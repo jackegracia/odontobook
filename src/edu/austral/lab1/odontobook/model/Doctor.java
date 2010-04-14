@@ -1,10 +1,20 @@
 package edu.austral.lab1.odontobook.model;
 
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 
 
@@ -15,13 +25,15 @@ import javax.persistence.Table;
 public class Doctor {
 
 	private String nombre;
-	private String matricula;
+	private int matricula;
 	private int edad;
 	private String direccion;
 	private int telefono;
 	private String apellido;
 	private int dni;
+	private Frame frame;
 	//private Agenda agenda;
+	private JDialog nuevoDialogo;
 	
 	/*public Agenda getAgenda() {
 		return agenda;
@@ -31,14 +43,16 @@ public class Doctor {
 		this.agenda = agenda;
 	}*/
 
-	public Doctor(String nombre, String apellido,String matricula,int edad, int telefono,
+	public Doctor(String nombre, String apellido,int matricula,int edad, int telefono,
 			int dni, String direccion){
+		
 		this.nombre = nombre;
 		this.matricula = matricula;
 		this.edad = edad;
 		this.apellido = apellido;
 		this.direccion = direccion;
 		this.dni = dni;
+		HibernateUtil.beginTransaction();
 	}
 
 	public String getNombre() {
@@ -49,11 +63,11 @@ public class Doctor {
 		this.nombre = nombre;
 	}
 
-	public String getMatricula() {
+	public int getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(String matricula) {
+	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
 
@@ -99,5 +113,7 @@ public class Doctor {
 		this.dni = dni;
 	}
 
+
+	
 	
 }
