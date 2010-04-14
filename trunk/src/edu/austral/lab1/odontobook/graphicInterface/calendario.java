@@ -207,7 +207,7 @@ public class calendario  {
 			try{
 				if (daysInMonth==i){
 					b = labs[((leadGap + i - 1) / 7)][((leadGap + i - 1) % 7)+1];
-					System.out.println(i);
+				
 					b.setText("");
 				}
 			}catch(ArrayIndexOutOfBoundsException e){

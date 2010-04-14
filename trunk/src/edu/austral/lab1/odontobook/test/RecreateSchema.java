@@ -1,4 +1,4 @@
-package edu.austral.lab1.odontobook.controler;
+package edu.austral.lab1.odontobook.test;
 
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 
