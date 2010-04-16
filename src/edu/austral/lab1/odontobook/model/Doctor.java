@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.hibernate.annotations.GenericGenerator;
+
 
 
 @Entity
@@ -31,9 +33,11 @@ public class Doctor {
 	private int telefono;
 	private String apellido;
 	private int dni;
+private long id;
 
-
-	
+	public Doctor(){
+		
+	}
 	
 
 	public Doctor(String nombre, String apellido,int matricula,int edad, int telefono,
@@ -95,9 +99,24 @@ public class Doctor {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	@Id
-	@GeneratedValue
-	@Column(name="DOCTOR_ID")
+	
+	@Id @GeneratedValue
+	public long getId() {
+		
+		
+		return id;
+	
+	}
+	
+public void setId(long id) {
+		
+		this.id=id;
+		
+	
+	}
+
+
+	
 	public int getDni() {
 		return dni;
 	}
