@@ -23,6 +23,7 @@ public class Paciente {
 	private String apellido;
 	private int telefono;
 	private int dni;
+	private long id;
 
 	
 	public Paciente(String nombre,String apellido, int dni, int telefono,
@@ -107,9 +108,7 @@ public class Paciente {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-	@Id
-	@GeneratedValue
-	@Column(name="DOCTOR_ID")
+
 	public int getDni() {
 		return dni;
 	}
@@ -118,7 +117,20 @@ public class Paciente {
 		this.dni = dni;
 	}
 
-
+	@Id @GeneratedValue
+	public long getId() {
+		
+		
+		return id;
+	
+	}
+	
+public void setId(long id) {
+		
+		this.id=id;
+		
+	
+	}
 	
 	
 }
