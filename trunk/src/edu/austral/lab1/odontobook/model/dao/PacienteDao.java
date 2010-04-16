@@ -14,6 +14,12 @@ import edu.austral.lab1.odontobook.model.Paciente;
 public class PacienteDao extends BaseDao{
 
    
-    
 
+    public List getPaciente(){
+        return HibernateUtil.getSession().createCriteria(Paciente.class).list();
+    }
+
+    public static List getAll(){
+        return new PacienteDao().getPaciente();
+    }
 }
