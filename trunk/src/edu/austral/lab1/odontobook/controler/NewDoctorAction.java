@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
+import edu.austral.lab1.odontobook.model.dao.BaseDao;
 
 public class NewDoctorAction extends AbstractAction {
 	
@@ -114,8 +115,9 @@ public class NewDoctorAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		BaseDao dao=new BaseDao();
 		Doctor doc = crearDialogo();
+
 		consultorio.agregarDoctor(doc);
 		
 	}

@@ -52,7 +52,7 @@ public class Doctor {
 		this.apellido = apellido;
 		this.direccion = direccion;
 		this.dni = dni;
-		HibernateUtil.beginTransaction();
+	
 	}
 
 	public String getNombre() {
