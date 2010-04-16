@@ -5,15 +5,11 @@ package edu.austral.lab1.odontobook.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +22,8 @@ public class Turno implements Serializable{
 	private Hora hora;
 	private boolean asistido;
 	private Paciente paciente;
+	private Doctor doctor;
+	private long codigo;
 	
 	public Turno(Fecha fecha, Hora hora, Paciente paciente){
 		this.fecha = fecha;
@@ -33,9 +31,7 @@ public class Turno implements Serializable{
 		this.paciente = paciente;
 	}
 
-	@Id
-	@GeneratedValue
-    @OneToOne(cascade = CascadeType.ALL)
+
 	
 	public Fecha getFecha() {
 		return fecha;
@@ -44,7 +40,8 @@ public class Turno implements Serializable{
 	public void setFecha(Fecha fecha) {
 		this.fecha = fecha;
 	}
-	@ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+	
+//	@OneToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	public Hora getHora() {
 		return hora;
 	}
@@ -59,6 +56,26 @@ public class Turno implements Serializable{
 
 	public void setAsistido(boolean asistido) {
 		this.asistido = asistido;
+	}
+	
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+	
+	@Id
+	@GeneratedValue
+//    @OneToOne(cascade = CascadeType.ALL)
+
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
 }

@@ -1,12 +1,6 @@
 package edu.austral.lab1.odontobook.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
 public class Hora {
 
 	private int hora;
@@ -17,9 +11,7 @@ public class Hora {
 		this.minutos = minutos;
 	}
 
-	@Id
-	@GeneratedValue
-	@Column(name="HORA_ID")
+	
 	public int getHora() {
 		return hora;
 	}
