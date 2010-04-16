@@ -18,37 +18,19 @@ import javax.persistence.Table;
 
 public class Turno implements Serializable{
 	
-	private Fecha fecha;
-	private Hora hora;
 	private boolean asistido;
-	private Paciente paciente;
-	private Doctor doctor;
+	//private Paciente paciente;
+	//private Doctor doctor;
 	private long codigo;
 	
-	public Turno(Fecha fecha, Hora hora, Paciente paciente){
-		this.fecha = fecha;
-		this.hora = hora;
-		this.paciente = paciente;
+	public Turno( ){
+		
+		//this.paciente = paciente;
 	}
 
 
 	
-	public Fecha getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Fecha fecha) {
-		this.fecha = fecha;
-	}
 	
-//	@OneToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-	public Hora getHora() {
-		return hora;
-	}
-
-	public void setHora(Hora hora) {
-		this.hora = hora;
-	}
 
 	public boolean isAsistido() {
 		return asistido;
@@ -58,13 +40,13 @@ public class Turno implements Serializable{
 		this.asistido = asistido;
 	}
 	
-	public Paciente getPaciente() {
+	/*public Paciente getPaciente() {
 		return paciente;
 	}
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
-	}
+	}*/
 	
 	@Id
 	@GeneratedValue

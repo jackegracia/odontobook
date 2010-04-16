@@ -119,9 +119,10 @@ public class NewDoctorAction extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		 
 		Doctor doc = crearDialogo();
-		DoctorDao doctor=new DoctorDao();
+		DoctorDao doctor = new DoctorDao();
+		
 		HibernateUtil.beginTransaction();
-		 doctor.makePersistent(doc);
+		doctor.makePersistent(doc);
         HibernateUtil.commitTransaction();
        
         
