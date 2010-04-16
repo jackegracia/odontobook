@@ -31,17 +31,10 @@ public class Doctor {
 	private int telefono;
 	private String apellido;
 	private int dni;
-	private Frame frame;
-	//private Agenda agenda;
-	private JDialog nuevoDialogo;
-	
-	/*public Agenda getAgenda() {
-		return agenda;
-	}
 
-	public void setAgenda(Agenda agenda) {
-		this.agenda = agenda;
-	}*/
+
+	
+	
 
 	public Doctor(String nombre, String apellido,int matricula,int edad, int telefono,
 			int dni, String direccion){
@@ -114,6 +107,4 @@ public class Doctor {
 	}
 
 
-	
-	
 }

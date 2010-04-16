@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+
 public class Fecha {
 
 	private int dia;
@@ -19,9 +19,7 @@ public class Fecha {
 		this.dia = dia;
 	}
 
-	@Id
-	@GeneratedValue
-	@Column(name="DIA_ID")
+
 	public int getDia() {
 		return dia;
 	}
