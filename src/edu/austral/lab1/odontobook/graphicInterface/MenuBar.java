@@ -25,16 +25,13 @@ public class MenuBar {
 		// Creo los Items que van a ir debajo del menu Archivo.
 		
 		
-		file.add(am.getNewDoctor());
+		
 		
 		
 		
 		JMenuItem exit = new JMenuItem("exit");
 
 
-
-		JMenuItem newDoctor = new JMenuItem("Doctor");
-		JMenuItem newPatient = new JMenuItem("Patien");
 
 
 		// Creo los items que van a ir debajo del Menu Editar.
@@ -56,8 +53,8 @@ public class MenuBar {
 
 
 		// Agrego los elementos que van a ir a la derecha del Menu Nuevo.
-		newFile.add(newDoctor);
-		newFile.add(newPatient);
+		newFile.add(am.getNewDoctor());
+		newFile.add(am.getNewPaciente());
 
 
 		// Agrego los menues principales a la Barra de Menu
