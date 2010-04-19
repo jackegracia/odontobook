@@ -15,11 +15,11 @@ public class DoctorDAOTest {
 	@Test
 	public void test_DoctorCreation()
 	{
-		Doctor d = new Doctor("a", "z", 0, 0, 0, 8, "a");
+		Doctor d = new Doctor("b", "z", 0, 0, 0, 8, "a");
 		DoctorDao doctorDAO = new DoctorDao();
 		
 		Doctor persistedDoctor = (Doctor) doctorDAO.makePersistent(d);   
-		Doctor d2 = new Doctor("a2", "zz2", 0, 0, 0, 8, "a");
+		Doctor d2 = new Doctor("b2", "zz2", 0, 0, 0, 8, "a");
 		doctorDAO.makePersistent(d2);
 	
 		
