@@ -175,6 +175,15 @@ public class calendario  {
 
 	/** Compute which days to put where, in the Cal panel */
 	protected void recompute() {
+
+		for(int i=0;i<labs.length;i++){
+			for(int k=0;k<labs[i].length;k++){
+				labs[i][k].setVisible(true);
+
+			}
+		}
+
+
 		// System.out.println("Cal::recompute: " + yy + ":" + mm + ":" + dd);
 		if (mm < 0 || mm > 11)
 			throw new IllegalArgumentException("Month " + mm
@@ -194,6 +203,7 @@ public class calendario  {
 		// Blank out the labels before 1st day of month
 		for (int i = 0; i < leadGap; i++) {
 			labs[0][i].setText("");
+
 		}
 		/*
 		 * 
@@ -207,7 +217,7 @@ public class calendario  {
 			try{
 				if (daysInMonth==i){
 					b = labs[((leadGap + i - 1) / 7)][((leadGap + i - 1) % 7)+1];
-				
+
 					b.setText("");
 				}
 			}catch(ArrayIndexOutOfBoundsException e){
@@ -230,6 +240,16 @@ public class calendario  {
 
 		// Say we need to be drawn on the screen
 		panel2.repaint();
+
+
+		for(int i=0;i<labs.length;i++){
+			for(int k=0;k<labs[i].length;k++){
+				if(labs[i][k].getText()==""){
+					labs[i][k].setVisible(false);
+				}
+			}
+		}
+
 	}
 
 	/**

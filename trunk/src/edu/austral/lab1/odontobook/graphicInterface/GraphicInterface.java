@@ -29,6 +29,7 @@ public class GraphicInterface {
 		makeJpanel();
 		makeButtons();
 		cal=new calendario(panel3);
+	
 	}
 
 
@@ -66,7 +67,7 @@ public class GraphicInterface {
 		splitPanel1.setEnabled(false);
 		splitPanel1.setDividerLocation(175);
 		frame.add(splitPanel1);
-		
+	
 	}
 	public JPanel getPanel2() {
 		return panel2;

@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import edu.austral.lab1.odontobook.graphicInterface.DoctorTabbedPane;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
@@ -42,7 +43,7 @@ public class NewDoctorAction extends AbstractAction {
 		JLabel direccion= new JLabel("Direccion");
 		JLabel matricula= new JLabel("Matricula");
 		JLabel dni= new JLabel("Dni");
-		JLabel telefono= new JLabel("Matricula");
+		JLabel telefono= new JLabel("Telefono");
 
 		final JTextField jNombre = new JTextField("");
 		final JTextField jApellido = new JTextField("");
@@ -54,11 +55,12 @@ public class NewDoctorAction extends AbstractAction {
 
 		JButton aceptar = new JButton("Aceptar");
 		JButton cancelar = new JButton("Cancelar");
-		GridLayout layout = new GridLayout(8,2);
+		GridLayout layout = new GridLayout(8,4);
 		jNombre.setPreferredSize(new Dimension(280, 25));
+		
 		//Seteo los componentes a la Ventana.
 		nuevoDialogo.getContentPane().setLayout(layout);
-
+		
 		nuevoDialogo.getContentPane().add(nombre);
 		nuevoDialogo.getContentPane().add(jNombre);
 
@@ -90,7 +92,9 @@ public class NewDoctorAction extends AbstractAction {
 
 
 			public void actionPerformed(ActionEvent e) {
-				if(!jNombre.getText().equals("")){
+				if(!jNombre.getText().equals("")||!jApellido.getText().equals("")||!jEdad.getText().equals("")||
+						!JDireccion.getText().equals("")||!jMatricula.getText().equals("")||!jDni.getText().equals("")||
+						!jTelefono.getText().equals("")){
 					nuevoDialogo.dispose();	
 				}
 			}
@@ -120,11 +124,10 @@ public class NewDoctorAction extends AbstractAction {
 		 
 		Doctor doc = crearDialogo();
 		DoctorDao doctor = new DoctorDao();
-		
 		HibernateUtil.beginTransaction();
 		doctor.makePersistent(doc);
         HibernateUtil.commitTransaction();
-       
+        new DoctorTabbedPane();
         
         
 	//	consultorio.agregarDoctor(doc);
