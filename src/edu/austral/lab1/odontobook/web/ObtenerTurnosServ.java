@@ -3,14 +3,13 @@ package edu.austral.lab1.odontobook.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+import javax.servlet.*;
 
 
 public class ObtenerTurnosServ extends HttpServlet {
 	
-	@Override
+	
 	public void doGet(HttpServletRequest rq, HttpServletResponse rp) {
 		
 
@@ -19,8 +18,16 @@ public class ObtenerTurnosServ extends HttpServlet {
 		
 	}
 	
-	@Override
-	public void doPost(HttpServletRequest rq, HttpServletResponse rp) {
+	
+	public void doPost(HttpServletRequest rq, HttpServletResponse rp) 
+		throws ServletException, IOException  {
+		
+		rp.setContentType("text/html");
+		PrintWriter out = rp.getWriter();
+		out.print("Selecionador de turnos<br>");
+		String c = rq.getParameter("Mes");
+		out.print("<br>Eligio el mes "+c);
+		
 		
 	}
 
