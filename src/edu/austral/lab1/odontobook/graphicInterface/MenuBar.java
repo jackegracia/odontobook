@@ -1,14 +1,9 @@
 package edu.austral.lab1.odontobook.graphicInterface;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import edu.austral.lab1.odontobook.controler.ActionManager;
-import edu.austral.lab1.odontobook.controler.NewDoctorAction;
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;;
 public class MenuBar {
 	private JMenuBar menuBar;
@@ -23,12 +18,9 @@ public class MenuBar {
 		JMenu patient = new JMenu("Patient");
 
 		// Creo los Items que van a ir debajo del menu Archivo.
-		
-		
-		
-		
-		
-		
+
+
+
 		JMenuItem exit = new JMenuItem("exit");
 
 
@@ -63,7 +55,7 @@ public class MenuBar {
 		menuBar.add(edit); // Tomah un tipo JMenu.
 		menuBar.add(patient); // Tomah un tipo JMenu.
 
-		
+
 
 		graphicInteface.getFrame().setJMenuBar(menuBar);
 	}

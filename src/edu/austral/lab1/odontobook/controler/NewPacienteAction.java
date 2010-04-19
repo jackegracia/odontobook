@@ -11,9 +11,10 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import edu.austral.lab1.odontobook.model.Consultorio;
+import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
+import edu.austral.lab1.odontobook.model.dao.PacienteDao;
 
 public class NewPacienteAction extends AbstractAction {
 	
@@ -53,7 +54,8 @@ public class NewPacienteAction extends AbstractAction {
 		JButton cancelar = new JButton("Cancelar");
 		GridLayout layout = new GridLayout(8,2);
 		jNombre.setPreferredSize(new Dimension(280, 25));
-		//Seteo los componentes a la Ventana.
+
+
 		nuevoDialogo.getContentPane().setLayout(layout);
 
 		nuevoDialogo.getContentPane().add(nombre);
@@ -110,9 +112,9 @@ public class NewPacienteAction extends AbstractAction {
 
 		return new Paciente(jNombre.getText()
 				,jApellido.getText()
-				,Integer.parseInt(jDni.getText()), 
-				Integer.parseInt( jTelefono.getText()),
-				JDireccion.getText(),jObraSocial.getText()
+				,Integer.parseInt(jDni.getText())
+				,Integer.parseInt( jTelefono.getText())
+				,JDireccion.getText(),jObraSocial.getText()
 				,Integer.parseInt(jEdad.getText()) );
 	}
 	
@@ -121,8 +123,11 @@ public class NewPacienteAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Paciente paciente = crearDialogo();
-		consultorio.agregarPaciente(paciente);
-		
+	//	consultorio.agregarPaciente(paciente);
+		PacienteDao pac = new PacienteDao();
+		HibernateUtil.beginTransaction();
+		pac.makePersistent(paciente);
+        HibernateUtil.commitTransaction();
 	}
 
 }

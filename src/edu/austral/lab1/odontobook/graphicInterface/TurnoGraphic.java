@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 public class TurnoGraphic {
 
 	private JTextField jtextField[];
-	private JTextField field;
 
 	public TurnoGraphic (JFrame frame){
 		
