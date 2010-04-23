@@ -15,7 +15,7 @@ public class Login extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException  {
 	
-		HttpSession session = request.getSession(false);
+/*		HttpSession session = request.getSession(false);
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -33,7 +33,7 @@ public class Login extends HttpServlet{
        else 
            {
           out.println("Invalid username and password");
-       }
+       }*/
 	
 }
 
