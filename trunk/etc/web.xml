@@ -12,4 +12,14 @@
 	<servlet-name>Obtener turno</servlet-name>
 	<url-pattern>/ObtenerTurno.do</url-pattern>
 </servlet-mapping>
+
+<servlet>
+<servlet-name>Login</servlet-name>
+<servlet-class>edu.austral.lab1.odontobook.web.Login</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>Login</servlet-name>
+	<url-pattern>/Login.do</url-pattern>
+</servlet-mapping>
 </web-app>
