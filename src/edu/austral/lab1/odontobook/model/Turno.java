@@ -25,8 +25,8 @@ public class Turno implements Serializable{
 	private Doctor doctor;
 	private long codigo;
 	
-	public Turno( Paciente paciente){
-		
+	public Turno(Paciente paciente, Doctor doctor){
+		this.doctor=doctor;
 		this.paciente = paciente;
 	}
 

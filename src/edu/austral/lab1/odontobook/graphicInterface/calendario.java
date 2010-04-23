@@ -7,11 +7,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import edu.austral.lab1.odontobook.controler.ActionManager;
 
 
 public class calendario  {
@@ -35,11 +38,16 @@ public class calendario  {
 	private JComboBox monthChoice;
 	/** The year choice */
 	private JComboBox yearChoice;
+
+	private DoctorTabbedPane doc;
+	
+	private   ActionManager am;
 	/**
 	 * Construct a Cal, starting with today.
 	 */
-	public calendario(JPanel panel2) {
+	public calendario(JPanel panel2,DoctorTabbedPane doc) {
 		this.panel2=panel2;
+		this.doc=doc;
 		setYYMMDD(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
 				calendar.get(Calendar.DAY_OF_MONTH));
 		buildGUI();
@@ -129,23 +137,17 @@ public class calendario  {
 		bp.add(new JButton("S"));
 
 		ActionListener dateSetter = new ActionListener() {
-			private JFrame frame=new JFrame("Turnos");
-			private TurnoGraphic turno;
-
-
+			
 			public void actionPerformed(ActionEvent e) {
 
 				String num = e.getActionCommand();
 				if (!num.equals("")) {
 
-					frame.dispose();
-					frame=new JFrame();
-					frame.setVisible(true);
-					frame.setSize(175, 600);
-
-					turno=new TurnoGraphic(frame);
-					// set the current day highlighted
 					setDayActive(Integer.parseInt(num));
+					Date date=new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
+			      	am=new ActionManager(doc,date);
+			      	am.getNewTurnoAction().createTurno();
+		     	   
 				}
 
 				// set the current day highlighted
@@ -162,6 +164,8 @@ public class calendario  {
 			for (int j = 0; j < 7; j++) {
 				bp.add(labs[i][j] = new JButton(""));
 				labs[i][j].addActionListener(dateSetter);
+				
+				
 			}
 
 		panel2.add( bp);
