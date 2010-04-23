@@ -15,14 +15,12 @@ public class MenuBar {
 		JMenu file = new JMenu("file");
 		JMenu edit = new JMenu("edit");
 		JMenu newFile = new JMenu("new");
+		
 		JMenu patient = new JMenu("Patient");
 
 		// Creo los Items que van a ir debajo del menu Archivo.
-
-
-
 		JMenuItem exit = new JMenuItem("exit");
-
+		
 
 
 
@@ -34,6 +32,7 @@ public class MenuBar {
 
 		// Agrego los elementos que van debajo en el Menu de Archivo.
 		file.add(newFile);
+		file.add(am.getDeleteDoctorAction());
 		file.add(exit);
 
 

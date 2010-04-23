@@ -27,18 +27,20 @@ public class GraphicInterface {
 		makeJframe();
 		new MenuBar(am,this);
 		makeJpanel();
+		cal=new calendario(panel3,new DoctorTabbedPane());
 		makeButtons();
-		cal=new calendario(panel3);
-	
+		frame.setVisible(true);
+		
+		frame.setSize(600,600);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
 	}
-
-
-
 	private void makeJframe() {
 		frame=new JFrame();
-		frame.setVisible(true);
-		frame.setSize(600,600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+	
 
 
 	}
@@ -51,6 +53,7 @@ public class GraphicInterface {
 		this.frame = frame;
 	}
 
+	
 	private void makeJpanel() {
 
 
@@ -58,28 +61,28 @@ public class GraphicInterface {
 		panel2=new JPanel();
 		panel3=new JPanel();
 
-		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT,panel1 /*new DoctorTabbedPane()*/,panel2);
+		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT ,new DoctorTabbedPane(),panel1);
 		splitPanel2.setOneTouchExpandable(false);
 		splitPanel2.setEnabled(false);
 		splitPanel2.setDividerLocation(300);
+		
 		splitPanel1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,splitPanel2,panel3);
 		splitPanel1.setOneTouchExpandable(false);
 		splitPanel1.setEnabled(false);
 		splitPanel1.setDividerLocation(175);
+		
 		frame.add(splitPanel1);
-	
+
 	}
 	public JPanel getPanel2() {
 		return panel2;
 	}
 
 
-
-
 	private void makeButtons() {
 		button1=new JButton("Dar de baja turno");
 		button2=new JButton("Dar de Alta turno");
-		panel2.add(button1);
-		panel2.add(button2);
+		panel1.add(button1);
+		panel1.add(button2);
 	}
 }

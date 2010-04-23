@@ -27,8 +27,6 @@ public class PaintTooth extends JPanel {
 
     public void paintComponent(Graphics g) {
             super.paintComponent(g); 
-
-            
             Graphics2D g2d = (Graphics2D) g;
 
             GeneralPath polyline = 
@@ -44,7 +42,7 @@ public class PaintTooth extends JPanel {
            
             g2d.setPaint(Color.BLUE);
             g2d.fill(polyline);
-           
+         
          
     }
 

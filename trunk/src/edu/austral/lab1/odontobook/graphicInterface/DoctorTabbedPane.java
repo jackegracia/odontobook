@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import edu.austral.lab1.odontobook.model.Doctor;
+import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 
 
@@ -18,24 +19,20 @@ public class DoctorTabbedPane extends JTabbedPane{
 	private DoctorDao doctorDao;
 
 	public DoctorTabbedPane (){
+		HibernateUtil.beginTransaction();
 		doctorDao =new DoctorDao();
 		List doctores=doctorDao.getAll();
-		if(doctores.isEmpty()){
-		}else{
+		System.out.print(doctores.isEmpty());
+		if(!doctores.isEmpty()){
+
 			for(int i=0;i<doctores.size();i++){
-				this.addTab(((Doctor) doctores.get(i)).getNombre()+" "+((Doctor) doctores.get(i)).getApellido(), new JPanel().add(new JLabel("UNO")));
+				JPanel panel=new JPanel();
+
+				this.addTab(((Doctor) doctores.get(i)).getNombre()+" "+((Doctor) doctores.get(i)).getApellido(),panel);
+				panel.add(new JLabel(String.valueOf(((Doctor) doctores.get(i)).getDni())));
 			}
-
-
-
 		}
-		panel1=new JPanel();
-		panel2=new JPanel();
-		this.addTab("sda", panel1);
-		panel1.add(new JLabel("DOS"));
-
-		this.addTab("sda", panel2);
-		panel2.add(new JLabel("TRES"));
+		this.repaint();
 
 	}
 }

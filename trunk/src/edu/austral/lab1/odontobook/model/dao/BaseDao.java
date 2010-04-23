@@ -15,6 +15,7 @@ public class BaseDao
     public BaseDao()
     {
       HibernateUtil.beginTransaction();
+      
     }
 
     //~ Methods ..............................................................................................

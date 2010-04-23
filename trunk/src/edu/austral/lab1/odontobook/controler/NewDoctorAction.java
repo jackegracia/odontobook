@@ -1,5 +1,6 @@
 package edu.austral.lab1.odontobook.controler;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
@@ -126,10 +127,9 @@ public class NewDoctorAction extends AbstractAction {
 		DoctorDao doctor = new DoctorDao();
 		HibernateUtil.beginTransaction();
 		doctor.makePersistent(doc);
+		
         HibernateUtil.commitTransaction();
-        new DoctorTabbedPane();
-        
-        
+      
 	//	consultorio.agregarDoctor(doc);
 		
 	}
