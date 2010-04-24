@@ -23,16 +23,15 @@ public class GraphicInterface {
 
 
 	public GraphicInterface(){
-		ActionManager am=new ActionManager(null);
+		ActionManager am=new ActionManager(null,this);
 		makeJframe();
 		new MenuBar(am,this);
 		makeJpanel();
 		cal=new calendario(panel3,new DoctorTabbedPane());
 		makeButtons();
+		
 		frame.setVisible(true);
-		
 		frame.setSize(600,600);
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -40,7 +39,7 @@ public class GraphicInterface {
 	private void makeJframe() {
 		frame=new JFrame();
 		frame.pack();
-	
+
 
 
 	}
@@ -53,7 +52,7 @@ public class GraphicInterface {
 		this.frame = frame;
 	}
 
-	
+
 	private void makeJpanel() {
 
 
@@ -65,12 +64,12 @@ public class GraphicInterface {
 		splitPanel2.setOneTouchExpandable(false);
 		splitPanel2.setEnabled(false);
 		splitPanel2.setDividerLocation(300);
-		
+
 		splitPanel1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,splitPanel2,panel3);
 		splitPanel1.setOneTouchExpandable(false);
 		splitPanel1.setEnabled(false);
 		splitPanel1.setDividerLocation(175);
-		
+
 		frame.add(splitPanel1);
 
 	}

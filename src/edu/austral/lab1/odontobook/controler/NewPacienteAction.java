@@ -15,6 +15,7 @@ import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
+import edu.austral.lab1.odontobook.web.Usuario;
 
 public class NewPacienteAction extends AbstractAction {
 	
@@ -41,6 +42,8 @@ public class NewPacienteAction extends AbstractAction {
 		JLabel obraSocial= new JLabel("ObraSocial");
 		JLabel dni= new JLabel("Dni");
 		JLabel telefono= new JLabel("Telefono");
+		JLabel usuario= new JLabel("Usuario");
+		JLabel contraseña= new JLabel("Contraseña");
 
 		final JTextField jNombre = new JTextField("");
 		final JTextField jApellido = new JTextField("");
@@ -49,10 +52,14 @@ public class NewPacienteAction extends AbstractAction {
 		final JTextField jObraSocial = new JTextField("");
 		final JTextField jDni = new JTextField("");
 		final JTextField jTelefono = new JTextField("");
+		final JTextField jUsuario = new JTextField("");
+		final JTextField jContraseña = new JTextField("");
+		
+		
 		
 		JButton aceptar = new JButton("Aceptar");
 		JButton cancelar = new JButton("Cancelar");
-		GridLayout layout = new GridLayout(8,2);
+		GridLayout layout = new GridLayout(10,2);
 		jNombre.setPreferredSize(new Dimension(280, 25));
 
 
@@ -79,8 +86,15 @@ public class NewPacienteAction extends AbstractAction {
 		nuevoDialogo.getContentPane().add(telefono);
 		nuevoDialogo.getContentPane().add(jTelefono);
 
+		nuevoDialogo.getContentPane().add(usuario);
+		nuevoDialogo.getContentPane().add(jUsuario);
+		
+		nuevoDialogo.getContentPane().add(contraseña);
+		nuevoDialogo.getContentPane().add(jContraseña);
+		
 		nuevoDialogo.getContentPane().add(aceptar);
 		nuevoDialogo.getContentPane().add(cancelar);
+	
 		//SETEO EL EVENTO DEL JTextField
 
 
@@ -102,6 +116,8 @@ public class NewPacienteAction extends AbstractAction {
 			}
 		});
 
+		
+		
 		//Cambio el tamaño de la ventana.
 		nuevoDialogo.setSize(300, 300);
 		//Desactivo la "X" de la ventana para que al clickearla no haga nada.
@@ -115,7 +131,7 @@ public class NewPacienteAction extends AbstractAction {
 				,Integer.parseInt(jDni.getText())
 				,Integer.parseInt( jTelefono.getText())
 				,JDireccion.getText(),jObraSocial.getText()
-				,Integer.parseInt(jEdad.getText()) );
+				,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),Integer.parseInt(jContraseña.getText())) );
 	}
 	
 	

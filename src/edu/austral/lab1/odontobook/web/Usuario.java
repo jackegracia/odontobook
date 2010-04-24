@@ -3,15 +3,19 @@ package edu.austral.lab1.odontobook.web;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="USUARIO")
 public class Usuario {
 	
 	private String username;
 	private long password;
 	private long id;
 	
-	
+	public Usuario(){
+		
+	}
 
 	public Usuario(String username, long password){
 		this.username = username;

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.graphicInterface.DoctorTabbedPane;
+import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
@@ -25,13 +26,15 @@ public class NewDoctorAction extends AbstractAction {
 	private JDialog nuevoDialogo;
 	private Frame frame;
 	private Consultorio consultorio;
+	private GraphicInterface gi;
 	
 	
 	
-	public NewDoctorAction(Consultorio consultorio){
+	public NewDoctorAction(Consultorio consultorio, GraphicInterface gi){
 		super("Doctor");
 		putValue(SHORT_DESCRIPTION,"Agrega un Doctor");
 		this.consultorio=consultorio;
+		this.gi=gi;
 		
 	}
 	
@@ -127,8 +130,9 @@ public class NewDoctorAction extends AbstractAction {
 		DoctorDao doctor = new DoctorDao();
 		HibernateUtil.beginTransaction();
 		doctor.makePersistent(doc);
-		
-        HibernateUtil.commitTransaction();
+		HibernateUtil.commitTransaction();
+		gi.getFrame().dispose();
+		gi=new GraphicInterface();
       
 	//	consultorio.agregarDoctor(doc);
 		
