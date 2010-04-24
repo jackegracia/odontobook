@@ -12,12 +12,7 @@ public class main {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}catch(Exception e){}
 
-
-
 		Runtime aplicacion = Runtime.getRuntime();
-
-
-
 		GraphicInterface interfaces=new GraphicInterface();
 
 	}

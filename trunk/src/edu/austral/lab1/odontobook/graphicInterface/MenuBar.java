@@ -33,6 +33,7 @@ public class MenuBar {
 		// Agrego los elementos que van debajo en el Menu de Archivo.
 		file.add(newFile);
 		file.add(am.getDeleteDoctorAction());
+		file.add(am.getModificarPacienteAction());
 		file.add(exit);
 
 

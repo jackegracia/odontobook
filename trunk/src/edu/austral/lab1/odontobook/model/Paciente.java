@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import edu.austral.lab1.odontobook.web.Usuario;
+
 @Entity
 @Table(name="PACIENTE")
 
@@ -24,19 +26,36 @@ public class Paciente {
 	private int telefono;
 	private int dni;
 	private long id;
+	private Usuario usuario;
 
-	
+
+	public Paciente(){
+
+	}
+
 	public Paciente(String nombre,String apellido, int dni, int telefono,
-			String direccion,String obraSocial,int edad){
-		
-	this.nombre = nombre;
-	this.direccion = direccion;
-	this.obraSocial = obraSocial;
-	this.edad = edad;
-	this.apellido = apellido;
-	this.telefono = telefono;
-	this.dni = dni;
+			String direccion,String obraSocial,int edad,Usuario usuario){
 
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.obraSocial = obraSocial;
+		this.edad = edad;
+		this.apellido = apellido;
+		this.telefono = telefono;
+		this.dni = dni;
+		this.usuario=usuario;
+	}
+
+
+
+
+	@OneToOne(cascade = CascadeType.ALL)
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getNombre() {
@@ -46,9 +65,9 @@ public class Paciente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	    
-	  
+
+
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -73,9 +92,9 @@ public class Paciente {
 		this.edad = edad;
 	}
 
-	
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne(cascade = CascadeType.ALL)
 	public Histograma getHistograma() {
 		return histograma;
 	}
@@ -92,7 +111,7 @@ public class Paciente {
 	public void setOdontograma(Odontograma odontograma) {
 		this.odontograma = odontograma;
 	}
-*/
+	 */
 	public String getApellido() {
 		return apellido;
 	}
@@ -119,18 +138,18 @@ public class Paciente {
 
 	@Id @GeneratedValue
 	public long getId() {
-		
-		
+
+
 		return id;
-	
+
 	}
-	
-public void setId(long id) {
-		
+
+	public void setId(long id) {
+
 		this.id=id;
-		
-	
+
+
 	}
-	
-	
+
+
 }

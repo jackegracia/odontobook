@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import org.hibernate.Session;
 
+import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
@@ -27,12 +28,14 @@ public class DeleteDoctorAction extends AbstractAction{
 	private Doctor doctor;
 	private JDialog newDialog;
 	private DoctorDao doc;
+	private GraphicInterface gi;
 	
 
-	public DeleteDoctorAction(){
+	public DeleteDoctorAction(GraphicInterface gi){
 		super("Dar de Bajar Doctor");
 		putValue(SHORT_DESCRIPTION,"Borrar un doctor");
 	 doc=new DoctorDao();
+	 this.gi=gi;
 	}
 	
 	public void DeleteDoctorAndTurns(){
@@ -70,7 +73,8 @@ public class DeleteDoctorAction extends AbstractAction{
 	public void actionPerformed(ActionEvent arg0) {
 		
 		DeleteDoctorAndTurns();        
-		
+		gi.getFrame().dispose();
+		gi=new GraphicInterface();
 			
 	}
 
