@@ -1,0 +1,50 @@
+body {
+  	margin:0;
+  	padding:0;
+	background-color: #669999;
+}
+
+h1 {
+	color:#FFFFCC;
+}
+
+#loginForm {
+	/*float:left;*/
+	border:#FFFFFF 1px solid;
+	background: #669999;
+	width: 240px;
+	margin-left:auto;
+	margin-right:auto;
+
+}
+
+#loginForm form {
+/*	float:left;*/
+	margin:0;
+	padding:0;
+	width:234px;
+}
+
+#loginForm form label {
+	float:left;
+	/*clear: right;*/
+	font:Geneva, Arial, Helvetica, sans-serif;
+	text-align:right;
+	color:#FFFFCC;
+	font-weight:bold;
+	width: 32%;
+	margin-top: 7px;
+}	
+
+#loginForm form input {
+	border:#000000 1px solid;
+	background-color: #FFFFCC;
+	margin-top: 7px;
+}
+
+#loginForm form input#submit {
+	width: 80px;
+	/*clear: both;*/
+	margin-left:80px;
+	margin-bottom: 5px;
+}
