@@ -13,6 +13,8 @@ public class Usuario {
 	
 	
 
+	public Usuario(){}
+	
 	public Usuario(String username, long password){
 		this.username = username;
 		this.password = password;

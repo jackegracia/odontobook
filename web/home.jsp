@@ -20,7 +20,8 @@
 <p align="right">&nbsp;</p>
 
 <div id="loginForm">
-<form action="login.jsp" method="post">
+<form method="POST"
+action = "Login.do">
 <label for="name">Usuario:</label><input type="text" name="user" id="uname" />
 <label for="password">Password:</label><input type="password" name="password" id="pass" />
 <input id="submit" type="submit" value="Conectarse" />
