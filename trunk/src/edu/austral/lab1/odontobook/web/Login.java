@@ -7,14 +7,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 public class Login extends HttpServlet{
 	
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException  {
-	
+		
+	/*	UsuarioDao ud = new UsuarioDao();
+		String name =  request.getParameter("name");
+		String pass = request.getParameter("password");
+		long password = Long.valueOf(pass);
+
+		boolean login = ud.usuarioCorrecto(name, password);*/
+
+		PrintWriter out = response.getWriter();
+		out.print("ddddddd");
+	//	if(login == false) out.print("Ïncorrecto");
+	//	else out.print("Entro");
 /*		HttpSession session = request.getSession(false);
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
