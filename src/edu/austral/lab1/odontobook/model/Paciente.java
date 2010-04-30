@@ -1,14 +1,20 @@
 package edu.austral.lab1.odontobook.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import edu.austral.lab1.odontobook.web.Usuario;
+import edu.austral.lab1.odontobook.model.Usuario;
 
 @Entity
 @Table(name="PACIENTE")
@@ -20,7 +26,7 @@ public class Paciente {
 	private String direccion;
 	private String obraSocial;
 	private int edad;
-	private Histograma histograma;
+	private List<Histograma> histograma;
 	private Odontograma odontograma;
 	private String apellido;
 	private int telefono;
@@ -45,9 +51,6 @@ public class Paciente {
 		this.dni = dni;
 		this.usuario=usuario;
 	}
-
-
-
 
 	@OneToOne(cascade = CascadeType.ALL)
 	public Usuario getUsuario() {
@@ -92,16 +95,18 @@ public class Paciente {
 		this.edad = edad;
 	}
 
-
-
-	@OneToOne(cascade = CascadeType.ALL)
-	public Histograma getHistograma() {
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="PACIENTE_ID") 
+	public List<Histograma> getHistograma() {
 		return histograma;
 	}
+	
 
-	public void setHistograma(Histograma histograma) {
+	
+	public void setHistograma(List<Histograma> histograma) {
 		this.histograma = histograma;
 	}
+	
 	/*
     @OneToOne(cascade = CascadeType.ALL)
 	public Odontograma getOdontograma() {

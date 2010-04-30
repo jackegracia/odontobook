@@ -47,6 +47,7 @@ public class MenuBar {
 		// Agrego los elementos que van a ir a la derecha del Menu Nuevo.
 		newFile.add(am.getNewDoctor());
 		newFile.add(am.getNewPaciente());
+		newFile.add(am.getNewHistograma());
 
 
 		// Agrego los menues principales a la Barra de Menu

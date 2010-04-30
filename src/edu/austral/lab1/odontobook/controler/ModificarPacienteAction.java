@@ -15,8 +15,9 @@ import javax.swing.JTextField;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
+import edu.austral.lab1.odontobook.model.Usuario;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
-import edu.austral.lab1.odontobook.web.Usuario;
+
 
 public class ModificarPacienteAction extends AbstractAction {
 	
@@ -33,7 +34,7 @@ public class ModificarPacienteAction extends AbstractAction {
 		super("Paciente");
 		putValue(SHORT_DESCRIPTION,"Agrega un Paciente");
 		this.consultorio=consultorio;
-		 pac = new PacienteDao();
+		pac = new PacienteDao();
 	}
 	
 	

@@ -1,47 +1,77 @@
 package edu.austral.lab1.odontobook.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="HISTOGRAMA")
 public class Histograma {
-private int dientes;
-private char[] cara;
-private String tratamiento;
+	private int dientes;
+	private String cara;
+	private String tratamiento;
+	private long id;
+	private Paciente paciente;
 
-public Histograma(int dientes,char[] cara,String tratamiento){
-	this.dientes=dientes;
-	this.cara=cara;
-	this.tratamiento=tratamiento;
-}
-@Id
-@GeneratedValue
-@Column(name="DIENTES_ID")
-public int getDientes() {
-	return dientes;
-}
+	public Histograma(){
 
-public void setDientes(int dientes) {
-	this.dientes = dientes;
-}
+	}
 
-public char[] getCara() {
-	return cara;
-}
+	public Histograma(int dientes,String cara,String tratamiento,Paciente paciente){
+		this.dientes=dientes;
+		this.cara=cara;
+		this.tratamiento=tratamiento;
+		this.paciente=paciente;
+	}
 
-public void setCara(char[] cara) {
-	this.cara = cara;
-}
+	public int getDientes() {
+		return dientes;
+	}
 
-public String getTratamiento() {
-	return tratamiento;
-}
+	public void setDientes(int dientes) {
+		this.dientes = dientes;
+	}
 
-public void setTratamiento(String tratamiento) {
-	this.tratamiento = tratamiento;
-}
+	public String getCara() {
+		return cara;
+	}
+
+	public void setCara(String cara) {
+		this.cara = cara;
+	}
+
+	public String getTratamiento() {
+		return tratamiento;
+	}
+
+	public void setTratamiento(String tratamiento) {
+		this.tratamiento = tratamiento;
+	}
+
+	@Id
+	@GeneratedValue
+	
+	public long getId() {
+
+
+		return id;
+
+	}
+
+	public void setId(long id) {
+
+		this.id=id;
+
+
+	}
+
+
 }

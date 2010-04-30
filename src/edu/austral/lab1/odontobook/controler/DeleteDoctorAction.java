@@ -4,18 +4,13 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import org.hibernate.Session;
-
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
-import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 
@@ -24,8 +19,6 @@ import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 public class DeleteDoctorAction extends AbstractAction{
 
 	
-	
-	private Doctor doctor;
 	private JDialog newDialog;
 	private DoctorDao doc;
 	private GraphicInterface gi;
