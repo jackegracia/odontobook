@@ -5,6 +5,8 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,7 +17,7 @@ import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
-import edu.austral.lab1.odontobook.web.Usuario;
+import edu.austral.lab1.odontobook.model.Usuario;
 
 public class NewPacienteAction extends AbstractAction {
 	
@@ -139,6 +141,7 @@ public class NewPacienteAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Paciente paciente = crearDialogo();
+		paciente.setHistograma(new ArrayList());
 	//	consultorio.agregarPaciente(paciente);
 		PacienteDao pac = new PacienteDao();
 		HibernateUtil.beginTransaction();
