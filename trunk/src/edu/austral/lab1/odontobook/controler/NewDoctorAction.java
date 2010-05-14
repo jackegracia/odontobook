@@ -18,6 +18,7 @@ import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
+import edu.austral.lab1.odontobook.model.Usuario;
 import edu.austral.lab1.odontobook.model.dao.BaseDao;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 
@@ -48,6 +49,8 @@ public class NewDoctorAction extends AbstractAction {
 		JLabel matricula= new JLabel("Matricula");
 		JLabel dni= new JLabel("Dni");
 		JLabel telefono= new JLabel("Telefono");
+		JLabel usuario= new JLabel("Usuario");
+		JLabel contraseña= new JLabel("Contraseña");
 
 		final JTextField jNombre = new JTextField("");
 		final JTextField jApellido = new JTextField("");
@@ -56,10 +59,12 @@ public class NewDoctorAction extends AbstractAction {
 		final JTextField jMatricula = new JTextField("");
 		final JTextField jDni = new JTextField("");
 		final JTextField jTelefono = new JTextField("");
+		final JTextField jUsuario = new JTextField("");
+		final JTextField jContraseña = new JTextField("");
 
 		JButton aceptar = new JButton("Aceptar");
 		JButton cancelar = new JButton("Cancelar");
-		GridLayout layout = new GridLayout(8,4);
+		GridLayout layout = new GridLayout(10,4);
 		jNombre.setPreferredSize(new Dimension(280, 25));
 		
 		//Seteo los componentes a la Ventana.
@@ -83,9 +88,15 @@ public class NewDoctorAction extends AbstractAction {
 		nuevoDialogo.getContentPane().add(dni);
 		nuevoDialogo.getContentPane().add(jDni);
 
+		nuevoDialogo.getContentPane().add(usuario);
+		nuevoDialogo.getContentPane().add(jUsuario);
+
+		nuevoDialogo.getContentPane().add(contraseña);
+		nuevoDialogo.getContentPane().add(jContraseña);
+		
 		nuevoDialogo.getContentPane().add(telefono);
 		nuevoDialogo.getContentPane().add(jTelefono);
-
+		
 		nuevoDialogo.getContentPane().add(aceptar);
 		nuevoDialogo.getContentPane().add(cancelar);
 		//SETEO EL EVENTO DEL JTextField
@@ -119,7 +130,7 @@ public class NewDoctorAction extends AbstractAction {
 		nuevoDialogo.setVisible(true);
 
 
-		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText());
+		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText(),new Usuario(jUsuario.getText(),jContraseña.getText(),true) );
 	}
 	
 	

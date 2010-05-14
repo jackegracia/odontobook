@@ -152,7 +152,7 @@ public class ModificarPacienteAction extends AbstractAction {
 				paci.setDireccion(JDireccion.getText());
 				paci.setObraSocial(jObraSocial.getText());
 				paci.setEdad(Integer.parseInt(jEdad.getText()));
-				paci.setUsuario(new Usuario(jUsuario.getText(),jContraseña.getText()));
+				paci.setUsuario(new Usuario(jUsuario.getText(),jContraseña.getText(),false));
 	}
 	
 	

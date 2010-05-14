@@ -136,7 +136,7 @@ public class NewPacienteAction extends AbstractAction {
 				,Integer.parseInt(jDni.getText())
 				,Integer.parseInt( jTelefono.getText())
 				,JDireccion.getText(),jObraSocial.getText()
-				,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText()) );
+				,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText(),false) );
 	}
 	
 	
