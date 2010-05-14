@@ -130,7 +130,7 @@ public class NewDoctorAction extends AbstractAction {
 		nuevoDialogo.setVisible(true);
 
 
-		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText(),new Usuario(jUsuario.getText(),jContraseña.getText(),true) );
+		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText(),new Usuario(jUsuario.getText(),jContraseña.getText(),true, Integer.parseInt(jDni.getText())) );
 	}
 	
 	

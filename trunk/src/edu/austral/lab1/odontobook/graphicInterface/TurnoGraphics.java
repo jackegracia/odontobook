@@ -21,36 +21,16 @@ import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 public class TurnoGraphics { 
 
 	JTable table;
-	
-
-
-
 	private JDialog nuevoDialogo;
 	private Frame frame;
-
-
-
-
 	private AbstractButton importar;
-
-
-
-
 	private Doctor doctorForDay;
-
-
 	private Date date;
 	private Long doctorId;
-
-
-
-
 	private long doctor_id;
-
-
-
-
 	private List listaDeTurnos;
+	
+	
 	public TurnoGraphics(final Doctor doctorForDay,final Date date, Long doctorId,String lavel)
 	{    
 this.doctorForDay=doctorForDay;

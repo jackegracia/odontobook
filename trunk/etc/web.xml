@@ -36,19 +36,29 @@
 		<servlet-class>edu.austral.lab1.odontobook.web.ObtenerTurnosServ
 		</servlet-class>
 	</servlet>
-	
+
+	<servlet>
+		<servlet-name>Redireccionar Home</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.RedirectHomeServlet
+		</servlet-class>
+	</servlet>
+
 	<servlet>
 		<servlet-name>Logout</servlet-name>
 		<servlet-class>edu.austral.lab1.odontobook.web.Logout
 		</servlet-class>
 	</servlet>
 
-<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/Logout.do</url-pattern>
 	</servlet-mapping>
-	
-	
+
+	<servlet-mapping>
+		<servlet-name>Redireccionar Home</servlet-name>
+		<url-pattern>/Redireccionar.do</url-pattern>
+	</servlet-mapping>
+
 
 	<servlet-mapping>
 		<servlet-name>Obtener Turno</servlet-name>
