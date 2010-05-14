@@ -30,6 +30,9 @@ import javax.swing.table.TableModel;
 
 import org.apache.log4j.Layout;
 
+import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
+import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
+import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Histograma;
 import edu.austral.lab1.odontobook.model.Paciente;
@@ -49,16 +52,19 @@ public class NewHistogramaAction extends AbstractAction {
 	private JButton borrar;
 	private JButton importar;
 	private Paciente paci;
+	private String name;
+	private Consultorio consultorio;
+	private GraphicInterface gi;
 
 
 
 
-	public NewHistogramaAction(){	
+	public NewHistogramaAction(Consultorio consultorio,GraphicInterface gi){	
 		super("Histograma");
 		putValue(SHORT_DESCRIPTION,"Agrega un Paciente");
 
-
-
+this.consultorio=consultorio;
+this.gi=gi;
 	}
 
 
@@ -90,7 +96,6 @@ public class NewHistogramaAction extends AbstractAction {
 
 			for(int i=0;i<histo.size();i++){
 
-
 				model.setValueAt(histo.get(i).getDientes(), i, 0);
 				model.setValueAt(histo.get(i).getCara(), i, 1);
 				model.setValueAt(histo.get(i).getTratamiento(), i, 2);
@@ -98,6 +103,7 @@ public class NewHistogramaAction extends AbstractAction {
 			}
 
 		}
+		
 		table = new JTable(model);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 100));
 		table.setFillsViewportHeight(true);
@@ -109,7 +115,6 @@ public class NewHistogramaAction extends AbstractAction {
 
 		JScrollPane pane=new JScrollPane(table);
 		JButton aceptar = new JButton("Aceptar");
-		JButton cancelar = new JButton("Cancelar");
 		agregar=new JButton("Agregar");
 		borrar=new JButton("Borrar");
 		importar=new JButton("Importar");
@@ -124,7 +129,6 @@ public class NewHistogramaAction extends AbstractAction {
 		panel2.setLayout(new BoxLayout(panel2,BoxLayout.LINE_AXIS));
 
 		panel2.add(aceptar);
-		panel2.add(cancelar);
 		panel2.add(agregar);
 		
 		panel2.add(borrar);
@@ -141,13 +145,6 @@ public class NewHistogramaAction extends AbstractAction {
 			}
 		});
 
-
-		cancelar.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-
-
-			}
-		});
 
 		agregar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -199,40 +196,15 @@ public class NewHistogramaAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String nombre=returnPacienteName();
-		makeHistograma(nombre);	
+		
+		TabbedPane tabedPane=gi.getDoctorTab();		
+		String name=(String)tabedPane.getDoc().getSelectedValue();
+		String[] splitName=name.split(" ");
+		makeHistograma(splitName[0]);	
 	}
 
 
-	public String returnPacienteName(){
-		elegirNombre = new JDialog(new JFrame(),"Histograma",true);
-		JLabel newLavel = new JLabel("Nombre del Paciente ");
-		final JTextField newName = new JTextField("");
-		JButton okButton = new JButton("Aceptar");
-		GridBagLayout layout = new GridBagLayout();
-		newName.setPreferredSize(new Dimension(280, 25));
 
-		elegirNombre.getContentPane().setLayout(layout);
-		elegirNombre.getContentPane().add(newLavel);
-		elegirNombre.getContentPane().add(newName);
-		elegirNombre.getContentPane().add(okButton);
-
-		okButton.addActionListener(new ActionListener(){
-
-
-			public void actionPerformed(ActionEvent e) {
-				if(!newName.getText().equals("")){
-					elegirNombre.dispose();	
-				}
-			}
-		});
-
-		elegirNombre.setSize(700, 150);
-		elegirNombre.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		elegirNombre.setVisible(true);
-		return newName.getText();
-
-	}
 
 
 

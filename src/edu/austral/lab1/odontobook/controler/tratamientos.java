@@ -10,6 +10,8 @@ public tratamientos(){
 	this.addItem("Chasing toddlers");
 	this.addItem("Speed reading");
 	this.addItem("Teaching high school");
+	this.addItem("Teaching middle school");
+	this.addItem("Teaching primary school");
 	this.addItem("None");
 }
 }

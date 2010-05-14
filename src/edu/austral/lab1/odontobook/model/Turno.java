@@ -7,8 +7,10 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,11 +25,29 @@ public class Turno implements Serializable{
 	private boolean asistido;
 	private Paciente paciente;
 	private Doctor doctor;
-	private long codigo;
+	private long id;
+	private int hora;
+	private int minutos;
 	
-	public Turno(Paciente paciente, Doctor doctor){
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="DOC_ID") 
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public Turno(){
+		
+	}
+	
+	public Turno(Paciente paciente, Doctor doctor,Date date){
 		this.doctor=doctor;
 		this.paciente = paciente;
+		this.fecha=date;
 	}
 
 
@@ -39,6 +59,23 @@ public class Turno implements Serializable{
 		this.fecha = fecha;
 	}
 	
+	public int getHora() {
+		return hora;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+	
+	public int getMinutos() {
+		return minutos;
+	}
+
+	public void setMinutos(int minutos) {
+		this.minutos = minutos;
+	}
+	
+	
 
 	public boolean isAsistido() {
 		return asistido;
@@ -48,7 +85,8 @@ public class Turno implements Serializable{
 		this.asistido = asistido;
 	}
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="PACIENTE_ID") 
 	public Paciente getPaciente() {
 		return paciente;
 	}
@@ -61,12 +99,12 @@ public class Turno implements Serializable{
 	@GeneratedValue
 //    @OneToOne(cascade = CascadeType.ALL)
 
-	public long getCodigo() {
-		return codigo;
+	public long getId() {
+		return id;
 	}
 
-	public void setCodigo(long codigo) {
-		this.codigo = codigo;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

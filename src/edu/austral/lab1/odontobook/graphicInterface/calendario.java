@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.austral.lab1.odontobook.controler.ActionManager;
+import edu.austral.lab1.odontobook.util.DateUtils;
 
 
 public class calendario  {
@@ -39,13 +41,13 @@ public class calendario  {
 	/** The year choice */
 	private JComboBox yearChoice;
 
-	private DoctorTabbedPane doc;
+	private TabbedPane doc;
 	
 	private   ActionManager am;
 	/**
 	 * Construct a Cal, starting with today.
 	 */
-	public calendario(JPanel panel2,DoctorTabbedPane doc) {
+	public calendario(JPanel panel2,TabbedPane doc) {
 		this.panel2=panel2;
 		this.doc=doc;
 		setYYMMDD(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -143,10 +145,10 @@ public class calendario  {
 				String num = e.getActionCommand();
 				if (!num.equals("")) {
 
-					setDayActive(Integer.parseInt(num));
-					Date date=new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
-			      	am=new ActionManager(doc,date);
-			      	am.getNewTurnoAction().createTurno();
+					setDayActive(Integer.parseInt(num));						
+					
+					am=new ActionManager(doc, DateUtils.getDate(dd, mm, yy ));	      	
+			      	am.getNewTurnoAction().createTurnoTable();
 		     	   
 				}
 

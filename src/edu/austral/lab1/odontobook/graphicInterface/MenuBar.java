@@ -12,13 +12,12 @@ public class MenuBar {
 		menuBar = new JMenuBar();
 		// Creo los Menus el cual contiene varios submenues que a su vez van a
 		// contener varios mas.
-		JMenu file = new JMenu("file");
-		JMenu edit = new JMenu("edit");
-		JMenu newFile = new JMenu("new");
 		
-		JMenu patient = new JMenu("Patient");
-
-		// Creo los Items que van a ir debajo del menu Archivo.
+		JMenu file = new JMenu("File");
+		JMenu edit = new JMenu("Edit");
+		JMenu newFile = new JMenu("New");
+		JMenu patient = new JMenu("Paciente");
+		JMenu doctor = new JMenu("Doctor");
 		JMenuItem exit = new JMenuItem("exit");
 		
 
@@ -31,9 +30,8 @@ public class MenuBar {
 
 
 		// Agrego los elementos que van debajo en el Menu de Archivo.
+		
 		file.add(newFile);
-		file.add(am.getDeleteDoctorAction());
-		file.add(am.getModificarPacienteAction());
 		file.add(exit);
 
 
@@ -45,15 +43,22 @@ public class MenuBar {
 
 
 		// Agrego los elementos que van a ir a la derecha del Menu Nuevo.
-		newFile.add(am.getNewDoctor());
-		newFile.add(am.getNewPaciente());
-		newFile.add(am.getNewHistograma());
+		
+		
+		doctor.add(am.getNewDoctor());
+		doctor.add(am.getModificarDoctor());
+		doctor.add(am.getDeleteDoctorAction());
+		
+		patient.add(am.getNewPaciente());
+		patient.add(am.getModificarPacienteAction());
+		patient.add(am.getNewHistograma());
 
 
 		// Agrego los menues principales a la Barra de Menu
-
+      
 		menuBar.add(file); // Toma un tipo JMenu.
 		menuBar.add(edit); // Tomah un tipo JMenu.
+		menuBar.add(doctor);
 		menuBar.add(patient); // Tomah un tipo JMenu.
 
 

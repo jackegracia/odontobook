@@ -1,8 +1,7 @@
 package edu.austral.lab1.odontobook.controler;
 
 import java.util.Date;
-
-import edu.austral.lab1.odontobook.graphicInterface.DoctorTabbedPane;
+import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Consultorio;
 
@@ -13,6 +12,7 @@ private NewTurnoAction newTurnoAction;
 private DeleteDoctorAction deleteDoctorAction;
 private ModificarPacienteAction modificarPacienteAction;
 private NewHistogramaAction newHistograma;
+private ModificarDoctor modificarDoctor;
 
 public NewHistogramaAction getNewHistograma() {
 	return newHistograma;
@@ -24,13 +24,22 @@ public void setNewHistograma(NewHistogramaAction newHistograma) {
 
 public ActionManager(Consultorio consultorio,GraphicInterface gi){
 	newDoctor=new NewDoctorAction(consultorio,gi);
-	newPaciente=new NewPacienteAction(consultorio);
+	newPaciente=new NewPacienteAction(gi,consultorio);
 	deleteDoctorAction=new DeleteDoctorAction(gi);
-	modificarPacienteAction=new ModificarPacienteAction(consultorio);
-newHistograma=new NewHistogramaAction();
+	modificarPacienteAction=new ModificarPacienteAction(consultorio,gi);
+	newHistograma=new NewHistogramaAction(consultorio,gi);
+	modificarDoctor=new ModificarDoctor(consultorio, gi);
 }
 
-public ActionManager (DoctorTabbedPane doc,Date date){
+public ModificarDoctor getModificarDoctor() {
+	return modificarDoctor;
+}
+
+public void setModificarDoctor(ModificarDoctor modificarDoctor) {
+	this.modificarDoctor = modificarDoctor;
+}
+
+public ActionManager (TabbedPane doc,Date date){
 	newTurnoAction=new NewTurnoAction(doc, date);
 }
 

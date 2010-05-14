@@ -1,15 +1,19 @@
 package edu.austral.lab1.odontobook.graphicInterface;
 
 
+import java.awt.BorderLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import edu.austral.lab1.odontobook.controler.ActionManager;
+import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
 
-public class GraphicInterface {
+public class GraphicInterface<panelDeBusqueda> {
 	private JFrame frame;
 	private JPanel panel1;
 	private JPanel panel2;
@@ -20,28 +24,40 @@ public class GraphicInterface {
 	private JButton button2;
 	private calendario cal;
 	private GraphicInterface consultorio;
+	private TabbedPane doctorTab;
+	private JPanel panelDeBusqueda;
 
 
 	public GraphicInterface(){
-		ActionManager am=new ActionManager(null,this);
+		
+		Consultorio consultorio=new Consultorio("Consultorio");
+		ActionManager am=new ActionManager(consultorio,this);
+
 		makeJframe();
 		new MenuBar(am,this);
+		doctorTab=new TabbedPane();
+		panelDeBusqueda=new SearchName(doctorTab,consultorio);
 		makeJpanel();
-		cal=new calendario(panel3,new DoctorTabbedPane());
-		makeButtons();
-		
+		cal=new calendario(panel3,doctorTab);
+	
 		frame.setVisible(true);
-		frame.setSize(600,600);
+		frame.setExtendedState(frame.MAXIMIZED_BOTH);
+		//frame.setResizable(false);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 
+	}
+	public TabbedPane getDoctorTab() {
+		return doctorTab;
+	}
+	public void setDoctorTab(TabbedPane doctorTab) {
+		this.doctorTab = doctorTab;
 	}
 	private void makeJframe() {
 		frame=new JFrame();
 		frame.pack();
-
-
-
 	}
 
 	public JFrame getFrame() {
@@ -60,7 +76,7 @@ public class GraphicInterface {
 		panel2=new JPanel();
 		panel3=new JPanel();
 
-		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT ,new DoctorTabbedPane(),panel1);
+		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT ,doctorTab,panelDeBusqueda);
 		splitPanel2.setOneTouchExpandable(false);
 		splitPanel2.setEnabled(false);
 		splitPanel2.setDividerLocation(300);
@@ -69,7 +85,8 @@ public class GraphicInterface {
 		splitPanel1.setOneTouchExpandable(false);
 		splitPanel1.setEnabled(false);
 		splitPanel1.setDividerLocation(175);
-
+           
+		splitPanel1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		frame.add(splitPanel1);
 
 	}
@@ -78,10 +95,5 @@ public class GraphicInterface {
 	}
 
 
-	private void makeButtons() {
-		button1=new JButton("Dar de baja turno");
-		button2=new JButton("Dar de Alta turno");
-		panel1.add(button1);
-		panel1.add(button2);
-	}
+
 }
