@@ -1,5 +1,6 @@
 package edu.austral.lab1.odontobook.controler;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -9,7 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
+import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
@@ -22,6 +27,7 @@ public class DeleteDoctorAction extends AbstractAction{
 	private JDialog newDialog;
 	private DoctorDao doc;
 	private GraphicInterface gi;
+	private Component frame;
 	
 
 	public DeleteDoctorAction(GraphicInterface gi){
@@ -31,41 +37,38 @@ public class DeleteDoctorAction extends AbstractAction{
 	 this.gi=gi;
 	}
 	
-	public void DeleteDoctorAndTurns(){
-		newDialog = new JDialog(new JFrame(),"Borrar Doctor",true);
-		JLabel newLavel = new JLabel("Nombre del Doctor a Borrar ");
-		final JTextField newName = new JTextField("");
-		JButton okButton = new JButton("Aceptar");
-		GridBagLayout layout = new GridBagLayout();
-		newName.setPreferredSize(new Dimension(280, 25));
+	public void DeleteDoctorAndTurns(String doctorName){
+		
+		Object[] options = {"Aceptar",
+        "Cancelar"};
+int n = JOptionPane.showOptionDialog(frame,
+"Quiere borrar al doctor"+" "+doctorName+" "+"?",
+"A Silly Question",
+JOptionPane.YES_NO_OPTION,
+JOptionPane.QUESTION_MESSAGE,
+null,     //do not use a custom Icon
+options,  //the titles of buttons
+options[0]); //default button title
+
+		
+if (n==0){
+	HibernateUtil.beginTransaction();
+	doc.removeDoctorbyName(doctorName);
+}else{
 	
-		newDialog.getContentPane().setLayout(layout);
-		newDialog.getContentPane().add(newLavel);
-		newDialog.getContentPane().add(newName);
-		newDialog.getContentPane().add(okButton);
+}
 
-		okButton.addActionListener(new ActionListener(){
-
-
-			public void actionPerformed(ActionEvent e) {
-				if(!newName.getText().equals("")){
-					newDialog.dispose();	
-				}
-			}
-		});
-
-		newDialog.setSize(700, 150);
-		newDialog.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		newDialog.setVisible(true);
-		HibernateUtil.beginTransaction();
-		doc.removeDoctorbyName(newName.getText());
-		System.out.println(newName.getText());
+		
+		
+		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
-		DeleteDoctorAndTurns();        
+		TabbedPane pane=gi.getDoctorTab();
+		String name=(String) pane.getDoc().getSelectedValue();
+		String[] nombreDoctor=name.split(" ");
+		DeleteDoctorAndTurns(nombreDoctor[0]);        
 		gi.getFrame().dispose();
 		gi=new GraphicInterface();
 			

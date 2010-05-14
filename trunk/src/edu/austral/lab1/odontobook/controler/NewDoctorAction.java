@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import edu.austral.lab1.odontobook.graphicInterface.DoctorTabbedPane;
+import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
@@ -31,7 +31,7 @@ public class NewDoctorAction extends AbstractAction {
 	
 	
 	public NewDoctorAction(Consultorio consultorio, GraphicInterface gi){
-		super("Doctor");
+		super("Nuevo Doctor");
 		putValue(SHORT_DESCRIPTION,"Agrega un Doctor");
 		this.consultorio=consultorio;
 		this.gi=gi;
@@ -119,7 +119,7 @@ public class NewDoctorAction extends AbstractAction {
 		nuevoDialogo.setVisible(true);
 
 
-		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt( jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText());
+		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText());
 	}
 	
 	

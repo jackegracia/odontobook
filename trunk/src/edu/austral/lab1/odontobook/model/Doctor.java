@@ -1,22 +1,11 @@
 package edu.austral.lab1.odontobook.model;
 
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-import org.hibernate.annotations.GenericGenerator;
 
 
 
@@ -115,8 +104,6 @@ public void setId(long id) {
 	
 	}
 
-
-	
 	public int getDni() {
 		return dni;
 	}
@@ -125,5 +112,6 @@ public void setId(long id) {
 		this.dni = dni;
 	}
 
+	
 
 }

@@ -13,6 +13,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
@@ -24,19 +26,20 @@ public class NewPacienteAction extends AbstractAction {
 	private JDialog nuevoDialogo;
 	private Frame frame;
 	private Consultorio consultorio;
+	private GraphicInterface gi;
 	
 	
-	
-	public NewPacienteAction(Consultorio consultorio){
-		super("Paciente");
+	public NewPacienteAction(GraphicInterface gi,Consultorio consultorio){
+		super("Crear nuevo paciente");
 		putValue(SHORT_DESCRIPTION,"Agrega un Paciente");
 		this.consultorio=consultorio;
+		this.gi=gi;
 		
 	}
 	
 	
 	public Paciente crearDialogo() {
-		nuevoDialogo = new JDialog(frame,"Nuevo Doctor" ,true);
+		nuevoDialogo = new JDialog(frame,"Nuevo Paciente" ,true);
 		JLabel nombre= new JLabel("Nombre");
 		JLabel apellido= new JLabel("Apellido");
 		JLabel edad= new JLabel("edad");
@@ -147,6 +150,11 @@ public class NewPacienteAction extends AbstractAction {
 		HibernateUtil.beginTransaction();
 		pac.makePersistent(paciente);
         HibernateUtil.commitTransaction();
+        consultorio.agregarPaciente(paciente.getNombre()+" "+paciente.getApellido());
+        gi.getFrame().dispose();
+		gi=new GraphicInterface();
+        
+        
 	}
 
 }

@@ -19,7 +19,7 @@
        
         <mapping class="edu.austral.lab1.odontobook.model.Paciente" />
          <mapping class="edu.austral.lab1.odontobook.model.Histograma" />
-        <mapping class="edu.austral.lab1.odontobook.web.Usuario" />
+        <mapping class="edu.austral.lab1.odontobook.model.Usuario" />
 
          
     </session-factory>
