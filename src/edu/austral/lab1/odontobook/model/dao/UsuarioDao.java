@@ -16,7 +16,7 @@ public class UsuarioDao extends BaseDao{
 		return user;
 	}
 	
-	public boolean usuarioCorrecto(String name, long pass){
+	public boolean usuarioCorrecto(String name, String pass){
 		Usuario user = (Usuario) HibernateUtil.getSession().createQuery(
 		"from Usuario as user where user.username = ?")
 		.setString(0, name)
