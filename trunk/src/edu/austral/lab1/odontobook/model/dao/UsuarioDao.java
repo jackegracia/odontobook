@@ -21,7 +21,7 @@ public class UsuarioDao extends BaseDao{
 		"from Usuario as user where user.username = ?")
 		.setString(0, name)
 		.uniqueResult();
-		if(user != null && user.getPassword()==pass) return true;
+		if(user != null && user.getPassword().equals(pass)) return true;
 		else return false;
 	}
 	

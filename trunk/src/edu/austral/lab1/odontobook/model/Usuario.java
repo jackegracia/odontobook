@@ -8,14 +8,14 @@ import javax.persistence.Id;
 public class Usuario {
 	
 	private String username;
-	private long password;
+	private String password;
 	private long id;
 	
 	
 
 	public Usuario(){}
 	
-	public Usuario(String username, long password){
+	public Usuario(String username, String password){
 		this.username = username;
 		this.password = password;
 	}
@@ -33,11 +33,11 @@ public class Usuario {
 		this.username = username;
 	}
 
-	public long getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(long password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 }
