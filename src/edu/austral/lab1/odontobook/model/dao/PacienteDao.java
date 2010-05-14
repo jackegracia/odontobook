@@ -24,6 +24,15 @@ public class PacienteDao extends BaseDao{
 		
 	}
 	
+	public Paciente getPacientebyDNI(int dni){
+		Paciente Paciente =  (Paciente) HibernateUtil.getSession().createQuery(
+		"from Paciente as pac where pac.dni = ?")
+		.setInteger(0, dni)
+		.uniqueResult();
+		return Paciente;
+		
+	}
+	
     public List getPaciente(){
         return HibernateUtil.getSession().createCriteria(Paciente.class).list();
     }

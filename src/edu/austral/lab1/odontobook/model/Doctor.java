@@ -24,7 +24,7 @@ public class Doctor {
 	private int telefono;
 	private String apellido;
 	private int dni;
-private long id;
+	private long id;
 private Usuario usuario;
 
 	public Doctor(){

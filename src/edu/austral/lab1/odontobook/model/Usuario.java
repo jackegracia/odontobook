@@ -11,15 +11,15 @@ public class Usuario {
 	private String password;
 	private long id;
 	private boolean esDoctor;
-	
-	
+	private int dni;
 
 	public Usuario(){}
 	
-	public Usuario(String username, String password,boolean esDoctor){
+	public Usuario(String username, String password,boolean esDoctor, int dni){
 		this.username = username;
 		this.password = password;
 		this.esDoctor=esDoctor;
+		this.dni = dni;
 	}
 	
 	public boolean isEsDoctor() {
@@ -50,5 +50,9 @@ public class Usuario {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getDNI() {
+		return dni;
 	}
 }

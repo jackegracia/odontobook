@@ -15,13 +15,16 @@ import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 
 public class Logout extends HttpServlet{
 	
-
+	public void doGet(HttpServletRequest rq, HttpServletResponse rp) {
+		
+		
+	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException  {
 		
 		request.getSession().invalidate();
-		response.sendRedirect("login.jsp");
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 }
 
 }

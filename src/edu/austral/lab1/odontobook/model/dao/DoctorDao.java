@@ -23,6 +23,15 @@ public class DoctorDao extends BaseDao{
 		
 	}
 	
+	public Doctor getDoctorbyDNI(int dni){
+		Doctor doctor = (Doctor) HibernateUtil.getSession().createQuery(
+		"from Doctor as doc where doc.dni = ?")
+		.setInteger(0, dni)
+		.uniqueResult();
+		return doctor;
+		
+	}
+	
 	public void removeDoctorbyName(String name){
 		Doctor doctor = getDoctorbyName(name);
 		System.out.println(doctor.getNombre()+doctor.getApellido());
