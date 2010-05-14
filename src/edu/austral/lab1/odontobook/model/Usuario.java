@@ -10,15 +10,26 @@ public class Usuario {
 	private String username;
 	private String password;
 	private long id;
+	private boolean esDoctor;
 	
 	
 
 	public Usuario(){}
 	
-	public Usuario(String username, String password){
+	public Usuario(String username, String password,boolean esDoctor){
 		this.username = username;
 		this.password = password;
+		this.esDoctor=esDoctor;
 	}
+	
+	public boolean isEsDoctor() {
+		return esDoctor;
+	}
+
+	public void setEsDoctor(boolean esDoctor) {
+		this.esDoctor = esDoctor;
+	}
+
 	public String getUsername() {
 		return username;
 	}

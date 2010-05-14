@@ -1,9 +1,11 @@
 package edu.austral.lab1.odontobook.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -23,6 +25,7 @@ public class Doctor {
 	private String apellido;
 	private int dni;
 private long id;
+private Usuario usuario;
 
 	public Doctor(){
 		
@@ -30,7 +33,7 @@ private long id;
 	
 
 	public Doctor(String nombre, String apellido,int matricula,int edad, int telefono,
-			int dni, String direccion){
+			int dni, String direccion,Usuario usuario){
 		
 		this.nombre = nombre;
 		this.matricula = matricula;
@@ -38,8 +41,19 @@ private long id;
 		this.apellido = apellido;
 		this.direccion = direccion;
 		this.dni = dni;
-	
+		this.telefono=telefono;
+		this.usuario=usuario;
 	}
+	@OneToOne(cascade = CascadeType.ALL)
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 
 	public String getNombre() {
 		return nombre;
