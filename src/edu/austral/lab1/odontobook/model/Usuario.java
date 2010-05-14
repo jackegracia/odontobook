@@ -22,6 +22,14 @@ public class Usuario {
 		this.dni = dni;
 	}
 	
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
 	public boolean isEsDoctor() {
 		return esDoctor;
 	}
@@ -52,7 +60,5 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public int getDNI() {
-		return dni;
-	}
+
 }
