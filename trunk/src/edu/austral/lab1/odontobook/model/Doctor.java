@@ -25,16 +25,16 @@ public class Doctor {
 	private String apellido;
 	private int dni;
 	private long id;
-private Usuario usuario;
+	private Usuario usuario;
 
 	public Doctor(){
-		
+
 	}
-	
+
 
 	public Doctor(String nombre, String apellido,int matricula,int edad, int telefono,
 			int dni, String direccion,Usuario usuario){
-		
+
 		this.nombre = nombre;
 		this.matricula = matricula;
 		this.edad = edad;
@@ -49,7 +49,7 @@ private Usuario usuario;
 		return usuario;
 	}
 
-	
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -78,7 +78,7 @@ private Usuario usuario;
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -102,20 +102,20 @@ private Usuario usuario;
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	
+
 	@Id @GeneratedValue
 	public long getId() {
-		
-		
+
+
 		return id;
-	
+
 	}
-	
-public void setId(long id) {
-		
+
+	public void setId(long id) {
+
 		this.id=id;
-		
-	
+
+
 	}
 
 	public int getDni() {
@@ -126,6 +126,6 @@ public void setId(long id) {
 		this.dni = dni;
 	}
 
-	
+
 
 }

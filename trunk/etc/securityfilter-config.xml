@@ -22,7 +22,7 @@
 		<form-login-config>
 			<form-login-page>/login.jsp</form-login-page>
 			<form-error-page>/jsp/errorPage.jsp</form-error-page>
-			<form-default-page>Redireccionar.do</form-default-page>
+			<form-default-page>/Redireccionar.do</form-default-page>
 		</form-login-config>
 	</login-config>
 	
