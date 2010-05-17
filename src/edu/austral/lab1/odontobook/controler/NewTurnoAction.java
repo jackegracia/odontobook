@@ -63,13 +63,7 @@ System.out.print(date);
 		
 		
 			
-			}
-		
-		
-		
-		
-
-	
+			}	
 
 
 	public void actionPerformed(ActionEvent arg0) {

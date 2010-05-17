@@ -12,8 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
 @Entity
@@ -48,6 +47,7 @@ public class Turno implements Serializable{
 		this.doctor=doctor;
 		this.paciente = paciente;
 		this.fecha=date;
+		
 	}
 
 
@@ -105,6 +105,21 @@ public class Turno implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	
+	public String toString(){
+		String date=fecha.toString();
+		String[] splitDate=date.split("-");	
+		String año=splitDate[0];		
+		String mes=splitDate[1]; 
+		String[] dia=splitDate[2].split(" ");
+		
+		if(minutos==0){
+			return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+"00";
+		}
+		
+		else return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+String.valueOf(minutos);
 	}
 
 }

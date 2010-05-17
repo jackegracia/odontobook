@@ -49,6 +49,29 @@
 		</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>Ver Turnos</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.VerTurnosServlet
+		</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>Sacar Turno</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.SacarTurnoServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Sacar Turno</servlet-name>
+		<url-pattern>/SacarTurno.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Ver Turnos</servlet-name>
+		<url-pattern>/VerTurnos.do</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/Logout.do</url-pattern>
