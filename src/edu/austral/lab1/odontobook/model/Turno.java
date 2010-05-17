@@ -107,6 +107,35 @@ public class Turno implements Serializable{
 		this.id = id;
 	}
 
+	public String getDia(){
+		String date=fecha.toString();
+		String[] splitDate=date.split("-");		
+		String año=splitDate[0];		
+		String mes=splitDate[1]; 
+		String[] dia=splitDate[2].split(" ");
+		return dia[0];
+		
+	}
+	
+	public String getMes(){
+		String date=fecha.toString();
+		String[] splitDate=date.split("-");		
+		String año=splitDate[0];		
+		String mes=splitDate[1]; 
+		String[] dia=splitDate[2].split(" ");
+		return mes;
+		
+	}
+	
+	public String getAnio(){
+		String date=fecha.toString();
+		String[] splitDate=date.split("-");		
+		String anio=splitDate[0];		
+		String mes=splitDate[1]; 
+		String[] dia=splitDate[2].split(" ");
+		return anio;
+	}
+	
 	
 	public String toString(){
 		String date=fecha.toString();
@@ -120,6 +149,16 @@ public class Turno implements Serializable{
 		}
 		
 		else return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+String.valueOf(minutos);
+	}
+	
+	public void setAnio(String anio){
+		anio = null;
+	}
+	public void setMes(String anio){
+		anio = null;
+	}
+	public void setDia(String anio){
+		anio = null;
 	}
 
 }
