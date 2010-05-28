@@ -17,11 +17,11 @@ public class TurnoDao extends BaseDao{
 	private List<Turno> turnos;
 
 
-	public List<Turno> getTurnoByPaciente(long id){
+	public List<Turno> getTurnoByPaciente(long paciente_id){
 		try{
 			Query query = HibernateUtil.getSession().createQuery(
 					"from Turno as turn where turn.paciente = ?")
-					.setLong(0, id);
+					.setLong(0, paciente_id);
 			turnos = (List) query.list();
 		}catch(org.hibernate.QueryException e)
 		{
@@ -32,6 +32,22 @@ public class TurnoDao extends BaseDao{
 
 	}
 
+	public List<Turno> getTurnoByDateAndPaciente(Date date, long paciente_id){
+		try{
+			Query query = HibernateUtil.getSession().createQuery(
+					"from Turno as turn where turn.fecha = ? and turn.paciente = ?")
+					.setDate(0, date).setLong(1, paciente_id);
+			turnos = (List) query.list();
+		}catch(org.hibernate.QueryException e)
+		{
+			e.printStackTrace();
+			return new ArrayList();
+		}
+		
+		return turnos;
+
+	}
+	
 	public List<Turno> getTurnoByDoctor(long doctor_id){
 		try{
 			Query query = HibernateUtil.getSession().createQuery(
