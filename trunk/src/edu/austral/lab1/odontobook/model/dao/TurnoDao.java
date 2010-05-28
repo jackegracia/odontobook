@@ -16,6 +16,7 @@ public class TurnoDao extends BaseDao{
 
 	private List<Turno> turnos;
 
+	
 
 	public List<Turno> getTurnoByPaciente(long paciente_id){
 		try{
@@ -73,6 +74,7 @@ public class TurnoDao extends BaseDao{
 			e.printStackTrace();
 			return new ArrayList();
 		}
+
 		return turnos;
 
 	}
@@ -85,4 +87,6 @@ public class TurnoDao extends BaseDao{
 	public static List getAll(){
 		return new TurnoDao().getPersonas();
 	}
+
+
 }

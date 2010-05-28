@@ -10,10 +10,15 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import edu.austral.lab1.odontobook.controler.ActionManager;
 import edu.austral.lab1.odontobook.util.DateUtils;
@@ -166,7 +171,7 @@ public class calendario  {
 			for (int j = 0; j < 7; j++) {
 				bp.add(labs[i][j] = new JButton(""));
 				labs[i][j].addActionListener(dateSetter);
-				
+			
 				
 			}
 
@@ -219,7 +224,10 @@ public class calendario  {
 		// Fill in numbers for the day of month.
 		for (int i = 1; i <= daysInMonth; i++) {
 			JButton b = labs[(leadGap + i - 1) / 7][(leadGap + i - 1) % 7];
+			b.setIcon(new ImageIcon("icon/icon"+i+".gif"));
 			b.setText(Integer.toString(i));
+			b.setBorder(BorderFactory.createLineBorder(Color.black));
+			
 			try{
 				if (daysInMonth==i){
 					b = labs[((leadGap + i - 1) / 7)][((leadGap + i - 1) % 7)+1];
