@@ -12,7 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -124,16 +125,19 @@ public class Turno implements Serializable{
 		String mes=splitDate[1]; 
 		String[] dia=splitDate[2].split(" ");
 		return mes;
+
 		
+
 	}
 	
 	public String anio(){
 		String date=fecha.toString();
 		String[] splitDate=date.split("-");		
 		String anio=splitDate[0];		
+
 		String mes=splitDate[1]; 
 		String[] dia=splitDate[2].split(" ");
-		return anio;
+		return dia[0];
 	}
 	
 	public String minutos(){
@@ -152,20 +156,19 @@ public class Turno implements Serializable{
 		else return String.valueOf(hora);
 	}
 	
+
 	public String toString(){
 		String date=fecha.toString();
-		String[] splitDate=date.split("-");	
-		String año=splitDate[0];		
+		String[] splitDate=date.split("-");
+		
+		
+		String año=splitDate[0];
+		
 		String mes=splitDate[1]; 
 		String[] dia=splitDate[2].split(" ");
 		
-		if(minutos==0){
-			return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+"00";
-		}
 		
-		else return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+String.valueOf(minutos);
+		return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+String.valueOf(minutos);
 	}
-	
-
 
 }
