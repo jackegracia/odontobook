@@ -62,6 +62,51 @@
 		</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>Seleccionar ver Turno</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.SeleccionarVerTurnoServlet
+		</servlet-class>
+	</servlet>	
+
+	<servlet>
+		<servlet-name>Sacar Turno Red</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.SacarTurnoRedServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Confirmar Sacar Turno Red</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.ConfirmarSacarTurnoServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Cancelar Turno Red</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.CancelarTurnoRed
+		</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>Cancelar Turno Red</servlet-name>
+		<url-pattern>/CancelarRed.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Confirmar Sacar Turno Red</servlet-name>
+		<url-pattern>/ConfirmarSacarTurno.do</url-pattern>
+	</servlet-mapping>	
+
+	<servlet-mapping>
+		<servlet-name>Sacar Turno Red</servlet-name>
+		<url-pattern>/SacarTurnoRed.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Seleccionar ver Turno</servlet-name>
+		<url-pattern>/SeleccionarVerTurno.do</url-pattern>
+	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>Sacar Turno</servlet-name>
 		<url-pattern>/SacarTurno.do</url-pattern>

@@ -14,10 +14,10 @@ import edu.austral.lab1.odontobook.model.Histograma;
 
 public class DoctorDao extends BaseDao{
 
-	public Doctor getDoctorbyName(String name){
+	public Doctor getDoctorbyNameAndApellido(String name, String apellido){
 		Doctor doctor = (Doctor) HibernateUtil.getSession().createQuery(
-		"from Doctor as doc where doc.nombre = ?")
-		.setString(0, name)
+		"from Doctor as doc where doc.nombre = ? and doc.apellido = ?")
+		.setString(0, name).setString(1, apellido)
 		.uniqueResult();
 		return doctor;
 		
@@ -32,8 +32,8 @@ public class DoctorDao extends BaseDao{
 		
 	}
 	
-	public void removeDoctorbyName(String name){
-		Doctor doctor = getDoctorbyName(name);
+	public void removeDoctorbyNameAndApellido(String name, String apellido){
+		Doctor doctor = getDoctorbyNameAndApellido(name, apellido);
 		System.out.println(doctor.getNombre()+doctor.getApellido());
 		HibernateUtil.getSession().delete(doctor);
 		HibernateUtil.commitTransaction();

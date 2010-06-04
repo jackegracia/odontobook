@@ -9,6 +9,7 @@ import org.hibernate.SQLQuery;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
+import edu.austral.lab1.odontobook.model.Usuario;
 
 
 public class PacienteDao extends BaseDao{
@@ -32,6 +33,16 @@ public class PacienteDao extends BaseDao{
 		return Paciente;
 		
 	}
+
+	public Paciente getPacienteByUserID(long id){
+		Paciente Paciente =  (Paciente) HibernateUtil.getSession().createQuery(
+		"from Paciente as pac where pac.usuario = ?")
+		.setLong(0, id)
+		.uniqueResult();
+		return Paciente;
+	}
+	
+	
 	
     public List getPaciente(){
         return HibernateUtil.getSession().createCriteria(Paciente.class).list();

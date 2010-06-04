@@ -57,7 +57,7 @@ System.out.print(date);
 		
 		DoctorDao doctor=new DoctorDao();
 		String[] separadas1 = doctorName.split(" ");
-		Doctor doctorForDay=doctor.getDoctorbyName(separadas1[0]);
+		Doctor doctorForDay=doctor.getDoctorbyNameAndApellido(separadas1[0], separadas1[1]);
 		Long doctor_id=doctorForDay.getId();
 		tablaDeTurnos=new TurnoGraphics(doctorForDay,date,doctor_id,doctorName);
 		

@@ -23,55 +23,55 @@ import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 
 public class DeleteDoctorAction extends AbstractAction{
 
-	
+
 	private JDialog newDialog;
 	private DoctorDao doc;
 	private GraphicInterface gi;
 	private Component frame;
-	
+
 
 	public DeleteDoctorAction(GraphicInterface gi){
 		super("Dar de Bajar Doctor");
 		putValue(SHORT_DESCRIPTION,"Borrar un doctor");
-	 doc=new DoctorDao();
-	 this.gi=gi;
+		doc=new DoctorDao();
+		this.gi=gi;
 	}
-	
-	public void DeleteDoctorAndTurns(String doctorName){
-		
+
+	public void DeleteDoctorAndTurns(String doctorName, String doctorSurname){
+
 		Object[] options = {"Aceptar",
-        "Cancelar"};
-int n = JOptionPane.showOptionDialog(frame,
-"Quiere borrar al doctor"+" "+doctorName+" "+"?",
-"A Silly Question",
-JOptionPane.YES_NO_OPTION,
-JOptionPane.QUESTION_MESSAGE,
-null,     //do not use a custom Icon
-options,  //the titles of buttons
-options[0]); //default button title
+		"Cancelar"};
+		int n = JOptionPane.showOptionDialog(frame,
+				"Quiere borrar al doctor"+" "+doctorName+" "+doctorSurname+"?",
+				"A Silly Question",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,
+				null,     //do not use a custom Icon
+				options,  //the titles of buttons
+				options[0]); //default button title
 
-		
-if (n==0){
-	HibernateUtil.beginTransaction();
-	doc.removeDoctorbyName(doctorName);
-}else{
-	
-}
 
-		
-		
-		
+		if (n==0){
+			HibernateUtil.beginTransaction();
+			doc.removeDoctorbyNameAndApellido(doctorName, doctorSurname);
+		}else{
+
+		}
+
+
+
+
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		TabbedPane pane=gi.getDoctorTab();
 		String name=(String) pane.getDoc().getSelectedValue();
 		String[] nombreDoctor=name.split(" ");
-		DeleteDoctorAndTurns(nombreDoctor[0]);        
+		DeleteDoctorAndTurns(nombreDoctor[0], nombreDoctor[1]);        
 		gi.getFrame().dispose();
 		gi=new GraphicInterface();
-			
+
 	}
 
 }
