@@ -4,13 +4,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
+	
+
 
 	public static Date getDate(final int date, final int month, final int year)
 	{
 		Calendar myCalendar = Calendar.getInstance();
 		myCalendar.clear();
 		myCalendar.set(year, month, date);
-		
+
 		return myCalendar.getTime();
 	}
 	
@@ -29,6 +31,5 @@ public class DateUtils {
 		return myCalendar.getTime();
 	}
 
-	
-	
+
 }

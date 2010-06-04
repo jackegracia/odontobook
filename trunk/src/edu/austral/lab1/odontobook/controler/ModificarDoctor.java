@@ -154,7 +154,7 @@ public class ModificarDoctor extends AbstractAction {
 
 		HibernateUtil.beginTransaction();
 		DoctorDao doctor=new DoctorDao();
-		Doctor doc=doctor.getDoctorbyName(splitName[0]);
+		Doctor doc=doctor.getDoctorbyNameAndApellido(splitName[0], splitName[1]);
 		crearDialogo(doc);
 		HibernateUtil.getSession().update(doc);
 		HibernateUtil.commitTransaction();
