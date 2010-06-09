@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
@@ -21,26 +22,29 @@ import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Usuario;
 import edu.austral.lab1.odontobook.model.dao.BaseDao;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
+import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 
 public class NewDoctorAction extends AbstractAction {
-	
+
 	private JDialog nuevoDialogo;
 	private Frame frame;
 	private Consultorio consultorio;
 	private GraphicInterface gi;
-	
-	
-	
+
+
+
 	public NewDoctorAction(Consultorio consultorio, GraphicInterface gi){
 		super("Nuevo Doctor");
 		putValue(SHORT_DESCRIPTION,"Agrega un Doctor");
 		this.consultorio=consultorio;
 		this.gi=gi;
-		
+
 	}
-	
-	
+
+
 	public Doctor crearDialogo() {
+		//Doctor q voy a devolver para usar el cancelar bien
+		Doctor nuevoDoctor = new Doctor();
 		nuevoDialogo = new JDialog(frame,"Nuevo Doctor" ,true);
 		JLabel nombre= new JLabel("Nombre");
 		JLabel apellido= new JLabel("Apellido");
@@ -66,10 +70,10 @@ public class NewDoctorAction extends AbstractAction {
 		JButton cancelar = new JButton("Cancelar");
 		GridLayout layout = new GridLayout(10,4);
 		jNombre.setPreferredSize(new Dimension(280, 25));
-		
+
 		//Seteo los componentes a la Ventana.
 		nuevoDialogo.getContentPane().setLayout(layout);
-		
+
 		nuevoDialogo.getContentPane().add(nombre);
 		nuevoDialogo.getContentPane().add(jNombre);
 
@@ -93,10 +97,10 @@ public class NewDoctorAction extends AbstractAction {
 
 		nuevoDialogo.getContentPane().add(contraseña);
 		nuevoDialogo.getContentPane().add(jContraseña);
-		
+
 		nuevoDialogo.getContentPane().add(telefono);
 		nuevoDialogo.getContentPane().add(jTelefono);
-		
+
 		nuevoDialogo.getContentPane().add(aceptar);
 		nuevoDialogo.getContentPane().add(cancelar);
 		//SETEO EL EVENTO DEL JTextField
@@ -107,16 +111,23 @@ public class NewDoctorAction extends AbstractAction {
 
 
 			public void actionPerformed(ActionEvent e) {
-				if(!jNombre.getText().equals("")||!jApellido.getText().equals("")||!jEdad.getText().equals("")||
-						!JDireccion.getText().equals("")||!jMatricula.getText().equals("")||!jDni.getText().equals("")||
-						!jTelefono.getText().equals("")){
-					nuevoDialogo.dispose();	
+
+				UsuarioDao usuarioD = new UsuarioDao();
+				boolean existeUser = usuarioD.existeUsuario(jUsuario.getText());
+
+				if(existeUser){
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Ese nombre de usuario ya esta en uso");
+				}else{
+					nuevoDialogo.dispose();
 				}
 			}
 		});
 
 		cancelar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				jNombre.setText(null);
+				jUsuario.setText(null);
 				nuevoDialogo.dispose();	
 
 			}
@@ -124,28 +135,34 @@ public class NewDoctorAction extends AbstractAction {
 
 		//Cambio el tamaño de la ventana.
 		nuevoDialogo.setSize(300, 300);
-	
+
 		//NOTA: Siempre el mostrar va al final de todo, muchas funciones no funcionan si se ponen despues de este metodo.
 		nuevoDialogo.setVisible(true);
 
 
+
+
 		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText(),new Usuario(jUsuario.getText(),jContraseña.getText(),true, Integer.parseInt(jDni.getText())) );
 	}
-	
-	
+
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		 
+
 		Doctor doc = crearDialogo();
-		DoctorDao doctor = new DoctorDao();
-		HibernateUtil.beginTransaction();
-		doctor.makePersistent(doc);
-		HibernateUtil.commitTransaction();
-		gi.getFrame().dispose();
-		gi=new GraphicInterface();
-      
-	//	consultorio.agregarDoctor(doc);
-		
+		System.out.println(doc.getNombre());
+		System.out.println(doc.getUsuario().getUsername());
+		if(!doc.getNombre().equals("") || !doc.getUsuario().getUsername().equals("")){
+			nuevoDialogo.dispose();	
+			DoctorDao doctor = new DoctorDao();
+			HibernateUtil.beginTransaction();
+			doctor.makePersistent(doc);
+			HibernateUtil.commitTransaction();
+			gi.getFrame().dispose();
+			gi=new GraphicInterface();
+		}
+		//	consultorio.agregarDoctor(doc);
+
 	}
 
 }

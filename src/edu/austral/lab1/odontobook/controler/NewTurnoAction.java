@@ -3,13 +3,17 @@ package edu.austral.lab1.odontobook.controler;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +30,7 @@ import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 import edu.austral.lab1.odontobook.model.dao.HistogramaDao;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
 import edu.austral.lab1.odontobook.model.dao.TurnoDao;
+import edu.austral.lab1.odontobook.util.DateUtils;
 
 public class NewTurnoAction extends AbstractAction {
 
@@ -48,7 +53,15 @@ public class NewTurnoAction extends AbstractAction {
 	}
 
 	public void createTurnoTable(){
-		
+		Calendar cal = new GregorianCalendar();
+		int day = cal.get(Calendar.DATE);
+		int month = cal.get(Calendar.MONTH);
+		int year = cal.get(Calendar.YEAR);
+		Date actual = DateUtils.getDate(day, month, year);
+		if(actual.compareTo(date) > 0){
+			JFrame frame = new JFrame();
+			JOptionPane.showMessageDialog(frame, "Fecha invalida para sacar un turno");
+		}else{
 		
 		System.out.print(date);
 		
@@ -62,7 +75,7 @@ public class NewTurnoAction extends AbstractAction {
 		tablaDeTurnos=new TurnoGraphics(doctorForDay,date,doctor_id,doctorName);
 		
 		
-			
+		}
 			}	
 
 

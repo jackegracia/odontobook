@@ -6,7 +6,16 @@ import edu.austral.lab1.odontobook.model.Usuario;
 
 public class UsuarioDao extends BaseDao{
 	
-	
+	public boolean existeUsuario(String name){
+		Usuario user = (Usuario) HibernateUtil.getSession().createQuery(
+		"from Usuario as user where user.username = ?")
+		.setString(0, name)
+		.uniqueResult();
+
+		
+		if(user == null) return false;
+		else return true;
+	}
 	
 	public Usuario getUsuario(String name){
 		Usuario user = (Usuario) HibernateUtil.getSession().createQuery(
