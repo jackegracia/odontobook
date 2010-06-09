@@ -116,7 +116,7 @@ public class NewPacienteAction extends AbstractAction {
 
 		cancelar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
+				nuevoDialogo.dispose();	
 
 			}
 		});
@@ -125,8 +125,7 @@ public class NewPacienteAction extends AbstractAction {
 		
 		//Cambio el tamaño de la ventana.
 		nuevoDialogo.setSize(300, 300);
-		//Desactivo la "X" de la ventana para que al clickearla no haga nada.
-		nuevoDialogo.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	
 		//NOTA: Siempre el mostrar va al final de todo, muchas funciones no funcionan si se ponen despues de este metodo.
 		nuevoDialogo.setVisible(true);
 
