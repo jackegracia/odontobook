@@ -13,6 +13,7 @@ private DeleteDoctorAction deleteDoctorAction;
 private ModificarPacienteAction modificarPacienteAction;
 private NewHistogramaAction newHistograma;
 private ModificarDoctor modificarDoctor;
+private OdontogramaAction odontogramaAction;
 
 public NewHistogramaAction getNewHistograma() {
 	return newHistograma;
@@ -29,6 +30,15 @@ public ActionManager(Consultorio consultorio,GraphicInterface gi){
 	modificarPacienteAction=new ModificarPacienteAction(consultorio,gi);
 	newHistograma=new NewHistogramaAction(consultorio,gi);
 	modificarDoctor=new ModificarDoctor(consultorio, gi);
+	odontogramaAction=new OdontogramaAction();
+}
+
+public OdontogramaAction getOdontogramaAction() {
+	return odontogramaAction;
+}
+
+public void setOdontogramaAction(OdontogramaAction odontogramaAction) {
+	this.odontogramaAction = odontogramaAction;
 }
 
 public ModificarDoctor getModificarDoctor() {
