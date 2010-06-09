@@ -52,6 +52,7 @@ public class MenuBar {
 		patient.add(am.getNewPaciente());
 		patient.add(am.getModificarPacienteAction());
 		patient.add(am.getNewHistograma());
+		patient.add(am.getOdontogramaAction());
 
 
 		// Agrego los menues principales a la Barra de Menu

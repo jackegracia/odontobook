@@ -102,7 +102,23 @@ public class TurnoDao extends BaseDao{
 		return turnos;
 
 	}
+
 	
+	public void removeDoctorbyName(Long pacienteId,Date date,int hora,int minutos){
+
+		List turnos= getTurnoByDateAndPaciente(date,pacienteId);
+		for(int i=0;i<turnos.size();i++){
+			if((((Turno) turnos.get(i)).getHora()==hora)||(((Turno) turnos.get(i)).getMinutos()==minutos)){
+				HibernateUtil.getSession().delete(turnos.get(i));
+				HibernateUtil.commitTransaction();
+			}
+		}
+		
+		
+	}
+	
+	
+
 	public List<Turno> getTurnoByDateAndDoctor(Date date, long doctor_id){
 		try{
 			Query query = HibernateUtil.getSession().createQuery(

@@ -59,7 +59,7 @@ this.consultorio=consultorio;
 		testArea=new JTextArea();
 		testArea.setEnabled(false);
 		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(testArea);
 		panel.add(buscar);
 
