@@ -131,8 +131,6 @@ public class Doctor {
 		else if(nombre.compareTo(d.getNombre())==0 && apellido.compareTo(d.getApellido())>0) return true;
 		else return false;
 		
-		
-		
 	}
 
 }
