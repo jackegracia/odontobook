@@ -2,21 +2,25 @@ package edu.austral.lab1.odontobook.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.austral.lab1.odontobook.model.Paciente;
+import edu.austral.lab1.odontobook.model.Turno;
 import edu.austral.lab1.odontobook.model.Usuario;
+import edu.austral.lab1.odontobook.model.dao.PacienteDao;
+import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 import edu.austral.lab1.odontobook.util.DateUtils;
 
-public class ConfirmarSacarTurnoServlet extends HttpServlet {
+public class ConfirmarCancelarTurnoServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{	
 		
@@ -28,6 +32,7 @@ public class ConfirmarSacarTurnoServlet extends HttpServlet {
 			out.doPost(rq, rp);
 			return;			
 		}
+		
 		
 		Calendar cal = new GregorianCalendar();
 		PrintWriter p = rp.getWriter();
@@ -54,7 +59,9 @@ public class ConfirmarSacarTurnoServlet extends HttpServlet {
 		rq.setAttribute("hora", hora);
 		rq.setAttribute("doctor", doctor);
 		rq.setAttribute("fechaCorrecta", correcto);
-		rq.getRequestDispatcher("jsp/confirmarSacarTurno.jsp").forward(rq, rp);
+		
+		
+		rq.getRequestDispatcher("jsp/confirmarCancelarTurno.jsp").forward(rq, rp);
 	}
 
 }

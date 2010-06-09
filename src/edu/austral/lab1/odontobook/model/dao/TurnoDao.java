@@ -45,15 +45,28 @@ public class TurnoDao extends BaseDao{
 
 	}
 	
-	public void removeTurno(Long pacienteId,Date date,int hora,int minutos){
-
+	public void removeTurno(long pacienteId,Date date,int hora,int minutos, long doctorId){
+//		turnos = getAll();
 		List<Turno> turnos= getTurnoByDateAndPaciente(date,pacienteId);
+		System.out.println("intenta");
 		for(int i=0;i<turnos.size();i++){
-			if((((Turno) turnos.get(i)).getHora()==hora)||(((Turno) turnos.get(i)).getMinutos()==minutos)){
+			System.out.println("en for");
+			if((( turnos.get(i)).getHora()==hora)&&(( turnos.get(i)).getMinutos()==minutos && turnos.get(i).getDoctor().getId()==doctorId )){
+				System.out.println("entro");
+				HibernateUtil.beginTransaction();
 				HibernateUtil.getSession().delete(turnos.get(i));
 				HibernateUtil.commitTransaction();
 			}
 		}
+		
+		
+	}
+	
+	public void sacarTurno(Turno turno){
+		HibernateUtil.beginTransaction();
+		makePersistent(turno);
+		
+		HibernateUtil.commitTransaction();
 		
 		
 	}

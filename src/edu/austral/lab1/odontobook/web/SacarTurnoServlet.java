@@ -16,6 +16,7 @@ import edu.austral.lab1.odontobook.model.Turno;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 import edu.austral.lab1.odontobook.util.DateUtils;
+import edu.austral.lab1.odontobook.util.Sorter;
 
 public class SacarTurnoServlet extends HttpServlet{
 
@@ -25,48 +26,56 @@ public class SacarTurnoServlet extends HttpServlet{
 	}
 
 	public void doPost(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{
+		if(rq.getRemoteUser() == null ){
+			Logout out= new Logout();
+			out.doPost(rq, rp);
+			return;			
+		}
+		Sorter sort = new Sorter();
 		DoctorDao doc = new DoctorDao();	
 		PrintWriter p = rp.getWriter();
 		List<Doctor> listD = doc.getDoctor();
-		rq.setAttribute("list", listD);
+		rq.setAttribute("list", sort.ordenarDoctores(listD));
 
 
 
 		String auxd = (String)rq.getParameter("datepicker");
-		String doctor =  rq.getParameter("Doc");
-		p.println(doctor);
-		List<Turno> ocupados = new ArrayList<Turno>();
+	
+	
+			String doctor =  rq.getParameter("Doc");
+			p.println(doctor);
+			List<Turno> ocupados = new ArrayList<Turno>();
 
-		String [] date = auxd.split("/");
-		String mes = date[0];
-		String dia = date[1];
-		String anio = date[2];
-		String dateImp = imprimirFecha(dia, mes, anio);
-		Date d =  DateUtils.getDate(Integer.parseInt(dia),Integer.parseInt(mes)-1, Integer.parseInt(anio) );
+			String [] date = auxd.split("/");
+			String mes = date[0];
+			String dia = date[1];
+			String anio = date[2];
+			String dateImp = imprimirFecha(dia, mes, anio);
+			Date d =  DateUtils.getDate(Integer.parseInt(dia),Integer.parseInt(mes)-1, Integer.parseInt(anio) );
 
 
-		if(doctor.equals("Todos")){
-			List<String[]> listaTurnosDoctores = new ArrayList<String[]>();
-			for(int i = 0; i<listD.size(); i++){
-				String[] aux = getTurnoComparados( getTurnoPorDoctor(d, listD.get(i).getNombre()+" "+listD.get(i).getApellido()));
-				listaTurnosDoctores.add(aux);
-			//	listaTurnosDoctores.add(null);
+			if(doctor.equals("Todos")){
+				List<String[]> listaTurnosDoctores = new ArrayList<String[]>();
+				for(int i = 0; i<listD.size(); i++){
+					String[] aux = getTurnoComparados( getTurnoPorDoctor(d, listD.get(i).getNombre()+" "+listD.get(i).getApellido()));
+					listaTurnosDoctores.add(aux);
+					//	listaTurnosDoctores.add(null);
+				}
+				rq.setAttribute("fecha", dateImp);
+				rq.setAttribute("turnosList", listaTurnosDoctores);
+			}else{
+				ocupados = getTurnoPorDoctor(d, doctor);
+				String[] listT = getTurnoComparados( ocupados);
+				rq.setAttribute("fecha", dateImp);
+				rq.setAttribute("turnosList", listT);
 			}
-			rq.setAttribute("fecha", dateImp);
-			rq.setAttribute("turnosList", listaTurnosDoctores);
-		}else{
-			ocupados = getTurnoPorDoctor(d, doctor);
-			String[] listT = getTurnoComparados( ocupados);
-			rq.setAttribute("fecha", dateImp);
-			rq.setAttribute("turnosList", listT);
-		}
+
+
+
+			rq.getRequestDispatcher("jsp/sacarTurno.jsp").forward(rq, rp);
 
 		
 		
-		rq.getRequestDispatcher("jsp/sacarTurno.jsp").forward(rq, rp);
-
-
-
 
 
 
@@ -75,7 +84,7 @@ public class SacarTurnoServlet extends HttpServlet{
 	public String imprimirFecha(String dia,String mes, String anio){
 		return mes+"/"+dia+"/"+anio;
 	}
-	
+
 	private String[] getTodoTurnos(){
 		String headers[] = 
 
@@ -103,9 +112,9 @@ public class SacarTurnoServlet extends HttpServlet{
 			for(int k = 0; k<headers.length; k++){
 				String ocupados = null;
 				if(ocupado.get(i).getMinutos()!=0){
-					 ocupados= String.valueOf(ocupado.get(i).getHora())+":30";
+					ocupados= String.valueOf(ocupado.get(i).getHora())+":30";
 				}else {
-					 ocupados= String.valueOf(ocupado.get(i).getHora())+":00";
+					ocupados= String.valueOf(ocupado.get(i).getHora())+":00";
 				}
 				if(headers[k].equals(ocupados)){
 					headers[k]="";

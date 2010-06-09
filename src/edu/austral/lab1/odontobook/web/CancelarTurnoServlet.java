@@ -16,34 +16,43 @@ import edu.austral.lab1.odontobook.model.dao.PacienteDao;
 import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 import edu.austral.lab1.odontobook.util.DateUtils;
+import edu.austral.lab1.odontobook.util.Sorter;
 
 public class CancelarTurnoServlet extends HttpServlet {
-	
+
 	public void doGet(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{	
-		
+
 	}
-	
+
 	public void doPost(HttpServletRequest rq, HttpServletResponse rp)throws ServletException, IOException {
-	
+		if(rq.getRemoteUser() == null ){
+			Logout out= new Logout();
+			out.doPost(rq, rp);
+			return;			
+		}
+		Sorter sort = new Sorter();
 		String userName = rq.getRemoteUser();
 		UsuarioDao uDao = new UsuarioDao();
 		Usuario user = uDao.getUsuario(userName);
 		PacienteDao pDao = new PacienteDao();
 		Paciente pac = pDao.getPacienteByUserID(user.getId());
-		
-		String auxd = (String)rq.getParameter("datepicker");
-		String [] date = auxd.split("/");
-		String mes = date[0];
-		String dia = date[1];
-		String anio = date[2];
-		Date d =  DateUtils.getDate(Integer.parseInt(dia),Integer.parseInt(mes)-1, Integer.parseInt(anio) );
-		TurnoDao tDao = new TurnoDao();
-		List<Turno> tList = tDao.getTurnoByDateAndPaciente(d, pac.getId());
-		
-		rq.setAttribute("listaTurnos", tList);
-		
-		
-		rq.getRequestDispatcher("jsp/cancelarTurno.jsp").forward(rq, rp);
-	}
 
+		String auxd = (String)rq.getParameter("datepicker");
+		if(auxd.equals("")){
+			rq.getRequestDispatcher("jsp/cancelarTurno.jsp").forward(rq, rp);
+		}else{
+			String [] date = auxd.split("/");
+			String mes = date[0];
+			String dia = date[1];
+			String anio = date[2];
+			Date d =  DateUtils.getDate(Integer.parseInt(dia),Integer.parseInt(mes)-1, Integer.parseInt(anio) );
+			TurnoDao tDao = new TurnoDao();
+			List<Turno> tList = tDao.getTurnoByDateAndPaciente(d, pac.getId());
+
+			rq.setAttribute("listaTurnos", sort.ordenarTurnos(tList));
+			rq.setAttribute("fecha", auxd);
+
+			rq.getRequestDispatcher("jsp/cancelarTurno.jsp").forward(rq, rp);
+		}
+	}
 }

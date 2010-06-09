@@ -29,13 +29,13 @@ public class TurnoGraphics {
 	private Long doctorId;
 	private long doctor_id;
 	private List listaDeTurnos;
-	
-	
+
+
 	public TurnoGraphics(final Doctor doctorForDay,final Date date, Long doctorId,String lavel)
 	{    
-this.doctorForDay=doctorForDay;
-this.date=date;
-this.doctorId=doctorId;
+		this.doctorForDay=doctorForDay;
+		this.date=date;
+		this.doctorId=doctorId;
 		nuevoDialogo = new JDialog(frame,"Turnos del doctor: "+ lavel ,true); 
 
 
@@ -111,40 +111,40 @@ this.doctorId=doctorId;
 
 		TurnoDao turnoDao=new TurnoDao();
 		listaDeTurnos = turnoDao.getTurnoByDateAndDoctor(date, doctorId);
-		
 
-	
-	
-			System.out.println(listaDeTurnos.size());
-			
-		
-	
-			if(listaDeTurnos.isEmpty()){
-				
-			}else{
-				
-			
+
+
+
+		System.out.println(listaDeTurnos.size());
+
+
+
+		if(listaDeTurnos.isEmpty()){
+
+		}else{
+
+
 			for(int i=0;i<listaDeTurnos.size();i++){
 
-			Turno turno=(Turno) listaDeTurnos.get(i);
-				
-			final Paciente paciente = turno.getPaciente();
-			
-			
-			
+				Turno turno=(Turno) listaDeTurnos.get(i);
 
-			if(turno.getMinutos()==30){
-			
-				table.getModel().setValueAt(paciente.getNombre()+" " + paciente.getApellido(), ((turno.getHora()-8)*2)+1, 0);
-			}else{
-				
-				table.getModel().setValueAt(paciente.getNombre()+" " + paciente.getApellido(), (turno.getHora()-8)*2, 0);
+				final Paciente paciente = turno.getPaciente();
+
+
+
+
+				if(turno.getMinutos()==30){
+
+					table.getModel().setValueAt(paciente.getNombre()+" " + paciente.getApellido(), ((turno.getHora()-8)*2)+1, 0);
+				}else{
+
+					table.getModel().setValueAt(paciente.getNombre()+" " + paciente.getApellido(), (turno.getHora()-8)*2, 0);
+				}
 			}
-			}
-			}
-		
-			
-		
+		}
+
+
+
 		nuevoDialogo.add(panel2,BorderLayout.PAGE_END);
 		nuevoDialogo.add(panel1);
 
@@ -167,11 +167,11 @@ this.doctorId=doctorId;
 			}   
 
 		}); 
-		
-		
-		
-		
-		
+
+
+
+
+
 
 		aceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -179,13 +179,13 @@ this.doctorId=doctorId;
 
 			}
 		});
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
 		importar.addActionListener(new ActionListener(){
 			private int hour;
 
@@ -196,37 +196,37 @@ this.doctorId=doctorId;
 				System.out.print(paciente);
 				PacienteDao paci=new PacienteDao();
 				Paciente pacient=paci.getPacientebyName(paciente);
-				
+
 				HibernateUtil.beginTransaction();
 				Turno turno=new Turno(pacient,doctorForDay,date);
-				
-				
+
+
 				final int selectedRow = table.getSelectedRow();
 				final boolean evenRow = selectedRow == 0 || selectedRow%2 == 0;
-				
-				
+
+
 				System.out.println("selectedRow: " + selectedRow);
 				System.out.println("evenRow: " + evenRow);
-		     
-				
+
+
 				final int hour = evenRow ? (selectedRow/2)+8 : ((selectedRow-1)/2)+8;
 				final int minutes = evenRow ? 0 : 30;
-				
-				
+
+
 				System.out.println("hour: " + hour);
 				System.out.println("minutes: " + minutes);
-				
-				
+
+
 				turno.setHora(hour);
 				turno.setMinutos(minutes);
-				
-				
+
+
 				TurnoDao turnoDao=new TurnoDao();
 				turnoDao.makePersistent(turno);
 				HibernateUtil.commitTransaction();
-				
-				
-				
+
+
+
 
 			}
 		});
@@ -277,17 +277,17 @@ this.doctorId=doctorId;
 
 	}
 
-	
+
 	public JTable getTable() {
 		// TODO Auto-generated method stub
 		return table;
 	}
-	
-	
+
+
 
 
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 }
- 
+

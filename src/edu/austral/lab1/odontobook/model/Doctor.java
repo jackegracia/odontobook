@@ -126,6 +126,13 @@ public class Doctor {
 		this.dni = dni;
 	}
 
-
+	public boolean esMayor(Doctor d){
+		if(nombre.compareTo(d.getNombre())>0 )return true;
+		else if(nombre.compareTo(d.getNombre())==0 && apellido.compareTo(d.getApellido())>0) return true;
+		else return false;
+		
+		
+		
+	}
 
 }

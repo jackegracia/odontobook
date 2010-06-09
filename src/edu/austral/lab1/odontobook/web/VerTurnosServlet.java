@@ -27,7 +27,11 @@ public class VerTurnosServlet extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{
-		
+		if(rq.getRemoteUser() == null ){
+			Logout out= new Logout();
+			out.doPost(rq, rp);
+			return;			
+		}
 
 		UsuarioDao aux = new UsuarioDao();
 		Usuario user = aux.getUsuario(rq.getRemoteUser());

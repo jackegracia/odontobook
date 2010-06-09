@@ -22,17 +22,25 @@ import edu.austral.lab1.odontobook.model.dao.PacienteDao;
 import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 import edu.austral.lab1.odontobook.util.DateUtils;
+import edu.austral.lab1.odontobook.util.Sorter;
 
 public class SeleccionarVerTurnoServlet extends HttpServlet {
-	
+
 	public void doGet(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException {
-		
-				
+
+
 	}
-	
+
 	public void doPost(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{
-	
+		if(rq.getRemoteUser() == null ){
+			Logout out= new Logout();
+			out.doPost(rq, rp);
+			return;			
+		}
+		
+		Sorter sort = new Sorter();
 		String auxd = (String)rq.getParameter("datepicker");
+
 
 		String [] date = auxd.split("/");
 		String mes = date[0];
@@ -46,7 +54,7 @@ public class SeleccionarVerTurnoServlet extends HttpServlet {
 		UsuarioDao aux = new UsuarioDao();
 		Usuario user = aux.getUsuario(rq.getRemoteUser());
 		int dni = user.getDni();
-		boolean esDoctor = user.isEsDoctor();
+		boolean esDoctor = user.isEsDoctor();	
 		TurnoDao turno = new TurnoDao();
 		
 
@@ -55,8 +63,8 @@ public class SeleccionarVerTurnoServlet extends HttpServlet {
 			Doctor doctor = (new DoctorDao()).getDoctorbyDNI(dni);
 			
 			list = turno.getTurnoByDateAndDoctor(d,doctor.getId());
-			rq.setAttribute("lista", list);
-			
+			rq.setAttribute("lista", sort.ordenarTurnosPorPaciente(list));
+			rq.setAttribute("fecha", auxd);
 			rq.getRequestDispatcher("jsp/verTurnosDoc.jsp").forward(rq, rp);
 			
 		}
@@ -64,11 +72,11 @@ public class SeleccionarVerTurnoServlet extends HttpServlet {
 		
 			Paciente paciente = (new PacienteDao()).getPacientebyDNI(dni);
 			list = turno.getTurnoByDateAndPaciente(d ,paciente.getId());
-			rq.setAttribute("lista", list);
-			
+			rq.setAttribute("lista", sort.ordenarTurnos(list));
+			rq.setAttribute("fecha", auxd);
 			rq.getRequestDispatcher("jsp/verTurnosPac.jsp").forward(rq, rp);
 		}
-		
-	}
+	}	
+	
 	
 }
