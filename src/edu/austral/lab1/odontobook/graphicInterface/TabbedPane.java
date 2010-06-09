@@ -14,6 +14,7 @@ import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
+import edu.austral.lab1.odontobook.util.Sorter;
 
 
 
@@ -29,7 +30,9 @@ public class TabbedPane extends JTabbedPane{
 	public TabbedPane (){
 		HibernateUtil.beginTransaction();
 		doctorDao =new DoctorDao();
-		List doctores=doctorDao.getAll();
+		List<Doctor> doctores=doctorDao.getAll();
+		Sorter sort = new Sorter();
+		sort.ordenarDoctores(doctores);
 		System.out.print(doctores.isEmpty());
 		doc=new JList();
 		DefaultListModel modeloDeLista = new DefaultListModel();
@@ -47,9 +50,11 @@ public class TabbedPane extends JTabbedPane{
 		
 				
 		pacienteDao =new PacienteDao();
-		List pacientes=pacienteDao.getAll();
+		List<Paciente> pacientes=pacienteDao.getAll();
+		sort.ordenarPacientes(pacientes);
 		System.out.print(doctores.isEmpty());
 		paci=new JList();
+		
 		DefaultListModel modeloDeListaDePacientes = new DefaultListModel();
 
 		if(!pacientes.isEmpty()){

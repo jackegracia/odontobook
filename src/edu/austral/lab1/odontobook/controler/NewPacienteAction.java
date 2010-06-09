@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
@@ -60,7 +61,7 @@ public class NewPacienteAction extends AbstractAction {
 		final JTextField jDni = new JTextField("");
 		final JTextField jTelefono = new JTextField("");
 		final JTextField jUsuario = new JTextField("");
-		final JTextField jContraseña = new JTextField("");
+		final JPasswordField jContraseña = new JPasswordField("");
 
 
 
