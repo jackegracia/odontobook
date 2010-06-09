@@ -2,9 +2,7 @@ package edu.austral.lab1.odontobook.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,7 +21,7 @@ import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 import edu.austral.lab1.odontobook.util.DateUtils;
 
-public class ConfirmadoTurnoServlet extends HttpServlet {
+public class ConfirmadoCancelarServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{	
 		
@@ -42,14 +40,10 @@ public class ConfirmadoTurnoServlet extends HttpServlet {
 
 		
 		if(oa==null && oc.equals("cancelar")){
-			DoctorDao doc = new DoctorDao();	
-
-			List<Doctor> list = doc.getDoctor();
-			rq.setAttribute("list", list);
-			rq.getRequestDispatcher("jsp/sacarTurno.jsp").forward(rq, rp);
-		}
-		else if(oa.equals("aceptar") && oc==null){
 			
+			rq.getRequestDispatcher("jsp/cancelarTurno.jsp").forward(rq, rp);
+		}
+		else if(oa.equals("aceptar") && oc==null){			
 			
 			String hora = (String)rq.getParameter("hora");
 			String doctor = (String)rq.getParameter("doctor");
@@ -69,16 +63,22 @@ public class ConfirmadoTurnoServlet extends HttpServlet {
 			String[] nameD = doctor.split(" ");
 
 			Doctor doc = dDao.getDoctorbyNameAndApellido(nameD[0], nameD[1]);
+//			p.println(doc.getNombre() +" "+doc.getApellido());
+//			p.println(pac.getNombre() +" "+pac.getApellido());
+//			p.println(d);
+//			p.println(pac.getId());
+//			p.println(Integer.parseInt(hour[0])+": "+ Integer.parseInt(hour[1]));
 
 			Turno turno = new Turno(pac,doc, d);
 			turno.setHora(Integer.parseInt(hour[0]));
 			turno.setMinutos(Integer.parseInt(hour[1]));
 			TurnoDao turnoDao=new TurnoDao();
-			turnoDao.sacarTurno(turno);
+			turnoDao.removeTurno(pac.getId(), d, Integer.parseInt(hour[0]), Integer.parseInt(hour[1]), doc.getId());
 			
 		}
 	
 		rq.getRequestDispatcher("jsp/homePaciente.jsp").forward(rq, rp);
 	
 	}
+
 }

@@ -86,6 +86,79 @@
 		</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>Cancelar Turno</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.CancelarTurnoServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Confirmado Turno</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.ConfirmadoTurnoServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Confirmar Cancelar Turno</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.ConfirmarCancelarTurnoServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Confirmado Cancelar Turno</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.ConfirmadoCancelarServlet
+		</servlet-class>
+	</servlet>
+
+	
+	<servlet>
+		<servlet-name>Go Home</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.GoHomeServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Nombre Completo</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.ObtenerNombreCompletoServlet
+		</servlet-class>
+
+		 <init-param>
+         	   <param-name>name </param-name>
+        </init-param>
+	
+
+	</servlet>
+	
+
+	<servlet-mapping>
+		<servlet-name>invoker</servlet-name>
+		<url-pattern>/NombreCompleto.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Go Home</servlet-name>
+		<url-pattern>/GoHome.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Confirmado Cancelar Turno</servlet-name>
+		<url-pattern>/ConfirmadoCancelar.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Confirmar Cancelar Turno</servlet-name>
+		<url-pattern>/ConfirmarCancelarTurno.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Confirmado Turno </servlet-name>
+		<url-pattern>/Confirmado.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Cancelar Turno </servlet-name>
+		<url-pattern>/CancelarTurno.do</url-pattern>
+	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>Cancelar Turno Red</servlet-name>

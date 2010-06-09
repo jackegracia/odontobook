@@ -11,6 +11,7 @@ import org.hibernate.sql.Delete;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Histograma;
+import edu.austral.lab1.odontobook.model.Paciente;
 
 public class DoctorDao extends BaseDao{
 
@@ -22,6 +23,16 @@ public class DoctorDao extends BaseDao{
 		return doctor;
 		
 	}
+	
+	
+	public Doctor getDoctorByUserID(long id){
+		Doctor doctor =  (Doctor) HibernateUtil.getSession().createQuery(
+		"from Doctor as doc where doc.usuario = ?")
+		.setLong(0, id)
+		.uniqueResult();
+		return doctor;
+	}
+	
 	
 	public Doctor getDoctorbyDNI(int dni){
 		Doctor doctor = (Doctor) HibernateUtil.getSession().createQuery(

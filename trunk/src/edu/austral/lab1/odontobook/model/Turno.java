@@ -27,7 +27,7 @@ public class Turno implements Serializable{
 	private int hora;
 	private int minutos;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="DOC_ID") 
 	public Doctor getDoctor() {
 		return doctor;
@@ -84,7 +84,7 @@ public class Turno implements Serializable{
 		this.asistido = asistido;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="PACIENTE_ID") 
 	public Paciente getPaciente() {
 		return paciente;
@@ -104,6 +104,28 @@ public class Turno implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean esMayorPorDoctor(Turno t){
+		
+		if(hora> t.getHora()) return true;
+		else if(hora == t.getHora() && minutos > t.getMinutos()) return true;
+		else if(hora == t.getHora() && minutos == t.getMinutos()){
+			return doctor.esMayor(t.getDoctor());
+		}
+		else return false;
+		
+	}
+	
+public boolean esMayorPorPaciente(Turno t){
+		
+		if(hora> t.getHora()) return true;
+		else if(hora == t.getHora() && minutos > t.getMinutos()) return true;
+		else if(hora == t.getHora() && minutos == t.getMinutos()){
+			return paciente.esMayor(t.getPaciente());
+		}
+		else return false;
+		
 	}
 
 	public String dia(){
