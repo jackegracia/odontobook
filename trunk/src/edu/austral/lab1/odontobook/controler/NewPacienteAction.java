@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
@@ -19,25 +20,26 @@ import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
+import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 import edu.austral.lab1.odontobook.model.Usuario;
 
 public class NewPacienteAction extends AbstractAction {
-	
+
 	private JDialog nuevoDialogo;
 	private Frame frame;
 	private Consultorio consultorio;
 	private GraphicInterface gi;
-	
-	
+
+
 	public NewPacienteAction(GraphicInterface gi,Consultorio consultorio){
 		super("Crear nuevo paciente");
 		putValue(SHORT_DESCRIPTION,"Agrega un Paciente");
 		this.consultorio=consultorio;
 		this.gi=gi;
-		
+
 	}
-	
-	
+
+
 	public Paciente crearDialogo() {
 		nuevoDialogo = new JDialog(frame,"Nuevo Paciente" ,true);
 		JLabel nombre= new JLabel("Nombre");
@@ -59,9 +61,9 @@ public class NewPacienteAction extends AbstractAction {
 		final JTextField jTelefono = new JTextField("");
 		final JTextField jUsuario = new JTextField("");
 		final JTextField jContraseña = new JTextField("");
-		
-		
-		
+
+
+
 		JButton aceptar = new JButton("Aceptar");
 		JButton cancelar = new JButton("Cancelar");
 		GridLayout layout = new GridLayout(10,2);
@@ -93,13 +95,13 @@ public class NewPacienteAction extends AbstractAction {
 
 		nuevoDialogo.getContentPane().add(usuario);
 		nuevoDialogo.getContentPane().add(jUsuario);
-		
+
 		nuevoDialogo.getContentPane().add(contraseña);
 		nuevoDialogo.getContentPane().add(jContraseña);
-		
+
 		nuevoDialogo.getContentPane().add(aceptar);
 		nuevoDialogo.getContentPane().add(cancelar);
-	
+
 		//SETEO EL EVENTO DEL JTextField
 
 
@@ -108,52 +110,65 @@ public class NewPacienteAction extends AbstractAction {
 
 
 			public void actionPerformed(ActionEvent e) {
-				if(!jNombre.getText().equals("")){
-					nuevoDialogo.dispose();	
+				UsuarioDao usuarioD = new UsuarioDao();
+				boolean existeUser = usuarioD.existeUsuario(jUsuario.getText());
+
+				if(existeUser){
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Ese nombre de usuario ya esta en uso");
+				}else{
+					nuevoDialogo.dispose();
 				}
 			}
 		});
 
 		cancelar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				jNombre.setText(null);
+				jUsuario.setText(null);
 				nuevoDialogo.dispose();	
 
 			}
 		});
 
-		
-		
+
+
 		//Cambio el tamaño de la ventana.
 		nuevoDialogo.setSize(300, 300);
-	
+
 		//NOTA: Siempre el mostrar va al final de todo, muchas funciones no funcionan si se ponen despues de este metodo.
 		nuevoDialogo.setVisible(true);
 
+		UsuarioDao usuarioD = new UsuarioDao();
+		boolean existeUser = usuarioD.existeUsuario(jUsuario.getText());
 
-		return new Paciente(jNombre.getText()
-				,jApellido.getText()
-				,Integer.parseInt(jDni.getText())
-				,Integer.parseInt( jTelefono.getText())
-				,JDireccion.getText(),jObraSocial.getText()
-				,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText(),false, Integer.parseInt(jDni.getText())) );
-	}
-	
-	
-	
+		if(existeUser) return null;
+		else{
+			return new Paciente(jNombre.getText()
+					,jApellido.getText()
+					,Integer.parseInt(jDni.getText())
+					,Integer.parseInt( jTelefono.getText())
+					,JDireccion.getText(),jObraSocial.getText()
+					,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText(),false, Integer.parseInt(jDni.getText())) );
+		}}
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Paciente paciente = crearDialogo();
-		paciente.setHistograma(new ArrayList());
-	//	consultorio.agregarPaciente(paciente);
-		PacienteDao pac = new PacienteDao();
-		HibernateUtil.beginTransaction();
-		pac.makePersistent(paciente);
-        HibernateUtil.commitTransaction();
-        consultorio.agregarPaciente(paciente.getNombre()+" "+paciente.getApellido());
-        gi.getFrame().dispose();
-		gi=new GraphicInterface();
-        
-        
+		if(!paciente.getNombre().equals("") || !paciente.getUsuario().getUsername().equals("")){
+			paciente.setHistograma(new ArrayList());
+			//	consultorio.agregarPaciente(paciente);
+			PacienteDao pac = new PacienteDao();
+			HibernateUtil.beginTransaction();
+			pac.makePersistent(paciente);
+			HibernateUtil.commitTransaction();
+			consultorio.agregarPaciente(paciente.getNombre()+" "+paciente.getApellido());
+			gi.getFrame().dispose();
+			gi=new GraphicInterface();
+		}
+
 	}
 
 }
