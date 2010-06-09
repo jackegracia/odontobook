@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -24,6 +25,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import edu.austral.lab1.odontobook.model.Consultorio;
 
@@ -57,6 +59,7 @@ this.consultorio=consultorio;
 
 		JPanel panel=new JPanel();
 		testArea=new JTextArea();
+		testArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		testArea.setEnabled(false);
 		
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
