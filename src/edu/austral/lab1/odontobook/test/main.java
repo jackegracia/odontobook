@@ -14,7 +14,7 @@ public class main {
 		}catch(Exception e){
 			
 		}
-		Runtime aplicacion = Runtime.getRuntime();
+	//	Runtime aplicacion = Runtime.getRuntime();
 		GraphicInterface interfaces=new GraphicInterface();
 	}
 }

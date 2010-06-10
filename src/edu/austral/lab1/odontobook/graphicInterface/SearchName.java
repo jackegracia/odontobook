@@ -33,15 +33,15 @@ public class SearchName extends JPanel {
 	private JDialog newDialog;
 	private String nombreFinal;
 	private Consultorio consultorio;
-	private JTextArea testArea;
+	private JTextField testArea;
 	private TabbedPane tab;
-private List lista;
-private JList jlist;
+	private List lista;
+	private JList jlist;
 
 
 	public SearchName(final TabbedPane tab,final Consultorio consultorio){
-this.tab=tab;
-this.consultorio=consultorio;
+		this.tab=tab;
+		this.consultorio=consultorio;
 
 
 		JButton doctores=new JButton("Doctores");
@@ -58,11 +58,12 @@ this.consultorio=consultorio;
 
 
 		JPanel panel=new JPanel();
-		testArea=new JTextArea();
+		testArea=new JTextField();
 		testArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		testArea.setEnabled(false);
-		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		testArea.setPreferredSize(new Dimension(100, 7));
 		panel.add(testArea);
 		panel.add(buscar);
 
@@ -77,9 +78,9 @@ this.consultorio=consultorio;
 				lista=consultorio.getDoctores();
 			}
 		});
-		
+
 		pacientes.addActionListener(new ActionListener(){
-			
+
 
 			public void actionPerformed(ActionEvent e){
 				testArea.setEnabled(true);
@@ -92,15 +93,15 @@ this.consultorio=consultorio;
 		buscar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 
-String name=testArea.getText();
-for(int i=0;i<lista.size();i++){				
-if(name.equals(lista.get(i))){
-	jlist.setSelectedIndex(i);
-}
-}
-	
-	
-	testArea.setText("");
+				String name=testArea.getText();
+				for(int i=0;i<lista.size();i++){				
+					if(name.equals(lista.get(i))){
+						jlist.setSelectedIndex(i);
+					}
+				}
+
+
+				testArea.setText("");
 				testArea.setEnabled(false);
 
 			}

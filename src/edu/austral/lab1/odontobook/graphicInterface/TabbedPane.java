@@ -30,6 +30,7 @@ public class TabbedPane extends JTabbedPane{
 	public TabbedPane (){
 		HibernateUtil.beginTransaction();
 		doctorDao =new DoctorDao();
+		System.out.println("TP ant");
 		List<Doctor> doctores=doctorDao.getAll();
 		Sorter sort = new Sorter();
 		sort.ordenarDoctores(doctores);
@@ -50,6 +51,7 @@ public class TabbedPane extends JTabbedPane{
 		
 				
 		pacienteDao =new PacienteDao();
+		System.out.println("TP desp");
 		List<Paciente> pacientes=pacienteDao.getAll();
 		sort.ordenarPacientes(pacientes);
 		System.out.print(doctores.isEmpty());

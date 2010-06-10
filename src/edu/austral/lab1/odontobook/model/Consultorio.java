@@ -13,12 +13,12 @@ public class Consultorio {
 	private String nombreConsultorio;
 	
 	public Consultorio(String nombreConsultorio){
-		
+		System.out.println("cons ant");
 		pacientes = encontrarPacientes();
 		doctores = encontrarDoctores();
+		System.out.println("cons desp");
 		this.nombreConsultorio = nombreConsultorio;
-	
-	}
+			}
 	
 	public ArrayList<String> getDoctores() {
 		return doctores;
