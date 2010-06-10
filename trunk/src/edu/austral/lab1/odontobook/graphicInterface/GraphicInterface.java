@@ -2,10 +2,18 @@ package edu.austral.lab1.odontobook.graphicInterface;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.ImageProducer;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -29,13 +37,25 @@ public class GraphicInterface<panelDeBusqueda> {
 
 
 	public GraphicInterface(){
+		JFrame frameAux = new JFrame("Odontobook");
+		JPanel panel = new JPanel();
+		JLabel label = new JLabel(new ImageIcon("icon/odontobookPresentacion.png"));
 		
+		
+		panel.add(label);
+		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		frameAux.setUndecorated(true);
+		frameAux.getContentPane().add(panel);
+		frameAux.pack();
+		frameAux.setLocationRelativeTo(null);
+		frameAux.setVisible(true);
 		Consultorio consultorio=new Consultorio("Consultorio");
 		ActionManager am=new ActionManager(consultorio,this);
-
+		System.out.println("nooo");
 		makeJframe();
 		new MenuBar(am,this);
 		doctorTab=new TabbedPane();
+		frameAux.dispose();
 		panelDeBusqueda=new SearchName(doctorTab,consultorio);
 		makeJpanel();
 		cal=new calendario(panel3,doctorTab);
@@ -49,6 +69,8 @@ public class GraphicInterface<panelDeBusqueda> {
 
 
 	}
+	
+
 	public TabbedPane getDoctorTab() {
 		return doctorTab;
 	}
@@ -56,7 +78,9 @@ public class GraphicInterface<panelDeBusqueda> {
 		this.doctorTab = doctorTab;
 	}
 	private void makeJframe() {
-		frame=new JFrame();
+		frame=new JFrame("Odontobook");
+		Image img = Toolkit.getDefaultToolkit().createImage("icon/logo.png");
+		frame.setIconImage(img);
 		frame.pack();
 	}
 
