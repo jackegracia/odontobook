@@ -31,7 +31,7 @@ public class NewDoctorAction extends AbstractAction {
 	private Frame frame;
 	private Consultorio consultorio;
 	private GraphicInterface gi;
-
+	private Doctor doc;
 
 
 	public NewDoctorAction(Consultorio consultorio, GraphicInterface gi){
@@ -56,6 +56,8 @@ public class NewDoctorAction extends AbstractAction {
 		JLabel telefono= new JLabel("Telefono");
 		JLabel usuario= new JLabel("Usuario");
 		JLabel contraseña= new JLabel("Contraseña");
+		JLabel confContraseña= new JLabel("Confirmar contraseña");
+
 
 		final JTextField jNombre = new JTextField("");
 		final JTextField jApellido = new JTextField("");
@@ -66,10 +68,11 @@ public class NewDoctorAction extends AbstractAction {
 		final JTextField jTelefono = new JTextField("");
 		final JTextField jUsuario = new JTextField("");
 		final JPasswordField jContraseña = new JPasswordField("");
+		final JPasswordField jConfContraseña = new JPasswordField("");
 
 		JButton aceptar = new JButton("Aceptar");
 		JButton cancelar = new JButton("Cancelar");
-		GridLayout layout = new GridLayout(10,4);
+		GridLayout layout = new GridLayout(11,4);
 		jNombre.setPreferredSize(new Dimension(280, 25));
 
 		//Seteo los componentes a la Ventana.
@@ -98,6 +101,8 @@ public class NewDoctorAction extends AbstractAction {
 
 		nuevoDialogo.getContentPane().add(contraseña);
 		nuevoDialogo.getContentPane().add(jContraseña);
+		nuevoDialogo.getContentPane().add(confContraseña);
+		nuevoDialogo.getContentPane().add(jConfContraseña);
 
 		nuevoDialogo.getContentPane().add(telefono);
 		nuevoDialogo.getContentPane().add(jTelefono);
@@ -115,12 +120,43 @@ public class NewDoctorAction extends AbstractAction {
 
 				UsuarioDao usuarioD = new UsuarioDao();
 				boolean existeUser = usuarioD.existeUsuario(jUsuario.getText());
+				int n = jContraseña.getPassword().length;
+				int z = jConfContraseña.getPassword().length;
+				boolean pass = true;
+				
+				if(n==z){
+					for(int i = 0; i<n; i++){
+						if(jContraseña.getPassword()[i] != jConfContraseña.getPassword()[i]){
+							pass= false;
+						}
+					}
+				}
 
 				if(existeUser){
 					JFrame frame = new JFrame();
 					JOptionPane.showMessageDialog(frame, "Ese nombre de usuario ya esta en uso");
-				}else{
-					nuevoDialogo.dispose();
+				}
+
+				else if(n != z){
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Las contrasenias deben ser iguales");
+
+				}else if(pass == false) {
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Las contrasenias deben ser iguales");
+				}
+
+
+				else{
+					try{
+						doc = new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText(),new Usuario(jUsuario.getText(),jContraseña.getText(),true, Integer.parseInt(jDni.getText())) );
+						nuevoDialogo.dispose();
+					}catch(NumberFormatException ex){
+						JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame, "Algun dato es invalido");
+						
+					}
+				
 				}
 			}
 		});
@@ -139,11 +175,8 @@ public class NewDoctorAction extends AbstractAction {
 
 		//NOTA: Siempre el mostrar va al final de todo, muchas funciones no funcionan si se ponen despues de este metodo.
 		nuevoDialogo.setVisible(true);
-
-
-
-
-		return new Doctor(jNombre.getText(),jApellido.getText(),Integer.parseInt(jMatricula.getText()), Integer.parseInt(jEdad.getText()),Integer.parseInt(jTelefono.getText()),Integer.parseInt( jDni.getText()), JDireccion.getText(),new Usuario(jUsuario.getText(),jContraseña.getText(),true, Integer.parseInt(jDni.getText())) );
+		
+		return doc;
 	}
 
 
