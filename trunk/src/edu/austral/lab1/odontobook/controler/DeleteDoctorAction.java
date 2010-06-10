@@ -18,6 +18,7 @@ import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
+import edu.austral.lab1.odontobook.model.dao.TurnoDao;
 
 
 
@@ -52,15 +53,14 @@ public class DeleteDoctorAction extends AbstractAction{
 
 
 		if (n==0){
+			TurnoDao turno=new TurnoDao();
+			turno.removeTurnobyDoctor(doc.getDoctorbyNameAndApellido(doctorName, doctorSurname).getId());
+		
 			HibernateUtil.beginTransaction();
 			doc.removeDoctorbyNameAndApellido(doctorName, doctorSurname);
-		}else{
+			}else{
 
 		}
-
-
-
-
 	}
 
 	@Override

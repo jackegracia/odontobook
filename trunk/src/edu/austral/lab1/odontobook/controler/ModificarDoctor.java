@@ -157,6 +157,8 @@ public class ModificarDoctor extends AbstractAction {
 		crearDialogo(doc);
 		HibernateUtil.getSession().update(doc);
 		HibernateUtil.commitTransaction();
+		gi.getFrame().dispose();
+		gi=new GraphicInterface();
 
 	}
 }

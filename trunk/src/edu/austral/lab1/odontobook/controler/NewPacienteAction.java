@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
 import edu.austral.lab1.odontobook.model.Consultorio;
+import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
@@ -30,6 +31,7 @@ public class NewPacienteAction extends AbstractAction {
 	private Frame frame;
 	private Consultorio consultorio;
 	private GraphicInterface gi;
+	private Paciente pac;
 
 
 	public NewPacienteAction(GraphicInterface gi,Consultorio consultorio){
@@ -52,6 +54,7 @@ public class NewPacienteAction extends AbstractAction {
 		JLabel telefono= new JLabel("Telefono");
 		JLabel usuario= new JLabel("Usuario");
 		JLabel contraseña= new JLabel("Contraseña");
+		JLabel confContraseña= new JLabel("Confirmar contraseña");
 
 		final JTextField jNombre = new JTextField("");
 		final JTextField jApellido = new JTextField("");
@@ -62,12 +65,13 @@ public class NewPacienteAction extends AbstractAction {
 		final JTextField jTelefono = new JTextField("");
 		final JTextField jUsuario = new JTextField("");
 		final JPasswordField jContraseña = new JPasswordField("");
+		final JPasswordField jConfContraseña = new JPasswordField("");
 
 
 
 		JButton aceptar = new JButton("Aceptar");
 		JButton cancelar = new JButton("Cancelar");
-		GridLayout layout = new GridLayout(10,2);
+		GridLayout layout = new GridLayout(11,2);
 		jNombre.setPreferredSize(new Dimension(280, 25));
 
 
@@ -99,6 +103,8 @@ public class NewPacienteAction extends AbstractAction {
 
 		nuevoDialogo.getContentPane().add(contraseña);
 		nuevoDialogo.getContentPane().add(jContraseña);
+		nuevoDialogo.getContentPane().add(confContraseña);
+		nuevoDialogo.getContentPane().add(jConfContraseña);
 
 		nuevoDialogo.getContentPane().add(aceptar);
 		nuevoDialogo.getContentPane().add(cancelar);
@@ -113,12 +119,48 @@ public class NewPacienteAction extends AbstractAction {
 			public void actionPerformed(ActionEvent e) {
 				UsuarioDao usuarioD = new UsuarioDao();
 				boolean existeUser = usuarioD.existeUsuario(jUsuario.getText());
+				int n = jContraseña.getPassword().length;
+				int z = jConfContraseña.getPassword().length;
+				boolean pass = true;
+				
+				if(n==z){
+					for(int i = 0; i<n; i++){
+						if(jContraseña.getPassword()[i] != jConfContraseña.getPassword()[i]){
+							pass= false;
+						}
+					}
+				}
 
 				if(existeUser){
 					JFrame frame = new JFrame();
 					JOptionPane.showMessageDialog(frame, "Ese nombre de usuario ya esta en uso");
-				}else{
-					nuevoDialogo.dispose();
+				}
+
+				else if(n != z){
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Las contrasenias deben ser iguales");
+
+				}else if(pass == false) {
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Las contrasenias deben ser iguales");
+				}
+
+
+				else{
+					try{
+						pac = new Paciente(jNombre.getText()
+								,jApellido.getText()
+								,Integer.parseInt(jDni.getText())
+								,Integer.parseInt( jTelefono.getText())
+								,JDireccion.getText(),jObraSocial.getText()
+								,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText(),false, Integer.parseInt(jDni.getText()))) ;
+						nuevoDialogo.dispose();
+					}catch(NumberFormatException ex){
+						JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame, "Algun dato es invalido");
+						
+					}
+				
 				}
 			}
 		});
@@ -140,18 +182,9 @@ public class NewPacienteAction extends AbstractAction {
 		//NOTA: Siempre el mostrar va al final de todo, muchas funciones no funcionan si se ponen despues de este metodo.
 		nuevoDialogo.setVisible(true);
 
-		UsuarioDao usuarioD = new UsuarioDao();
-		boolean existeUser = usuarioD.existeUsuario(jUsuario.getText());
-
-		if(existeUser) return null;
-		else{
-			return new Paciente(jNombre.getText()
-					,jApellido.getText()
-					,Integer.parseInt(jDni.getText())
-					,Integer.parseInt( jTelefono.getText())
-					,JDireccion.getText(),jObraSocial.getText()
-					,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText(),false, Integer.parseInt(jDni.getText())) );
-		}}
+	
+			return  pac;
+		}
 
 
 
