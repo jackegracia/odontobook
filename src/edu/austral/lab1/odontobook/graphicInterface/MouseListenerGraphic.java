@@ -32,6 +32,8 @@ public class MouseListenerGraphic  extends MouseAdapter{
 
 	public void mouseClicked(MouseEvent e) {
 
+		
+		
 		JPanel box=  odonto.getCheckBox();
 		JRadioButton button1= (JRadioButton) box.getComponent(0);
 		JRadioButton button2= (JRadioButton) box.getComponent(1);
@@ -45,6 +47,8 @@ public class MouseListenerGraphic  extends MouseAdapter{
 			color=color.WHITE;
 		}
 
+		
+		
 		JPanel contentPane = panelDeDientes1;	
 		for(int z=1;z<64;z++){
 			if((z>=16&&z<32)||(z>=48&&z<=64)){
@@ -53,10 +57,24 @@ public class MouseListenerGraphic  extends MouseAdapter{
 			}
 		}
 
+		
+		
 		DrawTooth can=(DrawTooth) canvas;
-
 		int diente= (int) can.getNumeroDeDiente();
 
+if(can.getTratamiento1()==Color.BLACK){
+
+	if(diente<=16){
+		((JComponent) contentPane.getComponent(diente+15)).setBorder(BorderFactory.createLineBorder(Color.black));
+		contentPane.getComponent(diente+15).setFocusable(true);
+		panelDeDientes1.repaint();
+	}else{		
+		((JComponent) contentPane.getComponent(diente+31)).setBorder(BorderFactory.createLineBorder(Color.black));
+		contentPane.getComponent(diente+31).setFocusable(true);
+		panelDeDientes1.repaint();}
+	
+}else{
+		
 
 
 		if(((DrawTooth) canvas).getUno().contains(e.getX(), e.getY())) {
@@ -93,24 +111,28 @@ public class MouseListenerGraphic  extends MouseAdapter{
 		}else{
 			System.out.println("click empty");
 		}
-
-
-
+		
+		
 
 		if(diente<=16){
 			((JComponent) contentPane.getComponent(diente+15)).setBorder(BorderFactory.createLineBorder(Color.black));
-			contentPane.getComponent(diente+15).setEnabled(true);
+			contentPane.getComponent(diente+15).setFocusable(true);
 			panelDeDientes1.repaint();
 		}else{		
 			((JComponent) contentPane.getComponent(diente+31)).setBorder(BorderFactory.createLineBorder(Color.black));
 			contentPane.getComponent(diente+31).setFocusable(true);
 			panelDeDientes1.repaint();}
+		
+		
+}
 
 
-		canvas.repaint();
+
+
+
 	}
 
-
+	
 
 }
 

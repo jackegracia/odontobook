@@ -54,6 +54,11 @@ public  void makeTooth() {
 			 removeTooth();
 	}});
     
+    colocarDiente.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			 placeTooth();
+	}});
+    
     panelDeBotones.add(aceptar);
     panelDeBotones.add(borrarDiente);
     panelDeBotones.add(colocarDiente);
@@ -141,13 +146,14 @@ public void removeTooth(){
 	for(int z=1;z<64;z++){
 		if((z>=16&&z<32)){
 			if(panelDeDientes1.getComponent(z).isFocusable())
-				panelDeDientes1.getComponent(z).setBackground(Color.BLACK);
+				paintTooth(z-15,Color.BLACK,Color.black,Color.BLACK,Color.BLACK,Color.BLACK);
 			
 		}else if((z>=48&&z<=64)){
 			if(panelDeDientes1.getComponent(z).isFocusable())
 				
 				
 				paintTooth(z-31,Color.BLACK,Color.black,Color.BLACK,Color.BLACK,Color.BLACK);
+			
 		
 		}
 	}
@@ -156,34 +162,48 @@ public void removeTooth(){
 
 public void placeTooth(){
 	
-	
+
+	for(int z=1;z<64;z++){
+		if((z>=16&&z<32)){
+			if(panelDeDientes1.getComponent(z).isFocusable())
+				paintTooth(z-15,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE);
+			System.out.print("treuuuuuu");
+		}else if((z>=48&&z<=64)){
+			if(panelDeDientes1.getComponent(z).isFocusable())
+				
+				
+				paintTooth(z-31,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE);
+			System.out.print("treuuuuuu");
+		
+		}
+	}
 	
 }
 
 
-public void makeRadioButton(){
-	
-}
+
 
 public void paintTooth(int diente,Color uno,Color dos,Color tres,Color cuatro,Color cinco){
 
 if(diente<=16){
 	panelDeDientes1.remove(panelDeDientes1.getComponent(diente+15));
-	panelDeDientes1.repaint();
 
      	DrawTooth tooth=new DrawTooth(diente,uno,dos,tres,cuatro,cinco);
 		tooth.addMouseListener(new MouseListenerGraphic(tooth,this));
 		panelDeDientes1.add(tooth,diente+15);
 		panelDeDientes1.getComponent(diente+15).setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panelDeDientes1.repaint();
+
 		
 }else{
 	panelDeDientes1.remove(panelDeDientes1.getComponent(diente+31));
-	panelDeDientes1.repaint();
+
 
      	DrawTooth tooth=new DrawTooth(diente,uno,dos,tres,cuatro,cinco);
 		tooth.addMouseListener(new MouseListenerGraphic(tooth,this));
 		panelDeDientes1.add(tooth,diente+31);
 		panelDeDientes1.getComponent(diente+31).setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panelDeDientes1.repaint();
 		
 }
 }
@@ -191,6 +211,7 @@ if(diente<=16){
 
 @Override
 public void actionPerformed(ActionEvent arg0) {
+	
 	makeTooth();
 	
 }
