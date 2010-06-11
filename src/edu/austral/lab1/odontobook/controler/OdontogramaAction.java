@@ -57,13 +57,7 @@ public class OdontogramaAction extends AbstractAction {
 		panelDeDientes1=new JPanel();
 		panelDeDientes2=new JPanel();
 		
-
-
-		
-		
-	
-		
-		panelDeDientes1.setLayout(new GridLayout(4,16));
+	panelDeDientes1.setLayout(new GridLayout(4,16));
 		int i=1;
 		while (i<=64){
 			if (i<=16){
@@ -82,10 +76,15 @@ public class OdontogramaAction extends AbstractAction {
 						tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
 						panelDeDientes1.add(tooth);
 					}else{			
+						boolean tratamiento=false;
+						Histograma histograma=null;
 					for(int z=0;z<histo.size();z++){
-						System.out.println("adios");
-						Histograma histograma=histo.get(z);
-							if(histograma.getDientes()==i-15){
+						if (histo.get(z).getDientes()==i-15){
+							histograma=histo.get(z);
+							tratamiento=true;
+								}
+					}
+							if(tratamiento){
 								
 							System.out.println("hola fede");
 							if(histograma.getTratamiento().equals("Extraccion")){
@@ -95,7 +94,7 @@ public class OdontogramaAction extends AbstractAction {
 							}else if (histograma.getTratamiento().equals("Carie")){
 								DrawTooth tooth=new DrawTooth(i-16,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE);
 								tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
-								panelDeDientes1.add(tooth);
+								panelDeDientes1.add(tooth);						
 							}else if (histograma.getTratamiento().equals("CarieHecha")){
 								DrawTooth tooth=new DrawTooth(i-16,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED);
 								tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
@@ -109,24 +108,31 @@ public class OdontogramaAction extends AbstractAction {
 							DrawTooth tooth=new DrawTooth(i-16,null,null,null,null,null);
 							tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
 							panelDeDientes1.add(tooth);
+					
 						}
+							
 					}
-
-					}
+					i++;
+					
 					
 				}else if(i>48&&i<=64){
 					if(histo.size()==0){
-						DrawTooth tooth=new DrawTooth(i-16,null,null,null,null,null);
+						DrawTooth tooth=new DrawTooth(i-32,null,null,null,null,null);
 						tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
 						panelDeDientes1.add(tooth);
+						
 					}else{
 					
-
+						boolean tratamiento=false;
+						Histograma histograma=null;
 					for(int z=0;z<histo.size();z++){
-						Histograma histograma=histo.get(z);
-						
-						if(histograma.getDientes()==i-32){
-								
+						if (histo.get(z).getDientes()==i-32){
+							histograma=histo.get(z);
+							tratamiento=true;
+								}
+					}
+							if(tratamiento){
+																
 							System.out.println("hola fede");
 							if(histograma.getTratamiento().equals("Extraccion")){
 								DrawTooth tooth=new DrawTooth(i-32,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK);
@@ -150,14 +156,17 @@ public class OdontogramaAction extends AbstractAction {
 							tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
 							panelDeDientes1.add(tooth);
 						}
+							
 					}
-
+					i++;
 					
 				}
+				
 				}
-				i++;
+			
 			}
-		}
+		
+		
 
 /*
 		for(int k=1;k<64;k++){
