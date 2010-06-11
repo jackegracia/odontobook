@@ -25,8 +25,9 @@ public class ListaEvent {
 		public void mouseClicked(MouseEvent o) {
 
 			System.out.println("algoo");
-
-			pane.setComponentAt(1,  new JSplitPane(JSplitPane.VERTICAL_SPLIT,pane.getScrollDePaciente(), pane.crearPacientePane()));
+JSplitPane split= new JSplitPane(JSplitPane.VERTICAL_SPLIT,pane.getScrollDePaciente(), pane.crearPacientePane());
+split.setDividerLocation(200);
+			pane.setComponentAt(1,  split);
 		}
 
 		@Override
@@ -64,8 +65,10 @@ MouseListener clickListDoc = new MouseListener(){
 	public void mouseClicked(MouseEvent o) {
 
 		System.out.println("algoo");
+		JSplitPane split= new JSplitPane(JSplitPane.VERTICAL_SPLIT,pane.getScrollDeDoctores(), pane.crearDoctorPane());
+		split.setDividerLocation(200);
 
-		pane.setComponentAt(0,  new JSplitPane(JSplitPane.VERTICAL_SPLIT,pane.getScrollDeDoctores(), pane.crearDoctorPane()));
+		pane.setComponentAt(0,  split);
 	}
 
 	@Override

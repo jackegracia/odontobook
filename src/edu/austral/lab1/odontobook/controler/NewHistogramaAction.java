@@ -72,6 +72,9 @@ this.gi=gi;
 
 
 		PacienteDao paciente =new PacienteDao();
+		System.out.println(name);
+		System.out.println(apellido);
+		
 		 paci=paciente.getPacientebyNameAndApellido(name, apellido);
 
 		nuevoDialogo = new JDialog(frame,"Histograma" ,true);
@@ -79,13 +82,9 @@ this.gi=gi;
 				"Cara",
 		"Tratamiento"};
 
+System.out.println(paci);
 
-
-		
-
-
-
-		if(paci.getHistograma().isEmpty()){
+	if(paci.getHistograma().isEmpty()){
 
 			model=new	DefaultTableModel(columnNames, 1); 
 			histo=new ArrayList();
@@ -198,9 +197,10 @@ this.gi=gi;
 	public void actionPerformed(ActionEvent arg0) {
 		
 		TabbedPane tabedPane=gi.getDoctorTab();		
-		String name=(String)tabedPane.getDoc().getSelectedValue();
+		String name=(String)tabedPane.getPaci().getSelectedValue();
+		System.out.println(name);
 		String[] splitName=name.split(" ");
-		makeHistograma(splitName[0], splitName[1]);	
+		makeHistograma(splitName[0], splitName[splitName.length-1]);	
 	}
 
 

@@ -99,10 +99,10 @@ public class GraphicInterface<panelDeBusqueda> {
 		panel1=new JPanel();
 		panel2=new JPanel();
 		panel3=new JPanel();
-		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT ,doctorTab,panelDeBusqueda);
+		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT,panelDeBusqueda ,doctorTab);
 		splitPanel2.setOneTouchExpandable(false);
 		splitPanel2.setEnabled(false);
-		splitPanel2.setDividerLocation(300);
+		splitPanel2.setDividerLocation(60);
 
 		splitPanel1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,splitPanel2,panel3);
 		splitPanel1.setOneTouchExpandable(false);
@@ -113,6 +113,16 @@ public class GraphicInterface<panelDeBusqueda> {
 		frame.add(splitPanel1);
 
 	}
+	public JSplitPane getSplitPanel2() {
+		return splitPanel2;
+	}
+
+
+	public void setSplitPanel2(JSplitPane splitPanel2) {
+		this.splitPanel2 = splitPanel2;
+	}
+
+
 	public JPanel getPanel2() {
 		return panel2;
 	}

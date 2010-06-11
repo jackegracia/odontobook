@@ -5,8 +5,8 @@ import javax.swing.JComboBox;
 public class tratamientos extends JComboBox{
 public tratamientos(){
 	this.addItem("");
-	this.addItem("Snowboarding");
-	this.addItem("Rowing");
+	this.addItem("Carie");
+	this.addItem("Extraccion");
 	this.addItem("Chasing toddlers");
 	this.addItem("Speed reading");
 	this.addItem("Teaching high school");

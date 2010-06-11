@@ -17,13 +17,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.austral.lab1.odontobook.graphicInterface.GraphicInterface;
+import edu.austral.lab1.odontobook.graphicInterface.TabbedPane;
 import edu.austral.lab1.odontobook.model.Consultorio;
 import edu.austral.lab1.odontobook.model.Doctor;
 import edu.austral.lab1.odontobook.model.HibernateUtil;
+import edu.austral.lab1.odontobook.model.Histograma;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
 import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 import edu.austral.lab1.odontobook.model.Usuario;
+import edu.austral.lab1.odontobook.util.Sorter;
 
 public class NewPacienteAction extends AbstractAction {
 
@@ -154,6 +157,8 @@ public class NewPacienteAction extends AbstractAction {
 								,Integer.parseInt( jTelefono.getText())
 								,JDireccion.getText(),jObraSocial.getText()
 								,Integer.parseInt(jEdad.getText()),new Usuario(jUsuario.getText(),jContraseña.getText(),false, Integer.parseInt(jDni.getText()))) ;
+					
+						
 						nuevoDialogo.dispose();
 					}catch(NumberFormatException ex){
 						JFrame frame = new JFrame();
@@ -191,16 +196,23 @@ public class NewPacienteAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Paciente paciente = crearDialogo();
+		paciente.setHistograma(new ArrayList<Histograma>());
+		
 		if(!paciente.getNombre().equals("") || !paciente.getUsuario().getUsername().equals("")){
-			paciente.setHistograma(new ArrayList());
 			//	consultorio.agregarPaciente(paciente);
 			PacienteDao pac = new PacienteDao();
 			HibernateUtil.beginTransaction();
 			pac.makePersistent(paciente);
 			HibernateUtil.commitTransaction();
 			consultorio.agregarPaciente(paciente.getNombre()+" "+paciente.getApellido());
-			gi.getFrame().dispose();
-			gi=new GraphicInterface();
+			Sorter sort = new Sorter();
+			sort.ordenarString(consultorio.getPacientes());
+			 ((TabbedPane) gi.getDoctorTab()).getModeloDeListaDePacientes().clear();
+			 ArrayList<String> nombres=consultorio.getPacientes();
+				for(int i=0;i<consultorio.getPacientes().size();i++){
+					 ((TabbedPane) gi.getDoctorTab()).getModeloDeListaDePacientes().addElement(nombres.get(i));
+									}
+			 gi.getSplitPanel2().repaint();
 		}
 
 	}
