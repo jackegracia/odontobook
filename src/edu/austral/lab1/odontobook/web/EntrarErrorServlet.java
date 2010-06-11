@@ -12,8 +12,7 @@ import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 public class EntrarErrorServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest rq, HttpServletResponse rp) throws ServletException, IOException{	
-		rq.setAttribute("entrar", false);
-		rq.getRequestDispatcher("jsp/login.jsp").forward(rq, rp);
+		
 	}
 	
 	public void doPost(HttpServletRequest rq, HttpServletResponse rp)throws ServletException, IOException {{

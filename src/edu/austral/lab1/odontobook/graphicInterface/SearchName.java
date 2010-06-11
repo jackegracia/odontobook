@@ -20,6 +20,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -89,14 +90,18 @@ public class SearchName extends JPanel {
 
 		buscar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
+				int k = 0;
 				String name=testArea.getText();
 				for(int i=0;i<lista.size();i++){				
 					if(name.equals(lista.get(i))){
 						jlist.setSelectedIndex(i);
-					}
+						k = i;
+					}else k = 0;
 				}
-
+				if(k == 0){
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "El paciente no existe");
+				}
 
 				testArea.setText("");
 				testArea.setEnabled(false);
