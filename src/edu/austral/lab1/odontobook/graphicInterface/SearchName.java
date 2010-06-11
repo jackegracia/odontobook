@@ -30,8 +30,7 @@ import javax.swing.border.Border;
 import edu.austral.lab1.odontobook.model.Consultorio;
 
 public class SearchName extends JPanel {
-	private JDialog newDialog;
-	private String nombreFinal;
+
 	private Consultorio consultorio;
 	private JTextField testArea;
 	private TabbedPane tab;
@@ -42,8 +41,6 @@ public class SearchName extends JPanel {
 	public SearchName(final TabbedPane tab,final Consultorio consultorio){
 		this.tab=tab;
 		this.consultorio=consultorio;
-
-
 		JButton doctores=new JButton("Doctores");
 		JButton pacientes=new JButton("Pacientes");
 		JButton buscar=new JButton("Buscar");
