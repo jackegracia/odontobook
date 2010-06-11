@@ -1,8 +1,11 @@
 package edu.austral.lab1.odontobook.graphicInterface;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -31,10 +34,15 @@ public class TabbedPane extends JTabbedPane{
 	private JPanel infoDoctorPane;
 	private JScrollPane scrollDePacientes;
 	private JSplitPane splitPacientes;
+	private JScrollPane scrollDeDoctores;
+	private JSplitPane splitDoctores;
 
-	
+
 
 	public TabbedPane (){
+		ListaEvent event = new ListaEvent(this);
+		MouseListener eventListP = event.clickListPac;
+		MouseListener eventListD = event.clickListDoc;
 		
 		HibernateUtil.beginTransaction();
 		doctorDao =new DoctorDao();
@@ -52,17 +60,20 @@ public class TabbedPane extends JTabbedPane{
 			}
 		}
 		doc.setModel(modeloDeLista);
-		JScrollPane scroll=new JScrollPane(doc);
+		scrollDeDoctores = new JScrollPane(doc);		
+		doc.addMouseListener(eventListD);
 		doc.setSelectedIndex(0);
-		this.addTab("Doctores",scroll);
+
+		infoDoctorPane = new JPanel();
+		splitDoctores = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scrollDeDoctores, infoDoctorPane );
+		this.addTab("Doctores",splitDoctores);
 		
-				
 		pacienteDao =new PacienteDao();
 		List<Paciente> pacientes=pacienteDao.getAll();
 		sort.ordenarPacientes(pacientes);
 		System.out.print(doctores.isEmpty());
 		paci=new JList();
-		
+
 		DefaultListModel modeloDeListaDePacientes = new DefaultListModel();
 
 		if(!pacientes.isEmpty()){
@@ -72,40 +83,71 @@ public class TabbedPane extends JTabbedPane{
 			}
 		}
 		paci.setModel(modeloDeListaDePacientes);
-		scrollDePacientes =new JScrollPane(paci);
-		ListaEvent event = new ListaEvent(this);
-		MouseListener eventListP = event.clickListPac;
-		paci.addMouseListener(eventListP);
+		scrollDePacientes =new JScrollPane(paci);	
+		paci.addMouseListener(eventListP);		
 		paci.setSelectedIndex(0);
-	 infoPacientePane = new JPanel();
-		 splitPacientes = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scrollDePacientes, infoPacientePane );
-		this.addTab("Pacientes",splitPacientes);
+		
+		infoPacientePane = new JPanel();
+		splitPacientes = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scrollDePacientes, infoPacientePane );
+		this.addTab("Pacientes", splitPacientes);
+	
 
 	}	
-	
+
 	public JPanel crearPacientePane(){
 		
 		JPanel panel = new JPanel();
-
+		panel.setLayout(new GridLayout(10,1));
 		String nombreApellido = (String) paci.getSelectedValue();
 		System.out.println(" dd"+ nombreApellido);
 		String [] nya = nombreApellido.split(" ");
 		PacienteDao pDao = new PacienteDao();
 		Paciente paciente = pDao.getPacientebyNameAndApellido(nya[0], nya[1]);
-		JLabel nombreLabel = new JLabel(paciente.getNombre());
+		JLabel nombreLabel = new JLabel("Nombre: "+paciente.getNombre());
 		panel.add(nombreLabel);
-		
-		
+		JLabel apellidoeLabel = new JLabel("Apellido: "+paciente.getApellido());
+		panel.add(apellidoeLabel);
+		JLabel dirLabel = new JLabel("Direccion: "+paciente.getDireccion());
+		panel.add(dirLabel);
+		JLabel dniLabel = new JLabel("DNI: "+paciente.getDni());
+		panel.add(dniLabel);
+		JLabel obraLabel = new JLabel("Obra Social: "+paciente.getObraSocial());
+		panel.add(obraLabel);
+		panel.setPreferredSize(new Dimension(50, 50));
 		return panel;
+
+	}
+	
+public JPanel crearDoctorPane(){
 		
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(10,1));
+		String nombreApellido = (String) doc.getSelectedValue();
+		System.out.println(" dd"+ nombreApellido);
+		String [] nya = nombreApellido.split(" ");
+		DoctorDao dDao = new DoctorDao();
+		Doctor doctor = dDao.getDoctorbyNameAndApellido(nya[0], nya[1]);
+		JLabel nombreLabel = new JLabel("Nombre: "+doctor.getNombre());
+		panel.add(nombreLabel);
+		JLabel apellidoeLabel = new JLabel("Apellido: "+doctor.getApellido());
+		panel.add(apellidoeLabel);
+		JLabel dirLabel = new JLabel("Direccion: "+doctor.getDireccion());
+		panel.add(dirLabel);
+		JLabel dniLabel = new JLabel("DNI: "+doctor.getDni());
+		panel.add(dniLabel);
+		JLabel obraLabel = new JLabel("Matricula: "+doctor.getMatricula());
+		panel.add(obraLabel);
+		panel.setPreferredSize(new Dimension(50, 50));
+		return panel;
+
 	}
 
 	public JList getPaci() {
 		return paci;
 	}
-	
-	
-	
+
+
+
 	public void setPaci(JList paci) {
 		this.paci = paci;
 	}
@@ -117,7 +159,7 @@ public class TabbedPane extends JTabbedPane{
 	public void setDoc(JList doc) {
 		this.doc = doc;
 	}
-	
+
 	public JPanel getInfoPacientePane() {
 		return infoPacientePane;
 	}
@@ -149,7 +191,15 @@ public class TabbedPane extends JTabbedPane{
 	public void setSplitPacientes(JSplitPane splitPacientes) {
 		this.splitPacientes = splitPacientes;
 	}
-	
-	
+
+	public JScrollPane getScrollDeDoctores() {
+		return scrollDeDoctores;
+	}
+
+	public void setScrollDeDoctores(JScrollPane scrollDeDoctores) {
+		this.scrollDeDoctores = scrollDeDoctores;
+	}
+
+
 }
 
