@@ -6,6 +6,8 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,6 +26,7 @@ import edu.austral.lab1.odontobook.model.Usuario;
 import edu.austral.lab1.odontobook.model.dao.BaseDao;
 import edu.austral.lab1.odontobook.model.dao.DoctorDao;
 import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
+import edu.austral.lab1.odontobook.util.Sorter;
 
 public class NewDoctorAction extends AbstractAction {
 
@@ -192,9 +195,17 @@ public class NewDoctorAction extends AbstractAction {
 			HibernateUtil.beginTransaction();
 			doctor.makePersistent(doc);
 			HibernateUtil.commitTransaction();
-			gi.getFrame().dispose();
-			gi=new GraphicInterface();
+			consultorio.agregarDoctores(doc.getNombre()+" "+doc.getApellido());
+			Sorter sort = new Sorter();
+			sort.ordenarString(consultorio.getDoctores());
+			 ((TabbedPane) gi.getDoctorTab()).getModeloDeLista().clear();
+			 ArrayList<String> nombres=consultorio.getDoctores();
+				for(int i=0;i<consultorio.getDoctores().size();i++){
+					 ((TabbedPane) gi.getDoctorTab()).getModeloDeLista().addElement(nombres.get(i));
+									}
+			 gi.getSplitPanel2().repaint();
 		}
+		
 		//	consultorio.agregarDoctor(doc);
 
 	}

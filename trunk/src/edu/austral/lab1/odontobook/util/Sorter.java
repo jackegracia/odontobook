@@ -97,4 +97,26 @@ public class Sorter {
 	}
 	
 	
+
+	public void ordenarString(ArrayList<String> lista) {
+		int n = lista.size();
+		int minimo = 0;
+		for(int i = 0;i< n-1; i++){
+			minimo = i;
+			for(int j = i+1; j<n; j++){
+				if(lista.get(j).compareTo((lista.get(minimo))) <0){
+					minimo = j;
+				}
+			}
+			if(i != minimo){
+				String t = lista.get(i);
+				lista.set(i, lista.get(minimo));
+				lista.set(minimo, t);
+			}
+			
+		}
+				
+	}
+	
+	
 }

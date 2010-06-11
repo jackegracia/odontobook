@@ -30,7 +30,7 @@ public ActionManager(Consultorio consultorio,GraphicInterface gi){
 	modificarPacienteAction=new ModificarPacienteAction(consultorio,gi);
 	newHistograma=new NewHistogramaAction(consultorio,gi);
 	modificarDoctor=new ModificarDoctor(consultorio, gi);
-	odontogramaAction=new OdontogramaAction();
+	odontogramaAction=new OdontogramaAction(consultorio,gi);
 }
 
 public OdontogramaAction getOdontogramaAction() {

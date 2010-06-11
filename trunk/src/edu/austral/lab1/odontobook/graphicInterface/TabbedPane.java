@@ -36,8 +36,27 @@ public class TabbedPane extends JTabbedPane{
 	private JSplitPane splitPacientes;
 	private JScrollPane scrollDeDoctores;
 	private JSplitPane splitDoctores;
+	private DefaultListModel modeloDeLista;
+	private DefaultListModel modeloDeListaDePacientes;
 
 
+
+	public DefaultListModel getModeloDeListaDePacientes() {
+		return modeloDeListaDePacientes;
+	}
+
+	public void setModeloDeListaDePacientes(
+			DefaultListModel modeloDeListaDePacientes) {
+		this.modeloDeListaDePacientes = modeloDeListaDePacientes;
+	}
+
+	public DefaultListModel getModeloDeLista() {
+		return modeloDeLista;
+	}
+
+	public void setModeloDeLista(DefaultListModel modeloDeLista) {
+		this.modeloDeLista = modeloDeLista;
+	}
 
 	public TabbedPane (){
 		ListaEvent event = new ListaEvent(this);
@@ -51,7 +70,7 @@ public class TabbedPane extends JTabbedPane{
 		sort.ordenarDoctores(doctores);
 		System.out.print(doctores.isEmpty());
 		doc=new JList();
-		DefaultListModel modeloDeLista = new DefaultListModel();
+		modeloDeLista = new DefaultListModel();
 
 		if(!doctores.isEmpty()){
 
@@ -66,6 +85,8 @@ public class TabbedPane extends JTabbedPane{
 
 		infoDoctorPane = new JPanel();
 		splitDoctores = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scrollDeDoctores, infoDoctorPane );
+		splitDoctores .setEnabled(false);
+		splitDoctores .setDividerLocation(200);
 		this.addTab("Doctores",splitDoctores);
 		
 		pacienteDao =new PacienteDao();
@@ -74,7 +95,7 @@ public class TabbedPane extends JTabbedPane{
 		System.out.print(doctores.isEmpty());
 		paci=new JList();
 
-		DefaultListModel modeloDeListaDePacientes = new DefaultListModel();
+		 modeloDeListaDePacientes = new DefaultListModel();
 
 		if(!pacientes.isEmpty()){
 
@@ -89,6 +110,8 @@ public class TabbedPane extends JTabbedPane{
 		
 		infoPacientePane = new JPanel();
 		splitPacientes = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scrollDePacientes, infoPacientePane );
+		splitPacientes.setEnabled(false);
+		splitPacientes.setDividerLocation(200);
 		this.addTab("Pacientes", splitPacientes);
 	
 
@@ -113,7 +136,7 @@ public class TabbedPane extends JTabbedPane{
 		panel.add(dniLabel);
 		JLabel obraLabel = new JLabel("Obra Social: "+paciente.getObraSocial());
 		panel.add(obraLabel);
-		panel.setPreferredSize(new Dimension(50, 50));
+	//	panel.setPreferredSize(new Dimension(50, 50));
 		return panel;
 
 	}
@@ -137,7 +160,7 @@ public JPanel crearDoctorPane(){
 		panel.add(dniLabel);
 		JLabel obraLabel = new JLabel("Matricula: "+doctor.getMatricula());
 		panel.add(obraLabel);
-		panel.setPreferredSize(new Dimension(50, 50));
+	//	panel.setPreferredSize(new Dimension(50, 50));
 		return panel;
 
 	}
@@ -145,7 +168,6 @@ public JPanel crearDoctorPane(){
 	public JList getPaci() {
 		return paci;
 	}
-
 
 
 	public void setPaci(JList paci) {
