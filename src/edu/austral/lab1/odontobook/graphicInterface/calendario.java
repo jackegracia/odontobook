@@ -84,6 +84,7 @@ public class calendario  {
 			"Julio", "Augusto", "Septiembre", "Octubre", "Noviembre", "Deciembre" };
 
 	private JPanel panel2;
+	private JButton button;
 
 	/** Build the GUI. Assumes that setYYMMDD has been called. */
 	private void buildGUI() {
@@ -135,13 +136,35 @@ public class calendario  {
 		bp.setLayout(new GridLayout(7, 7));
 		labs = new JButton[6][7]; // first row is days
 
-		bp.add(b0 = new JButton("D"));
-		bp.add(new JButton("L"));
-		bp.add(new JButton("M"));
-		bp.add(new JButton("M"));
-		bp.add(new JButton("J"));
-		bp.add(new JButton("V"));
-		bp.add(new JButton("S"));
+		b0 = new JButton("D");
+		b0.setIcon(new ImageIcon("icon/domingo.gif"));
+		b0.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(b0);
+		
+		 button=new JButton();
+		button.setIcon(new ImageIcon("icon/lunes.gif"));
+	 button.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(button);
+		 button=new JButton();
+		button.setIcon(new ImageIcon("icon/martes.gif"));
+		button.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(button);
+		 button=new JButton();
+		button.setIcon(new ImageIcon("icon/miercoles.gif"));
+		button.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(button);
+		 button=new JButton();
+		button.setIcon(new ImageIcon("icon/Jueves.gif"));
+		button.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(button);
+		 button=new JButton();
+		button.setIcon(new ImageIcon("icon/viernes.gif"));
+		button.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(button);
+		 button=new JButton();
+		button.setIcon(new ImageIcon("icon/Sábado.gif"));
+		button.setBorder(BorderFactory.createLineBorder(Color.black));
+		bp.add(button);
 
 		ActionListener dateSetter = new ActionListener() {
 			
@@ -224,7 +247,7 @@ public class calendario  {
 		// Fill in numbers for the day of month.
 		for (int i = 1; i <= daysInMonth; i++) {
 			JButton b = labs[(leadGap + i - 1) / 7][(leadGap + i - 1) % 7];
-			b.setIcon(new ImageIcon("icon/icon"+i+".gif"));
+			b.setIcon(new ImageIcon("icon/icon35.gif"));
 			b.setText(Integer.toString(i));
 			b.setBorder(BorderFactory.createLineBorder(Color.black));
 			

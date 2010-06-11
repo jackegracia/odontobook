@@ -22,6 +22,7 @@ import edu.austral.lab1.odontobook.model.HibernateUtil;
 import edu.austral.lab1.odontobook.model.Paciente;
 import edu.austral.lab1.odontobook.model.Usuario;
 import edu.austral.lab1.odontobook.model.dao.PacienteDao;
+import edu.austral.lab1.odontobook.model.dao.UsuarioDao;
 
 
 public class ModificarPacienteAction extends AbstractAction {
@@ -151,7 +152,10 @@ public class ModificarPacienteAction extends AbstractAction {
 				paci.setDireccion(JDireccion.getText());
 				paci.setObraSocial(jObraSocial.getText());
 				paci.setEdad(Integer.parseInt(jEdad.getText()));
-				paci.setUsuario(new Usuario(jUsuario.getText(),jContraseña.getText(),false, Integer.parseInt(jDni.getText())));
+				paci.getUsuario().setUsername(jUsuario.getText());
+				paci.getUsuario().setPassword(jContraseña.getText());
+				paci.getUsuario().setDni(Integer.parseInt(jDni.getText()));
+				
 	}
 	
 	

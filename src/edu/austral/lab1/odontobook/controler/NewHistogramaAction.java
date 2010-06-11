@@ -198,7 +198,6 @@ System.out.println(paci);
 		
 		TabbedPane tabedPane=gi.getDoctorTab();		
 		String name=(String)tabedPane.getPaci().getSelectedValue();
-		System.out.println(name);
 		String[] splitName=name.split(" ");
 		makeHistograma(splitName[0], splitName[splitName.length-1]);	
 	}
