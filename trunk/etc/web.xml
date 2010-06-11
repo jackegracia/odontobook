@@ -117,23 +117,19 @@
 		</servlet-class>
 	</servlet>
 
+
 	<servlet>
-		<servlet-name>Nombre Completo</servlet-name>
-		<servlet-class>edu.austral.lab1.odontobook.web.ObtenerNombreCompletoServlet
+		<servlet-name>Entrar</servlet-name>
+		<servlet-class>edu.austral.lab1.odontobook.web.EntrarErrorServlet
 		</servlet-class>
-
-		 <init-param>
-         	   <param-name>name </param-name>
-        </init-param>
-	
-
 	</servlet>
-	
 
 	<servlet-mapping>
-		<servlet-name>invoker</servlet-name>
-		<url-pattern>/NombreCompleto.do</url-pattern>
+		<servlet-name>Entrar</servlet-name>
+		<url-pattern>/ErrorEntrar.do</url-pattern>
 	</servlet-mapping>
+
+	
 	
 	<servlet-mapping>
 		<servlet-name>Go Home</servlet-name>
