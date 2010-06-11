@@ -187,8 +187,6 @@ public class NewDoctorAction extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 
 		Doctor doc = crearDialogo();
-		System.out.println(doc.getNombre());
-		System.out.println(doc.getUsuario().getUsername());
 		if(!doc.getNombre().equals("") || !doc.getUsuario().getUsername().equals("")){
 			nuevoDialogo.dispose();	
 			DoctorDao doctor = new DoctorDao();

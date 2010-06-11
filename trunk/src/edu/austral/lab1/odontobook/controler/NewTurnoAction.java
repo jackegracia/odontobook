@@ -63,7 +63,6 @@ public class NewTurnoAction extends AbstractAction {
 			JOptionPane.showMessageDialog(frame, "Fecha invalida para sacar un turno");
 		}else{
 		
-		System.out.print(date);
 		
 		String doctorName= (String) pane.getDoc().getSelectedValue();
 		

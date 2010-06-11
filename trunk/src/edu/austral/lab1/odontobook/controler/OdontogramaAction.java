@@ -48,9 +48,6 @@ public class OdontogramaAction extends AbstractAction {
 
 		PacienteDao paciente =new PacienteDao();
 		Paciente pacient=paciente.getPacientebyNameAndApellido(nombre, apellido);
-		System.out.println(nombre);
-		System.out.println(apellido);
-		System.out.println(pacient);
 		List<Histograma> histo=pacient.getHistograma();
 		
 		JFrame frame = new JFrame("Osontograma");
@@ -69,7 +66,7 @@ public class OdontogramaAction extends AbstractAction {
 			}
 			
 			while((i>16&&i<=32)||(i>48&&i<=64)){
-				System.out.println("hola");
+			
 				if(i>16&&i<=32){
 					if(histo.size()==0){
 						DrawTooth tooth=new DrawTooth(i-16,null,null,null,null,null);
@@ -79,14 +76,14 @@ public class OdontogramaAction extends AbstractAction {
 						boolean tratamiento=false;
 						Histograma histograma=null;
 					for(int z=0;z<histo.size();z++){
-						if (histo.get(z).getDientes()==i-15){
+						if (histo.get(z).getDientes()==i-16){
 							histograma=histo.get(z);
 							tratamiento=true;
 								}
 					}
 							if(tratamiento){
 								
-							System.out.println("hola fede");
+							
 							if(histograma.getTratamiento().equals("Extraccion")){
 								DrawTooth tooth=new DrawTooth(i-16,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK);
 								tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
@@ -133,7 +130,7 @@ public class OdontogramaAction extends AbstractAction {
 					}
 							if(tratamiento){
 																
-							System.out.println("hola fede");
+							
 							if(histograma.getTratamiento().equals("Extraccion")){
 								DrawTooth tooth=new DrawTooth(i-32,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK);
 								tooth. addMouseListener(new MouseListenerGraphic(tooth,this));
@@ -265,13 +262,13 @@ panelDeBotones=new JPanel();
 			if((z>=16&&z<32)){
 				if(panelDeDientes1.getComponent(z).isFocusable())
 					paintTooth(z-15,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE);
-				System.out.print("treuuuuuu");
+				
 			}else if((z>=48&&z<=64)){
 				if(panelDeDientes1.getComponent(z).isFocusable())
 
 
 					paintTooth(z-31,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE);
-				System.out.print("treuuuuuu");
+				
 
 			}
 		}
