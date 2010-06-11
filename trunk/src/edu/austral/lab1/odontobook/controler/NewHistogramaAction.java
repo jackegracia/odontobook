@@ -68,11 +68,11 @@ this.gi=gi;
 	}
 
 
-	private void makeHistograma(String name) {
+	private void makeHistograma(String name, String apellido) {
 
 
 		PacienteDao paciente =new PacienteDao();
-		 paci=paciente.getPacientebyName(name);
+		 paci=paciente.getPacientebyNameAndApellido(name, apellido);
 
 		nuevoDialogo = new JDialog(frame,"Histograma" ,true);
 		String[] columnNames = {"Diente",
@@ -200,7 +200,7 @@ this.gi=gi;
 		TabbedPane tabedPane=gi.getDoctorTab();		
 		String name=(String)tabedPane.getDoc().getSelectedValue();
 		String[] splitName=name.split(" ");
-		makeHistograma(splitName[0]);	
+		makeHistograma(splitName[0], splitName[1]);	
 	}
 
 

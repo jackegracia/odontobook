@@ -164,7 +164,7 @@ public class ModificarPacienteAction extends AbstractAction {
 		
 		
 		HibernateUtil.beginTransaction();
-		Paciente paci=pac.getPacientebyName(splitName[0]);
+		Paciente paci=pac.getPacientebyNameAndApellido(splitName[0], splitName[1]);
 		crearDialogo(paci);
 		HibernateUtil.getSession().update(paci);
 		HibernateUtil.commitTransaction();

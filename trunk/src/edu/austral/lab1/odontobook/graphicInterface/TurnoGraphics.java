@@ -193,9 +193,10 @@ public class TurnoGraphics {
 
 				DefaultTableModel temp = (DefaultTableModel) table.getModel();
 				String paciente =(String) temp.getValueAt(table.getSelectedRow(), 0);
+				String[] nya = paciente.split(" ");
 				System.out.print(paciente);
 				PacienteDao paci=new PacienteDao();
-				Paciente pacient=paci.getPacientebyName(paciente);
+				Paciente pacient=paci.getPacientebyNameAndApellido(nya[0], nya[1]);
 
 				HibernateUtil.beginTransaction();
 				Turno turno=new Turno(pacient,doctorForDay,date);

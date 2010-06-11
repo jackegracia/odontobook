@@ -99,7 +99,6 @@ public class GraphicInterface<panelDeBusqueda> {
 		panel1=new JPanel();
 		panel2=new JPanel();
 		panel3=new JPanel();
-
 		splitPanel2=new JSplitPane(JSplitPane.VERTICAL_SPLIT ,doctorTab,panelDeBusqueda);
 		splitPanel2.setOneTouchExpandable(false);
 		splitPanel2.setEnabled(false);
