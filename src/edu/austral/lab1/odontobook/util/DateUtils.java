@@ -16,19 +16,19 @@ public class DateUtils {
 		return myCalendar.getTime();
 	}
 	
-	public static Date getDate(final Date theDate)
+	public static String getDate(final Date theDate)
 	{
 		Calendar myCalendar = Calendar.getInstance();
 		myCalendar.setTime(theDate);
 		
 		final int date = myCalendar.get(Calendar.DATE);
-		final int month = myCalendar.get(Calendar.MONTH);
+		final int month = myCalendar.get(Calendar.MONTH)+1;
 		final int year = myCalendar.get(Calendar.YEAR);
 		
 		myCalendar.clear();
 		myCalendar.set(year, month, date);
 		
-		return myCalendar.getTime();
+		return month+"/"+date+"/"+year;
 	}
 
 

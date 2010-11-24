@@ -31,6 +31,12 @@ public class SacarTurnoServlet extends HttpServlet{
 			out.doPost(rq, rp);
 			return;			
 		}
+		DoctorDao doc1 = new DoctorDao();	
+		List<Doctor> list = doc1.getDoctor();
+		Sorter sort1 = new Sorter();
+		list = sort1.ordenarDoctores(list);
+		rq.setAttribute("list", list);
+		
 		Sorter sort = new Sorter();
 		DoctorDao doc = new DoctorDao();	
 		PrintWriter p = rp.getWriter();
@@ -54,7 +60,7 @@ public class SacarTurnoServlet extends HttpServlet{
 			Date d =  DateUtils.getDate(Integer.parseInt(dia),Integer.parseInt(mes)-1, Integer.parseInt(anio) );
 
 
-			if(doctor.equals("Todos")){
+			if(doctor.equals("Todos") || doctor.equals("All") ){
 				List<String[]> listaTurnosDoctores = new ArrayList<String[]>();
 				for(int i = 0; i<listD.size(); i++){
 					String[] aux = getTurnoComparados( getTurnoPorDoctor(d, listD.get(i).getNombre()+" "+listD.get(i).getApellido()));

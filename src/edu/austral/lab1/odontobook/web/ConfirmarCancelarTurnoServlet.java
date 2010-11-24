@@ -42,7 +42,8 @@ public class ConfirmarCancelarTurnoServlet extends HttpServlet {
 		String hora = (String)rq.getParameter("hora");
 		String doctor = (String)rq.getParameter("doctor");
 		String fecha = (String)rq.getParameter("date");
-		p.println(doctor);
+		
+		p.println(fecha);
 		String[] fechaS = fecha.split("/");
 		int diaA = Integer.parseInt(fechaS[1]);
 		int mesA = Integer.parseInt(fechaS[0]);

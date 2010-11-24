@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import edu.austral.lab1.odontobook.util.DateUtils;
+
 @Entity
 @Table(name="TURNO")
 
@@ -108,7 +110,8 @@ public class Turno implements Serializable{
 	
 	public boolean esMayorPorDoctor(Turno t){
 		
-		if(hora> t.getHora()) return true;
+		if(fecha.compareTo(t.getFecha())>0) return true;
+		else if(hora> t.getHora()) return true;
 		else if(hora == t.getHora() && minutos > t.getMinutos()) return true;
 		else if(hora == t.getHora() && minutos == t.getMinutos()){
 			return doctor.esMayor(t.getDoctor());
@@ -119,7 +122,8 @@ public class Turno implements Serializable{
 	
 public boolean esMayorPorPaciente(Turno t){
 		
-		if(hora> t.getHora()) return true;
+		if(fecha.compareTo(t.getFecha())>0) return true;
+		else if(hora> t.getHora()) return true;
 		else if(hora == t.getHora() && minutos > t.getMinutos()) return true;
 		else if(hora == t.getHora() && minutos == t.getMinutos()){
 			return paciente.esMayor(t.getPaciente());
@@ -127,6 +131,8 @@ public boolean esMayorPorPaciente(Turno t){
 		else return false;
 		
 	}
+
+
 
 	public String dia(){
 		String date=fecha.toString();
@@ -178,17 +184,18 @@ public boolean esMayorPorPaciente(Turno t){
 	
 
 	public String toString(){
-		String date=fecha.toString();
-		String[] splitDate=date.split("-");
+		
+//		String date=fecha.toString();
+//		String[] splitDate=date.split("-");
+//		
+//		
+//		String año=splitDate[0];
+//		
+//		String mes=splitDate[1]; 
+//		String[] dia=splitDate[2].split(" ");
 		
 		
-		String año=splitDate[0];
-		
-		String mes=splitDate[1]; 
-		String[] dia=splitDate[2].split(" ");
-		
-		
-		return dia[0]+" "+mes+" "+año+" "+String.valueOf(hora)+":"+String.valueOf(minutos);
-	}
+		return DateUtils.getDate(fecha);
 
+}
 }
