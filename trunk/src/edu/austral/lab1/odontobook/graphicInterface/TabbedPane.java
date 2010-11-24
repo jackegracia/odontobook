@@ -1,5 +1,6 @@
 package edu.austral.lab1.odontobook.graphicInterface;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseListener;
@@ -59,6 +60,7 @@ public class TabbedPane extends JTabbedPane{
 	}
 
 	public TabbedPane (){
+	
 		ListaEvent event = new ListaEvent(this);
 		MouseListener eventListP = event.clickListPac;
 		MouseListener eventListD = event.clickListDoc;
@@ -86,7 +88,9 @@ public class TabbedPane extends JTabbedPane{
 		infoDoctorPane = new JPanel();
 		splitDoctores = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scrollDeDoctores, infoDoctorPane );
 		splitDoctores .setEnabled(false);
+		infoDoctorPane.setBackground(Color.WHITE);
 		splitDoctores .setDividerLocation(200);
+		
 		this.addTab("Doctores",splitDoctores);
 		
 		pacienteDao =new PacienteDao();
@@ -136,6 +140,7 @@ public class TabbedPane extends JTabbedPane{
 		panel.add(dniLabel);
 		JLabel obraLabel = new JLabel("Obra Social: "+paciente.getObraSocial());
 		panel.add(obraLabel);
+		panel.setBackground(Color.WHITE);
 	//	panel.setPreferredSize(new Dimension(50, 50));
 		return panel;
 
@@ -161,6 +166,7 @@ public JPanel crearDoctorPane(){
 		JLabel obraLabel = new JLabel("Matricula: "+doctor.getMatricula());
 		panel.add(obraLabel);
 	//	panel.setPreferredSize(new Dimension(50, 50));
+		panel.setBackground(Color.WHITE);
 		return panel;
 
 	}

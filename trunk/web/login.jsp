@@ -1,35 +1,76 @@
 <%@ page contentType="text/html; charset=iso-8859-1" language="java" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page import="edu.austral.lab1.odontobook.model.*, edu.austral.lab1.odontobook.web.*, java.util.*"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="style.css" media="screen" />
-<title>Documento sin t&iacute;tulo</title>
-<style type="text/css">
-<!--
-.Estilo3 {font-weight: bold}
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="icon" type="image/png" href="/img/logo.png" />
 
--->
-</style>
+<title>Odontobook</title>
+
 </head>
 
-<body>
-<div align="center" class="Estilo3">
-  <h1 align="center">Odontobook  </h1>
+<body background="img/fondo.png">
+<div align="center" >
+  <h1 align="center" >
+  <img id="logo" style=" height:100px; width:100px; padding-bottom:40px" src="img/logo.png"/>
+  <img  src="img/odontobook.png"/> </h1>
 </div>
 <p align="right">&nbsp;</p>
 
-<div id="loginForm">
+<% Boolean entrarOk = (Boolean) request.getAttribute("entrar"); %>
 
-	<form id="<%=Constants.LOGIN_FORM_ID%>" name="form1" method="post" action="<%=response.encodeURL(Constants.LOGIN_FORM_ACTION)%>">
-		<label>Name <input id="<%=Constants.LOGIN_USERNAME_FIELD%>" name="<%=Constants.LOGIN_USERNAME_FIELD%>" type="text"  />
-		</label> 
-		<label>Password <input type="password" name="<%=Constants.LOGIN_PASSWORD_FIELD%>"  style="margin-top: 5px;" />
-		</label> 
-		<label>
-		<input type="submit" name="button" id="button" value="Submit" style="cursor: pointer" /> 
-		</label>
-		</form>
+<%if(entrarOk == null) { %>
+
+<div  id="loginForm">
+<div class="rbroundboxLog">
+	<div class="rbtopLog"><div></div></div>
+		<div class="rbcontent">
+
+
+<form  name="loginForm" method="POST"
+action = "j_security_check">
+<label for="name">Usuario:</label><input type="text" name="j_username" id="j_username" />
+<label for="password">Password:</label><input type="password" name="j_password" id="j_password" />
+
+<input id="submit" type="submit" value="Conectarse" />
+</form>
+
+	</div>
+	<div class="rbbotLog"><div></div></div>
 </div>
+  </div>
+
+<%} else{ %>
+
+
+<div  id="loginForm">
+<div class="rbroundboxLog">
+	<div class="rbtopLog"><div></div></div>
+		<div class="rbcontent">
+
+
+<form  name="loginForm" method="POST"
+action = "j_security_check">
+<label for="name">Usuario:</label><input type="text" name="j_username" id="j_username" />
+<label for="password">Password:</label><input type="password" name="j_password" id="j_password" />
+<input id="submit" type="submit" value="Conectarse" />
+
+
+
+
+</form>
+
+	</div>
+	<div class="rbbotLog"><div></div></div>
+</div>
+
+
+  </div>
+<p id="par" align="center"> El usuario o contrase&ntilde;a son incorrectos </p>
+
+<%}%>
+<% Bundle bun = new Bundle(); %>
 </body>
 </html>

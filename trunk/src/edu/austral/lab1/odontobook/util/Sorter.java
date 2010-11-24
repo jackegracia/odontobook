@@ -11,7 +11,7 @@ public class Sorter {
 
 	public Sorter(){}
 	
-	public List<Doctor> ordenarDoctores(List<Doctor> lista){
+	public static List<Doctor> ordenarDoctores(List<Doctor> lista){
 
 		int n = lista.size();
 		int minimo = 0;
@@ -54,7 +54,7 @@ public class Sorter {
 	}
 	
 	
-	public List<Turno> ordenarTurnos(List<Turno> lista){
+	public static List<Turno> ordenarTurnos(List<Turno> lista){
 
 		int n = lista.size();
 		int minimo = 0;

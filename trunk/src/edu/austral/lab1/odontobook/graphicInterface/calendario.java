@@ -276,6 +276,7 @@ public class calendario  {
 			setDayActive(dd); // shade the box for today
 
 		// Say we need to be drawn on the screen
+		
 		panel2.repaint();
 
 

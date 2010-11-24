@@ -4,6 +4,7 @@
 <%@ page import="edu.austral.lab1.odontobook.util.*, edu.austral.lab1.odontobook.model.*, edu.austral.lab1.odontobook.web.*, java.util.*"%>
 <head>
   <link href="css/custom-theme/jquery-ui-1.8.1.custom.css" rel="stylesheet" type="text/css"/>
+  <link rel="icon" type="image/png" href="/img/logo.png" />
   <script src="jquery/js/jquery-1.4.2.min.js"></script>
   <script src="jquery/js/jquery-ui-1.8.1.custom.min.js"></script>
   
@@ -15,6 +16,13 @@
 
   });
   
+  function doIt(){
+	var txt = document.getElementById("datepicker");
+	if(txt.value != ""){
+		document.turnoForm.submit();
+	}
+  }
+  
   </script>
 
 
@@ -25,19 +33,31 @@
 </head>
 
 <body>
+<%  
+	ResourceBundle bubdle = Bundle.getBundle(); %>
 <div align="right">
-    <p>
       <%@include file="/jsp/menu.jsp" %>
-    </p>
-    <p align="left">&nbsp;</p>
 </div>
+
+<table id="tablaPrincipal">
+<th></th>
+<th id="thMedio"></th>
+<th></th>
+<tr>
+<td valign="top">
+
+<%@include file="/jsp/lista.jsp" %>
+
+</td>
+<td></td>
+<td id="tdLista" valign="top">
 
 <div align="center">
 <p>
-<form method="POST" action="SeleccionarVerTurno.do" >
+<form name="turnoForm" method="POST" action="SeleccionarVerTurno.do" >
 
 <input type="text" name="datepicker" id="datepicker" />
-<input name="SUBMIT" type = "SUBMIT" value="Buscar" />
+<input id="buttonSubmit" type = "button" onClick="doIt()"  value=<%= bubdle.getString("buscar")%> />
 
 </form>
 </p>
@@ -51,14 +71,14 @@
 <table id="tabD">
 
 <tr >
-<th> Fecha  </th>
-<th> Hora </th>
-<th> Paciente</th>
+<th> <%= bubdle.getString("fecha")%>  </th>
+<th> <%= bubdle.getString("hora")%> </th>
+<th> <%= bubdle.getString("paciente")%></th>
 </tr>
 <%if (lis != null){ 
  for (int i = 0; i < lis.size(); i++){ %>
 <tr>
-<td> <%= lis.get(i).dia()+"/"+lis.get(i).mes()+"/"+lis.get(i).anio() %> </td>
+<td> <%=  request.getAttribute("fecha") %> </td>
 <td> <%= lis.get(i).hora() +":"+lis.get(i).minutos() %> </td>
 <td> <%= lis.get(i).getPaciente().getNombre()+" "+lis.get(i).getPaciente().getApellido() %> </td>
 </tr>
@@ -67,6 +87,8 @@
 </table>
 </p>
 </div>
-
+</td>
+</tr>
+</table>
 </body>
 </html>

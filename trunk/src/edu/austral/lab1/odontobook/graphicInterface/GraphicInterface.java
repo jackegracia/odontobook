@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Panel;
 import java.awt.Toolkit;
 import java.awt.image.ImageProducer;
 
@@ -49,6 +50,7 @@ public class GraphicInterface<panelDeBusqueda> {
 		frameAux.pack();
 		frameAux.setLocationRelativeTo(null);
 		frameAux.setVisible(true);
+		
 		Consultorio consultorio=new Consultorio("Consultorio");
 		ActionManager am=new ActionManager(consultorio,this);
 		System.out.println("nooo");
@@ -103,7 +105,7 @@ public class GraphicInterface<panelDeBusqueda> {
 		splitPanel2.setOneTouchExpandable(false);
 		splitPanel2.setEnabled(false);
 		splitPanel2.setDividerLocation(60);
-
+		
 		splitPanel1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,splitPanel2,panel3);
 		splitPanel1.setOneTouchExpandable(false);
 		splitPanel1.setEnabled(false);

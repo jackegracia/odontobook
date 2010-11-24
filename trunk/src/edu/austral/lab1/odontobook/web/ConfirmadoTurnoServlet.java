@@ -78,7 +78,7 @@ public class ConfirmadoTurnoServlet extends HttpServlet {
 			
 		}
 	
-		rq.getRequestDispatcher("jsp/homePaciente.jsp").forward(rq, rp);
+		rq.getRequestDispatcher("/GoHome.do").forward(rq, rp);
 	
 	}
 }

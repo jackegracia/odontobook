@@ -100,7 +100,7 @@ public class SearchName extends JPanel {
 				}
 				if(k == 0){
 					JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "El paciente no existe");
+					JOptionPane.showMessageDialog(frame, "El usuario no existe");
 				}
 
 				testArea.setText("");

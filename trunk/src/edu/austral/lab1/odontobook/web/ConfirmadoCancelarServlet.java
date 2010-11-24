@@ -41,7 +41,7 @@ public class ConfirmadoCancelarServlet extends HttpServlet {
 		
 		if(oa==null && oc.equals("cancelar")){
 			
-			rq.getRequestDispatcher("jsp/cancelarTurno.jsp").forward(rq, rp);
+			rq.getRequestDispatcher("/GoHome.do").forward(rq, rp);
 		}
 		else if(oa.equals("aceptar") && oc==null){			
 			
@@ -74,10 +74,10 @@ public class ConfirmadoCancelarServlet extends HttpServlet {
 			turno.setMinutos(Integer.parseInt(hour[1]));
 			TurnoDao turnoDao=new TurnoDao();
 			turnoDao.removeTurno(pac.getId(), d, Integer.parseInt(hour[0]), Integer.parseInt(hour[1]), doc.getId());
-			
+			rq.getRequestDispatcher("/GoHome.do").forward(rq, rp);
 		}
 	
-		rq.getRequestDispatcher("jsp/homePaciente.jsp").forward(rq, rp);
+		
 	
 	}
 
